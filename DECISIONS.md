@@ -157,3 +157,23 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Decisión:** guion de aproximadamente 15 minutos con ejemplo entero, cambio de precio, extracción, prueba roja y corrección. Usar `kata-zero-v3-first-test-red`, `kata-zero-v3-fixed` y `kata-zero-v3-ready` sin sobrescribir etiquetas previas. La validación compara cuatro recorridos habituales en tres etapas, el precio cambiado en copias temporales y la misma prueba con ambos calculadores.
 
 **Sustituye:** los 20 minutos de introducción de D013 y los 12 recorridos extensos de D012. El total previsto del curso pasa a 205 minutos. La comprobación actual comprende 15 ejecuciones de consola y rojo/verde, no igualdad completa de producción entre etapas.
+
+## D020 — Presentación del primer video · 2026-10-31
+
+**Origen:** el usuario solicita delegar la creación de diapositivas a un subagente y después acota el alcance a un solo video: «Introducción a JUnit con Kata Zero».
+
+**Decisión:** un deck Slidev en español de México, limitado al recorrido vigente de Kata Zero: programa de consola, ejemplo entero, cambio de precio, extracción, primera prueba, defecto de int y corrección. Mantener una introducción breve a Jupiter/Platform y al patrón Preparar–Ejecutar–Comprobar; dejar assertAll y los videos 1.1–1.3 completos para después.
+
+**Presentación:** fondo slate oscuro, acentos sutiles, Shiki para Java, focos por línea, diagramas Mermaid, revelados progresivos, dos columnas, transiciones y magic-move para el cálculo defectuoso y corregido. Notas breves por diapositiva.
+
+**Construcción:** Slidev usa Node y npm con versiones fijadas y lockfile; los ejemplos Java y las katas siguen usando Maven y Zulu `25.0.5.0+8-zulu`. No publicar el deck. El formato interactivo conserva animaciones; una exportación PDF es material estático complementario.
+
+## D021 — Entrega del deck introductorio · 2026-10-31
+
+**Origen:** trabajo delegado expresamente solicitado y revisión del integrador.
+
+**Decisión:** guardar el deck en `presentation/intro-junit-kata-zero`, con 19 diapositivas y 19 notas, dos diagramas Mermaid nativos y transformación del calculador defectuoso al corregido. Usar Slidev 53.0.0, tema base 0.25.0 y Playwright Chromium 1.64.1 con package-lock. Las fuentes son locales, sin CDN ni imágenes remotas.
+
+**Revisión:** compilar la SPA, exportar PDF de 19 páginas, comprobar contenido contra Kata Zero v3 y revisar visualmente páginas representativas. Se dividió una línea que quedaba recortada y se centraron los diagramas. El script `check:deck` revisa las diapositivas activas y las notas en el servidor local; el PDF no sustituye la revisión de animaciones en el navegador al preparar la grabación.
+
+**Consecuencia:** solo se entrega el video introductorio. La propuesta inicial de cubrir todo el módulo 1 quedó fuera de alcance. Los archivos generados y dependencias instaladas se excluyen de Git; se versionan fuente, configuración, lockfile e instrucciones.

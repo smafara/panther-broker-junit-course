@@ -1,5 +1,13 @@
 # Registro de cambios
 
+## 2026-10-31 — Presentación del video introductorio
+
+- Se delega la creación del deck a un subagente por solicitud del usuario.
+- Se acota la propuesta inicial del módulo 1 a «Introducción a JUnit con Kata Zero».
+- Se crean 19 diapositivas Slidev en español con notas, tema oscuro, Shiki, focos de código, Mermaid y magic-move.
+- Se agregan instalación reproducible con npm, exportación PDF y comprobación en navegador.
+- Se enlaza el deck desde el curso y Kata Zero y se registra la decisión de usar Node para la presentación, conservando Maven para Java.
+
 ## 2026-10-31 — Preparación de Kata Zero
 
 - Se conserva el temario previo en español y su investigación en inglés.

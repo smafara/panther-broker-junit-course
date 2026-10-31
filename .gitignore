@@ -4,3 +4,8 @@
 *.iml
 # Repositorio de referencia independiente; no incorporarlo como repositorio anidado.
 /fintual-kata/
+**/node_modules/
+**/dist/
+**/.slidev/
+presentation/intro-junit-kata-zero/intro-junit-kata-zero.pdf
+presentation/intro-junit-kata-zero/.validation/

@@ -47,6 +47,7 @@ El resultado esperado se proporciona con una tabla calculada a mano. No se pide 
 ## Producción del video
 
 - [Guion y diapositivas](docs/GUION.md).
+- [Deck interactivo de introducción a JUnit](../presentation/intro-junit-kata-zero/README.md).
 - [Qué cambió y por qué](docs/EVOLUCION.md).
 - [Revisión colegiada](docs/CONSEJO.md).
 - [Validación reproducible](docs/VALIDACION.md).
