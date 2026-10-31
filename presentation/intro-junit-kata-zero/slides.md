@@ -226,11 +226,11 @@ Transición: dar nombre a esta herramienta: pruebas unitarias.
 <div class="card success" v-click><h3>Un resultado esperado</h3><p>Comparar lo obtenido con lo que debería pasar.</p></div>
 </div>
 
-<p class="small" style="margin-top:26px">JUnit nos ayuda a escribir y ejecutar esas pruebas en Java.</p>
+<p class="small" style="margin-top:26px" v-click>JUnit nos ayuda a escribir y ejecutar esas pruebas en Java.</p>
 
 <!--
 Entrada: dar nombre a la comparación que acabamos de hacer a mano: una prueba unitaria la convierte en una comprobación automática de una parte pequeña del código.
-Clics: conectar datos, operación y resultado esperado con el cálculo de Panther Broker. No introducir todavía anotaciones ni la estructura completa de una prueba.
+Clics: conectar datos, operación y resultado esperado con el cálculo de Panther Broker. Después, revelar la frase que presenta a JUnit. No introducir todavía anotaciones ni la estructura completa de una prueba.
 Transición: guardar primero las expectativas del ejemplo habitual y ejecutarlas con JUnit.
 -->
 

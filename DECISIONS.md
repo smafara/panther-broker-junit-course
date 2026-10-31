@@ -275,3 +275,9 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Origen:** el usuario propone explicar detección temprana, límites de probar a mano, regresiones y comprobaciones deterministas antes de presentar pruebas unitarias; después mostrar ejemplos del requisito entero, caso fraccionario rojo y solución verde.
 
 **Decisión:** agregar una diapositiva de motivación después del fallo manual, presentar el concepto y mostrar los dos métodos reales de OriginalExamplesTest antes de su ejecución. Explicar que esos casos podían guardarse desde el requisito int y se ejecutan con el cálculo extraído y su firma vigente. Mostrar que al cambiar a double siguen verdes, agregar el caso fraccionario, corregir producción sin debilitar expectativas y terminar con tres pruebas verdes. El deck pasa a 16 diapositivas. Detectar automáticamente las diapositivas con grabaciones en el verificador para tolerar inserciones futuras.
+
+## D036 — Presentar JUnit al finalizar el diagrama · 2026-10-31
+
+**Origen:** el usuario pide que «JUnit nos ayuda…» aparezca al final.
+
+**Decisión:** revelar esa frase con el cuarto clic, después de las tres tarjetas, usando la transición de aparición del deck. Actualizar la nota de presentación; el texto final del PDF permanece igual.
