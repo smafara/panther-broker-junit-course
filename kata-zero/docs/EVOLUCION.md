@@ -41,3 +41,24 @@ En `after/01-small-refactor` se extrae la fórmula repetida a `RebalanceCalculat
 El resto de main sigue igual: nombres breves, arreglos paralelos, lectura y presentación mezcladas. Este paso no pretende terminar la refactorización. Solo permite preguntar por un resultado sin simular teclas.
 
 Para comparar: `git diff --no-index kata-zero/before/src/main/java kata-zero/after/01-small-refactor/src/main/java`. Un código de salida 1 en ese comando significa que encontró diferencias.
+
+## Después 2: la primera prueba
+
+En `after/02-first-test` el código de producción es idéntico al de la etapa anterior. Se agrega el BOM de JUnit 6.1.3, la dependencia `junit-jupiter` con alcance test y `RebalanceCalculatorTest`.
+
+La prueba prepara el valor total de 6000 USD y calcula las dos cantidades firmadas. Comprueba los resultados literales -5.2000 y 13.0000, obtenidos de la tabla de este documento. No reconstruye dentro de la prueba la fórmula que pretende verificar.
+
+Se presentan únicamente @Test, @DisplayName y assertEquals. Hay un escenario y dos comprobaciones; si falla la primera, no se ejecuta la segunda. assertAll llegará después en el curso. equals de BigDecimal también comprueba escala: aquí cuatro decimales forman parte del resultado esperado.
+
+La prueba detecta un cambio de resta a suma sin navegar por el menú. No verifica todavía el total calculado en main, la validación de entrada, el orden de impresión ni todos los redondeos. Evitar afirmar que una prueba significa que el programa completo es correcto.
+
+## Comparación de responsabilidades
+
+| Responsabilidad | Antes | Después 1 | Después 2 |
+|---|---|---|---|
+| Lectura, menú y estado | main | main | main |
+| Cantidad a comprar/vender | Repetida en main | Método extraído | Mismo método |
+| Verificación del cálculo | A mano | A mano | Primera prueba JUnit |
+| Arquitectura completa | No | No | No |
+
+El script `scripts/verify-kata-zero.py` es una herramienta de preparación del curso: compila con Maven, ejecuta escenarios de consola y compara resultados entre fotografías. No se presenta al estudiante como parte de su primera prueba ni se exige Python para usar los proyectos Maven.
