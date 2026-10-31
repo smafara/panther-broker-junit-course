@@ -99,3 +99,33 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Decisión:** agregar una introducción de aproximadamente 20 minutos antes de los 15 videos del temario. El video 1.2 consolida configuración y estructura ya vistas de forma breve en Kata Zero. Mantener el simulador de compras del curso principal como evolución posterior, sin introducir toda su arquitectura en la introducción.
 
 **Consecuencia:** 16 videos principales y aproximadamente 210 minutos previstos. Los cuatro decimales de órdenes en Kata Zero siguen la referencia; los seis decimales del simulador posterior deben anunciarse como un cambio explícito de contrato cuando se implemente, no mezclarse silenciosamente.
+
+## D014 — Simplificar Kata Zero · 2026-10-31
+
+**Origen:** el usuario acepta que la primera versión era demasiado compleja y autoriza simplificarla.
+
+**Decisión:** reducir main de 140 a aproximadamente 50 líneas; dos instrumentos fijos (META y AAPL), objetivo 40/60 y menú de consulta, rebalanceo y salida. Se eliminan cambios interactivos de precios, posiciones y distribución, búsqueda de símbolos y validaciones correspondientes. Se conservan BufferedReader, println, arreglos paralelos, total repetido y cálculo dentro de main como punto de partida.
+
+**Sustituye:** el alcance de tres instrumentos y entradas editables de D006/D007. Los datos válidos están preparados; el programa no se presenta como una aplicación robusta de uso general. Se imprime en orden de catálogo y no se promete ordenar todas las ventas antes de las compras.
+
+## D015 — Defecto realista desde el inicio · 2026-10-31
+
+**Origen:** requisito explícito del usuario: incluir un bug que no sea evidente a primera vista, con revisión colegiada.
+
+**Decisión:** calcular la cantidad objetivo con dos decimales, reutilizando equivocadamente precisión monetaria; después restar la posición y mostrar cuatro decimales. Los ceros añadidos no recuperan precisión. before y after/01 conservan este defecto sin señalarlo en comentarios del código estudiantil.
+
+**Caso que lo oculta:** META a 500 USD y AAPL a 200 USD, posiciones 10 y 5, objetivo 40/60: -5.2000 y +13.0000.
+
+**Caso que lo revela:** cambiar solo META a 350 USD. Total 4500 USD; objetivo META 1800 USD; orden exacta 1800/350 - 10 = -4.857142...; esperado -4.8571, observado -4.8600. La diferencia es numérica, no solo de escala de BigDecimal.
+
+**Sustituye:** la exclusión de defectos iniciales de D006 y la suma temporal de D012. No se agregan impuestos, errores de punto flotante ni reglas adicionales para fabricar la falla.
+
+## D016 — Separar extracción, prueba roja y corrección · 2026-10-31
+
+**Origen:** revisión colegiada y requisito de conservar el proceso en Git.
+
+**Decisión:** after/01 extrae la fórmula defectuosa sin corregirla. La primera prueba tiene un escenario y una comprobación. La etiqueta `kata-zero-v2-first-test-red` conserva la falla esperada; un commit posterior corrige solamente el cálculo de after/02, restando el valor actual antes de dividir a cuatro decimales. La versión final del agregador termina en verde.
+
+**Sustituye:** identidad de todo el código de producción entre after/01 y after/02 en D008/D012. Main debe seguir idéntico; el cambio del calculador es ahora una corrección explícita. Las etiquetas originales de la versión extensa se conservan sin moverlas.
+
+**Consecuencia:** verificar conservación de salida en la extracción; verificar diferencia intencional entre etapas para el escenario que revela el bug. No llamar TDD a una prueba agregada después del código existente.
