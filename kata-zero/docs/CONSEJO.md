@@ -1,3 +1,7 @@
+# Antecedente de revisión colegiada
+
+La revisión aquí conservada corresponde a las versiones anteriores. La decisión vigente es la introducción narrativa en siete momentos, registrada en D022–D025 de DECISIONS.md. Ya no se utiliza intValue ni el defecto de dos decimales: se muestra división entera tras cambiar la variable de resultado a double.
+
 # Revisión colegiada de la simplificación
 
 Decisión vigente: defecto por conversión a entero, descrito en la revisión posterior al final de este documento. Los apartados iniciales conservan la primera propuesta de precisión como antecedente.

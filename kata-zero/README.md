@@ -1,70 +1,69 @@
-# Kata Zero — De un menú de consola a la primera prueba
+# Kata Zero — Un cambio que parecía funcionar
 
-**Historia del ejercicio:** un programa se escribió suponiendo acciones completas. Al adaptarse para permitir fracciones, quedó una conversión a int en un cálculo intermedio. Un ejemplo con resultados enteros parece funcionar; un cambio de precio revela el defecto.
+Introducción de 7–8 minutos al curso. Primero contamos una historia; la estructura de JUnit, AAA y las metodologías se enseñan después.
 
-Es un contexto ficticio para enseñar pruebas; no es un bug atribuido a Fintual o GBM. La kata conserva un main pequeño y desordenado, con println, BufferedReader, arreglos paralelos y cálculos mezclados con presentación.
+## Siete momentos
 
-## Tres proyectos Maven
+1. Un programa calcula compras y ventas de acciones completas.
+2. El requisito cambia: permitir cantidades fraccionadas.
+3. Se cambian dos variables de int a double y se repite el ejemplo manual; parece funcionar.
+4. Otros datos revelan una cantidad incorrecta.
+5. Introducimos las pruebas unitarias como expectativas ejecutables.
+6. Mostramos dos casos originales verdes, el nuevo caso rojo y los tres verdes después de corregir.
+7. Presentamos lo que se aprenderá durante el curso.
 
-| Etapa | Carpeta | Estado |
-|---|---|---|
-| Antes | [before](before/README.md) | Todo en main; defecto inicial |
-| Extracción | [after/01-small-refactor](after/01-small-refactor/README.md) | Mismo defecto en un método aislado |
-| Primera prueba y corrección | [after/02-first-test](after/02-first-test/README.md) | Una prueba JUnit y cálculo corregido |
+## Fotografías Maven
 
-No se necesitan la solución C# de referencia ni servicios externos.
+| Carpeta | Contenido |
+|---|---|
+| [before](before/README.md) | Programa con resultados enteros, todo en main |
+| [after/01-naive-fractions](after/01-naive-fractions/README.md) | Solo las variables de resultado cambian a double |
+| [after/02-first-test](after/02-first-test/README.md) | Cálculo separado para probarlo, tres casos y división corregida |
 
-## Entorno y ejecución
+El total, el valor objetivo y los precios siguen siendo int en este ejercicio. Asignar a double el resultado de una división entre int no recupera la fracción. Esto es truncamiento por división entera, no un error de representación binaria de double.
 
-Usar exactamente Zulu `25.0.5.0+8-zulu` de SDKMAN. Desde la raíz:
+Datos iniciales: 10 META y 10 AAPL, ambas a 100 USD, objetivo 40/60. Venta de 2 META y compra de 2 AAPL. Nuevos datos: solo META pasa a 150 USD; total 2500 USD; objetivo META 1000 USD; debe vender aproximadamente 3.333333, pero la adaptación ingenua vende 4.
+
+## Ejecutar
+
+Desde la raíz con SDKMAN y el JDK exacto:
 
 ```sh
-sdk install java 25.0.5.0+8-zulu  # solo si falta
 sdk env
-./mvnw -version
 ./mvnw -q -f kata-zero/before/pom.xml compile exec:java
+./mvnw -q -f kata-zero/after/01-naive-fractions/pom.xml compile exec:java
 ./mvnw -f kata-zero/after/02-first-test/pom.xml test
 ./mvnw clean verify
+python3 scripts/verify-kata-zero.py
 ```
 
-El wrapper fija Maven 3.10.0 y descarga dependencias en la primera ejecución. Seleccionar el mismo JDK en el IDE. Cada etapa tiene su POM y .sdkmanrc; también admite `mvn compile exec:java` desde su carpeta.
+Se usa Zulu `25.0.5.0+8-zulu` y Maven Wrapper 3.10.0. En Windows nativo usar mvnw.cmd y JAVA_HOME al mismo build; SDKMAN se puede usar en WSL. Seleccionar también ese JDK en el IDE.
 
-En Windows nativo usar mvnw.cmd y configurar JAVA_HOME al mismo build Zulu. SDKMAN se puede usar en WSL, no administra directamente un JDK nativo de Windows.
+El menú solo permite ver cuenta, calcular y salir. Para cambiar el precio, editar `int[] prices = {100, 100}` a `{150, 100}` en una copia y recompilar. El plan no aplica operaciones.
 
-Para ejecutar otra fotografía, cambiar la ruta del POM en el comando. Las dos primeras etapas no tienen pruebas JUnit: que Maven termine allí no prueba corrección funcional.
+La corrección final usa `targetValue / (double) price`. El alcance son estos datos preparados y una aproximación numérica; no implementa un intermediario real, precisión monetaria general, efectivo, comisiones o impuestos. BigDecimal se estudia después.
 
-## Demostración
+## Pruebas y capturas
 
-1. Cuenta inicial: 10 META y 10 AAPL, ambas a 100 USD. Total 2000 USD; objetivo 40/60. El programa propone vender 2 META y comprar 2 AAPL.
-2. Extraer la fórmula y repetir: misma salida.
-3. Introducir en la prueba otro precio: META a 150 USD; total 2500 USD. META debe valer 1000 USD: conservar 6.6666... y vender 3.3333. La fórmula heredada propone vender 4.
-4. Ver la prueba fallar, eliminar la pérdida de fracciones y ejecutarla de nuevo.
+OriginalExamplesTest tiene dos casos del ejemplo habitual. FractionalSharesTest agrega el nuevo precio. Tener solo las dos primeras pruebas no detectaría el defecto: la selección de ejemplos importa.
 
-El resultado esperado se proporciona con una tabla calculada a mano. No se pide descubrir el bug sin ayuda. El menú solo consulta, calcula y sale; para reproducir el cambio de precio en consola, editar el primer literal 100.00 a 150.00 y recompilar una copia.
+La etiqueta `kata-zero-v4-first-test-red` conserva la suite ampliada fallida; `kata-zero-v4-fixed` conserva la corrección sin cambiar las expectativas. Los estados anteriores se conservan como antecedentes.
 
-`samples/recorrido-inicial.txt` contiene las opciones 1, 2, 1 y 0. Se puede redirigir como entrada para repetir la demostración en una terminal compatible.
-
-## Producción del video
-
-- [Guion y diapositivas](docs/GUION.md).
-- [Deck interactivo de introducción a JUnit](../presentation/intro-junit-kata-zero/README.md).
-- [Qué cambió y por qué](docs/EVOLUCION.md).
-- [Revisión colegiada](docs/CONSEJO.md).
-- [Validación reproducible](docs/VALIDACION.md).
-- [Referencia](docs/REFERENCIAS.md).
-- [Decisiones](../DECISIONS.md).
-
-El script opcional `python3 scripts/verify-kata-zero.py`, desde la raíz, usa el JDK exacto, construye con Maven y comprueba conservación del ejemplo habitual, diferencia intencional del caso fraccionario y rojo/verde en copias temporales. Python es para preparar el material, no un requisito de la lección.
-
-## Historial
-
-`kata-zero-v3-first-test-red` conserva la primera prueba fallida del escenario vigente. `kata-zero-v3-ready` identifica el material corregido y validado. Las etiquetas sin v3 son antecedentes: la versión extensa original y el experimento de redondeo más sutil. No se movieron ni borraron.
+Para regenerar las imágenes desde ejecuciones reales:
 
 ```sh
-git log --oneline --decorate
-git diff kata-zero-v3-first-test-red kata-zero-v3-ready -- kata-zero/after/02-first-test/src
+python3 -m venv /tmp/fraccion-captures
+/tmp/fraccion-captures/bin/pip install -r scripts/requirements-captures.txt
+/tmp/fraccion-captures/bin/python scripts/verify-kata-zero.py --captures
 ```
 
-## Reto opcional
+El script usa el JDK exacto, verifica el reactor, ejecuta 15 recorridos de consola y reproduce verde/rojo/verde. Las imágenes son representaciones de extractos reales, con texto, SVG y manifiesto de procedencia; no son fotografías de una ventana de terminal.
 
-Con el precio nuevo, AAPL debe representar 1500 USD; a 100 USD por acción necesita 15 acciones y ya tiene 10. Agregar una prueba que espere comprar 5.0000 AAPL. Usar solo @Test y assertEquals, sin entregar ni recibir calificación.
+## Material del video
+
+- [Deck interactivo](../presentation/intro-junit-kata-zero/README.md).
+- [Guion en siete momentos](docs/GUION.md).
+- [Evolución](docs/EVOLUCION.md).
+- [Validación](docs/VALIDACION.md).
+- [Referencia](docs/REFERENCIAS.md).
+- [Decisiones e historia de alternativas](../DECISIONS.md).

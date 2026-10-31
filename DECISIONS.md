@@ -209,3 +209,13 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Decisión:** ejecutar los proyectos Maven con Zulu 25.0.5+8, conservar extractos textuales reales y generar imágenes de terminal a partir de esos extractos. No inventar errores, cantidades ni conteos de pruebas. Las capturas y su script reproducible se versionan como material del video.
 
 **Historial:** `kata-zero-v4-first-test-red` conserva la fórmula defectuosa y la suite ampliada; un commit posterior corrige producción sin cambiar el esperado. Las etiquetas anteriores permanecen como antecedentes.
+
+## D026 — Entrega de la introducción reducida · 2026-10-31
+
+**Origen:** implementación de los siete puntos del usuario y comprobación del material.
+
+**Decisión:** entregar 12 diapositivas con 12 notas para 7–8 minutos, cinco imágenes de salidas verificadas, un diagrama del requisito y dos transformaciones breves de código. Arquitectura y AAA se anuncian en el cierre, no se explican. El temario reserva ocho minutos a esta introducción, para un total estimado de 198 minutos.
+
+**Evidencia:** reactor Maven en verde con tres pruebas; dos casos originales también pasan con el defecto; la suite ampliada falla uno de tres y pasa tras promover el denominador. Se verifican 15 recorridos de consola y la carga de las cinco imágenes. Deck compilado y PDF de 12 páginas exportado; revisión en navegador sin desbordamientos detectados.
+
+**Procedencia visual:** las capturas se renderizan desde extractos reales, con colores y encabezados añadidos. No se presentan como fotos de un emulador de terminal. SVG, PNG, texto y manifest.json se versionan por el requisito explícito del usuario; esta excepción amplía la exclusión genérica de artefactos de D021. PDF, dist y dependencias permanecen excluidos.

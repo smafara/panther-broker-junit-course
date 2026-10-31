@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1520" height="340" viewBox="0 0 1520 340">
+<rect width="1520" height="340" fill="#080e18"/>
+<path d="M0 65H1520" stroke="#304253"/>
+<circle cx="29" cy="32" r="7" fill="#ef7185"/><circle cx="54" cy="32" r="7" fill="#e5c36b"/><circle cx="79" cy="32" r="7" fill="#5ee0a1"/>
+<text x="112" y="40" font-family="Arial,sans-serif" font-size="22" fill="#b1c5da">Agregamos el caso fraccionario · aparece la falla</text>
+<text x="30" y="112" font-family="monospace" font-size="28" fill="#e2e8f0" xml:space="preserve">[INFO] Running mx.serviciosocial.katazero.FractionalSharesTest</text>
+<text x="30" y="157" font-family="monospace" font-size="28" fill="#e2e8f0" xml:space="preserve">[INFO] Running mx.serviciosocial.katazero.OriginalExamplesTest</text>
+<text x="30" y="202" font-family="monospace" font-size="28" fill="#fda4af" xml:space="preserve">org.opentest4j.AssertionFailedError: expected: &lt;-3.333333&gt; but was: &lt;-4.0&gt;</text>
+<text x="30" y="247" font-family="monospace" font-size="28" fill="#fda4af" xml:space="preserve">[ERROR] Tests run: 3, Failures: 1, Errors: 0, Skipped: 0</text>
+<text x="30" y="292" font-family="monospace" font-size="28" fill="#fda4af" xml:space="preserve">[ERROR] BUILD FAILURE</text>
+</svg>

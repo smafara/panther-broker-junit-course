@@ -8,6 +8,7 @@ const {parseSync}=await import(pathToFileURL(require.resolve('@slidev/parser')))
 const raw=await fs.readFile('slides.md','utf8');
 const baseUrl=process.env.SLIDEV_URL || 'http://localhost:3030';
 const deck=parseSync(raw);
+const expectedDiagrams=(raw.match(/^```mermaid/gm)||[]).length;
 const missing=deck.slides.map((s,i)=>!s.note?.trim()?i+1:null).filter(Boolean);
 if(missing.length) throw new Error(`Faltan notas: ${missing}`);
 await fs.mkdir('.validation',{recursive:true});
@@ -35,7 +36,7 @@ for(let n=1;n<=deck.slides.length;n++){
     if(!root) throw new Error(`No se renderizó la diapositiva ${no}`);
     const bounds=canvas.getBoundingClientRect();
     const over=[];
-    for(const el of root.querySelectorAll('h1,h2,h3,p,pre,table,.card,.terminal,.formula,.diagram')){
+    for(const el of root.querySelectorAll('h1,h2,h3,p,pre,table,img,.card,.terminal,.formula,.diagram')){
       const style=getComputedStyle(el);
       if(style.visibility==='hidden'||Number(style.opacity)===0||el.closest('.slidev-vclick-hidden'))continue;
       const box=el.getBoundingClientRect();
@@ -45,7 +46,7 @@ for(let n=1;n<=deck.slides.length;n++){
       if(el.tagName==='PRE'&&el.scrollWidth>el.clientWidth+3)
         over.push({element:'PRE horizontal overflow',extra:el.scrollWidth-el.clientWidth});
     }
-    return {title:root.querySelector('h1')?.textContent,overflow:over,diagrams:[...root.querySelectorAll('.mermaid')].filter(el=>el.shadowRoot?.querySelector('svg')).length,codeSpans:root.querySelectorAll('pre span').length,magic:root.querySelectorAll('[class*="shiki-magic-move"]').length};
+    return {title:root.querySelector('h1')?.textContent,overflow:over,diagrams:[...root.querySelectorAll('.mermaid')].filter(el=>el.shadowRoot?.querySelector('svg')).length,captures:[...root.querySelectorAll('img.terminal-capture')].map(img=>({loaded:img.complete&&img.naturalWidth>0,src:img.getAttribute('src')})),codeSpans:root.querySelectorAll('pre span').length,magic:root.querySelectorAll('[class*="shiki-magic-move"]').length};
   },n);
   console.log(`Revisada diapositiva ${n}: ${info.title}`);
   results.push({slide:n,clicks,...info});
@@ -53,4 +54,4 @@ for(let n=1;n<=deck.slides.length;n++){
 await fs.writeFile('.validation/report.json',JSON.stringify({slides:deck.slides.length,missingNotes:missing,errors,external,results},null,2));
 await browser.close();
 console.log(JSON.stringify({slides:results.length,notes:deck.slides.length-missing.length,errors,external:[...new Set(external)],overflow:results.filter(x=>x.overflow.length),diagrams:results.reduce((s,x)=>s+x.diagrams,0),magicSlides:results.filter(x=>x.magic>0).map(x=>x.slide)},null,2));
-if(errors.length||external.length||results.some(x=>x.overflow.length)||results.reduce((sum,x)=>sum+x.diagrams,0)!==2||!results.some(x=>x.magic>0))process.exitCode=1;
+if(results.some(x=>x.captures.some(img=>!img.loaded))||errors.length||external.length||results.some(x=>x.overflow.length)||results.reduce((sum,x)=>sum+x.diagrams,0)!==expectedDiagrams||!results.some(x=>x.magic>0))process.exitCode=1;

@@ -1,11 +1,9 @@
-# Después 1: extraer sin corregir
+# Después 1: cambiar int por double parece suficiente
 
-Se extraen las dos líneas que calculan la cantidad a negociar a RebalanceCalculator.quantityToTrade. El defecto se conserva. La lectura, el estado y la impresión siguen en main.
-
-Desde la raíz, después de `sdk env`:
+Respecto a before solo cambian los tipos de targetShares y difference. Los operandos de la división permanecen int. El ejemplo manual sigue dando vender 2.0 y comprar 2.0, lo cual no prueba el requisito fraccionario.
 
 ```sh
-./mvnw -q -f kata-zero/after/01-small-refactor/pom.xml compile exec:java
+./mvnw -q -f kata-zero/after/01-naive-fractions/pom.xml compile exec:java
 ```
 
-El ejemplo inicial sigue proponiendo vender 2 META y comprar 2 AAPL. Con META a 150 USD conserva el resultado defectuoso de before. Esta extracción permite probar la fórmula sin navegar por el menú; no la vuelve correcta por sí misma.
+Ejecutar desde la raíz con `sdk env`. Para el caso nuevo, cambiar solo el primer precio a 150 y recompilar una copia. El programa venderá 4.0 META, en lugar de aproximadamente 3.333333. No hay pruebas automatizadas en esta fotografía.

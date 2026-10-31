@@ -17,3 +17,7 @@ Se toma como referencia el problema, no se copia una implementación Java preexi
 | Cobertura | Suite completa | Primera prueba deliberadamente pequeña |
 
 Los precios y la cuenta son ficticios y no se consultan cotizaciones reales. No se atribuyen las reglas del ejercicio a Fintual o GBM.
+
+## Revisión narrativa vigente
+
+La introducción actual usa precios y resultados enteros y un cambio ingenuo a double. El uso anterior de BigDecimal, cuatro decimales e intValue en esta kata es un antecedente en Git. Se conserva de la referencia el problema de rebalanceo; no se trasladan todos sus contratos numéricos a este programa introductorio.

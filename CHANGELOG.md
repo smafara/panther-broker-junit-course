@@ -1,5 +1,13 @@
 # Registro de cambios
 
+## 2026-10-31 — Introducción reducida a una historia
+
+- Se adopta la secuencia de siete momentos solicitada y se reduce el deck a 12 diapositivas, 7–8 minutos.
+- Se sustituye BigDecimal/intValue por el programa entero y su cambio ingenuo a double que conserva división entera.
+- Se conserva un ejemplo original que pasa y otro fraccionario que descubre la falla.
+- Se verifican dos pruebas verdes con defecto, tres con una falla y las tres verdes tras corregir.
+- Se generan cinco imágenes de salidas reales con extractos y procedencia, y se actualizan guion, temario y decisiones.
+
 ## 2026-10-31 — Presentación del video introductorio
 
 - Se delega la creación del deck a un subagente por solicitud del usuario.

@@ -1,72 +1,57 @@
-# Guion de Kata Zero — Una suposición que dejó de cumplirse
+# Guion introductorio en siete momentos
 
-Duración orientativa: 15 minutos. Narración en español de México. No se requiere experiencia como inversionista. Dar el cálculo esperado en pantalla; no convertir la primera clase en un acertijo financiero.
+Duración: 7–8 minutos. Español de México. Objetivo: querer aprender pruebas unitarias después de ver un problema conocido. No enseñar todavía arquitectura JUnit, AAA, refactorización, mocking ni precisión financiera completa.
 
-## Preparación
+## 1. El programa original · 0:00–1:00
 
-Ejecutar `sdk env`, comprobar Zulu 25.0.5+8 y ejecutar `./mvnw clean verify`. Abrir before, after/01 y after/02 en pestañas diferenciadas. El menú actual solo tiene consulta, rebalanceo y salida.
+Presentar la cuenta: diez META y diez AAPL, ambas a 100 USD; distribución 40/60. Explicar brevemente rebalancear por valor. Calcular a mano vender 2 META y comprar 2 AAPL. Abrir before, mostrar el menú y ejecutar el caso.
 
-Tener preparada una copia temporal de before con solo el primer precio cambiado de 100.00 a 150.00. No editar ambos precios. El script de validación demuestra esa reproducción sin tocar los originales.
+«Hice un programa para acciones completas. Lo ejecuté, comparé los números y parece funcionar».
 
-## 0:00–2:00 — Una tarea familiar
+## 2. El requisito nuevo · 1:00–1:30
 
-«Tenemos una cuenta y queremos proponer qué vender y qué comprar para llegar a 40% META y 60% AAPL. Este programa comenzó pensando en acciones completas; ahora el requisito permite fracciones».
+«Ahora debe permitir comprar y vender fracciones de una acción». Dar un ejemplo de cantidad decimal sin profundizar en intermediarios reales.
 
-Presentar las 10 acciones de cada instrumento, inicialmente a 100 USD. Explicar que porcentajes se aplican al valor monetario, no al número de acciones. Total 2000 USD, objetivos 800 y 1200 USD: vender 2 META y comprar 2 AAPL.
+## 3. El cambio rápido y la misma comprobación · 1:30–2:30
 
-## 2:00–4:00 — Parece funcionar
+Cambiar los tipos de targetShares y difference de int a double. Ejecutar after/01-naive-fractions con los mismos datos. Mostrar la captura manual-original: vender 2.0 y comprar 2.0.
 
-Ejecutar before y teclear 1, 2, 1, 0. Comparar con lo calculado a mano. El plan no modifica la cuenta. Mostrar el main de 52 líneas y ubicar lectura, arreglos y fórmula sin explicar cada detalle de BigDecimal.
+«Sigue dando lo mismo. Entonces lo doy por terminado». Pausar para que resulte reconocible esa forma de trabajar, sin ridiculizarla. Todavía no señalar la división.
 
-«Si este es el único ejemplo que revisamos, parece que ya terminamos».
+## 4. Otros valores revelan el error · 2:30–3:45
 
-## 4:00–6:00 — Un precio distinto revela el supuesto
+Entregar otro precio: solo META pasa de 100 a 150 USD. La cuenta vale 2500 USD; META debería representar 1000 USD. Necesita conservar 1000/150 = 6.666666… acciones y vender aproximadamente 3.333333.
 
-«¿Qué pasa si cambia solo el precio de META a 150 USD?» Mostrar la tabla: total 2500 USD, objetivo META 1000 USD, cantidad objetivo 6.6666..., venta de 3.3333 a cuatro decimales.
+Mostrar manual-fractional: propone vender 4.0. Para reproducir, editar el primer literal del arreglo de precios en una copia y recompilar; el menú no edita precios.
 
-Ejecutar la copia con el nuevo precio y observar VENDER META 4.0000. No existe un menú para cambiar el precio: el instructor cambia un literal y recompila.
+«Cambiar el tipo del resultado no fue suficiente». No exigir que el espectador descubra el defecto por su cuenta.
 
-«No desapareció una diezmilésima. Estamos proponiendo vender aproximadamente 100 USD de más».
+## 5. Introducir pruebas unitarias · 3:45–4:45
 
-No señalar todavía la conversión exacta como si el estudiante debiera descubrirla solo; ya hay una diferencia observable que vale la pena comprobar.
+«Podemos dejar estas expectativas escritas en código y pedir que se comprueben cada vez que cambiamos el programa».
 
-## 6:00–8:00 — Hacer una pregunta sin navegar el menú
+Mostrar dos pruebas del ejemplo original en verde. Aclarar: ese resultado no habría descubierto la fracción omitida; hacen falta casos que ejerzan el nuevo requisito. Tener una suite con ese caso al hacer el cambio habría permitido detectarlo antes.
 
-Extraer las operaciones a RebalanceCalculator.quantityToTrade, conservando el int. Mostrar after/01. Repetir el ejemplo habitual: misma salida. Explicar las cuatro entradas y el significado del signo.
+## 6. Demostración: verde, rojo y verde · 4:45–6:45
 
-«Extraer el cálculo no corrige automáticamente el comportamiento. Ahora podemos preguntarle directamente cuánto vendería».
+Mostrar una sola prueba fraccionaria, con @Test, llamada y assertEquals. No explicar todavía todas las anotaciones ni parámetros. La tolerancia es un margen pequeño para comparar esta aproximación double.
 
-## 8:00–11:00 — Primera prueba, primera falla útil
+Mostrar tests-fractional-red: tres pruebas, una falla; esperado -3.333333, obtenido -4.0. Las dos anteriores siguen pasando.
 
-Mostrar la dependencia JUnit con alcance test y src/test/java. Escribir la prueba existente con Preparar–Ejecutar–Comprobar y un solo assertEquals. El esperado -3.3333 proviene de la tabla, no del método.
+Señalar `targetValue / price`: ambos son int, por lo que 1000/150 produce 6 antes de guardarse como 6.0. Precisar que es truncamiento, no un error binario de double. Promover el denominador a double y mostrar tests-fixed-green: las tres pasan sin cambiar expectativas.
 
-Con el calculador de after/01, la prueba debe fallar: expected -3.3333, actual -4.0000. Ese estado está en `kata-zero-v3-first-test-red`. Para una grabación continua se puede copiar temporalmente el calculador defectuoso a after/02 y restaurarlo tras el siguiente paso; evitar cambios de revisión con archivos sin guardar.
+El cálculo se aísla en un método como preparación técnica; no dedicar una sección a refactorizar. No llamar TDD a este recorrido.
 
-## 11:00–13:00 — Corregir el supuesto
+## 7. Qué aprenderemos · 6:45–7:30
 
-Señalar intValue: «Se preparó un cálculo decimal, pero esta conversión conservó solo la parte entera. Era una suposición de acciones completas que quedó aquí».
+Anunciar componentes de una prueba y assertions; AAA y ciclo de vida; excepciones y casos límite; parametrización; Mockito y aislamiento; TDD y refactorización; tiempo, precisión y cobertura. No enseñar esas técnicas ahora.
 
-Mostrar el cálculo corregido: conservar decimales, restar el valor actual del objetivo, dividir por el precio y redondear la orden final a cuatro decimales. Ejecutar la misma prueba sin cambiar el esperado: verde.
+«Durante el curso aprenderemos a elegir casos, escribir pruebas y entender sus resultados para cambiar código con más confianza».
 
-El nuevo plan propone vender 3.3333 META; quedan 6.6667 a la precisión elegida. Las diferencias mínimas de representar fracciones son un tema posterior, distinto del int.
+Cerrar con formato: videos y práctica opcional sin calificación. No agregar una tarea ni un tutorial de instalación a esta introducción.
 
-## 13:00–15:00 — Qué demuestra y qué falta
+## Preparación y capturas
 
-La prueba permite repetir una pregunta importante sin teclado ni comparación visual. No demuestra que todo el programa sea correcto. No llamar TDD al recorrido: el programa ya existía.
+Ejecutar `sdk env` y `python3 scripts/verify-kata-zero.py`. Las cinco capturas y sus extractos están en presentation/intro-junit-kata-zero/public/terminal. Son imágenes renderizadas a partir de salidas reales, no fotos de una ventana ni resultados inventados.
 
-Reto opcional: con el nuevo precio, AAPL requiere 1500 USD, equivalentes a 15 acciones; ya hay 10. Agregar una prueba que espere +5.0000. No requiere entrega ni calificación.
-
-## Diapositivas sugeridas
-
-| Diapositiva | Contenido |
-|---|---|
-| 1 | Requisito nuevo: permitir fracciones |
-| 2 | Ejemplo entero que parece funcionar |
-| 3 | Cambio de precio y resultado esperado a mano |
-| 4 | Resultado incorrecto: vende cuatro |
-| 5 | Extraer sin corregir |
-| 6 | Primera prueba: expected y actual |
-| 7 | El int heredado y la prueba en verde |
-| 8 | Alcance y reto opcional |
-
-La historia y los precios son ficticios. No atribuir el defecto a una plataforma real ni afirmar que se ejecutaron operaciones.
+Las etiquetas v4 conservan el estado rojo y su corrección. El deck es apoyo a la historia, no un sustituto del programa y sus resultados.

@@ -4,11 +4,13 @@ Curso de servicio social para estudiantes de México. Proyecto: **Fracción**. M
 
 JDK obligatorio para todos los ejemplos y verificaciones: **`25.0.5.0+8-zulu` de SDKMAN**. Está fijado en `.sdkmanrc`; activar con `sdk env` y usar la misma instalación en el IDE.
 
-## Lección cero — Del menú de consola a la primera prueba · 15 minutos
+## Lección cero — Un cambio que parecía funcionar · 8 minutos
 
-Antes del módulo 1, resolver el rebalanceo de una cuenta siguiendo tres fotografías Maven: un main pequeño y desordenado con println y BufferedReader, la extracción de una fórmula y la primera prueba JUnit. Con 10 META y 10 AAPL a 100 USD, el objetivo 40/60 requiere vender 2 y comprar 2. Cambiar solo META a 150 USD revela un supuesto heredado de acciones completas: el programa vende 4 en lugar de 3.3333. Mostrar la primera prueba fallida y corregir la conversión a entero, conservando el esperado calculado a mano.
+Introducción narrativa en siete momentos: programa de acciones completas; requisito de fracciones; cambio de int a double; el caso manual habitual sigue funcionando; otros datos revelan la división entera; pruebas que guardan expectativas y detectan el caso omitido; presentación del contenido del curso.
 
-El rebalanceo introduce la motivación sin adelantar toda la arquitectura del simulador posterior. El módulo 1 consolida la configuración y las técnicas presentadas brevemente aquí. Ver [Kata Zero](kata-zero/README.md), [guion](kata-zero/docs/GUION.md) y [decisiones](DECISIONS.md).
+No se enseñan todavía arquitectura, AAA ni refactorización. Se muestran salidas reales: dos pruebas originales verdes, la suite ampliada con un caso rojo y tres pruebas verdes después de corregir. Se aclara que una suite necesita ejemplos adecuados; automatizar solo el caso habitual no habría encontrado el defecto.
+
+Ver [Kata Zero](kata-zero/README.md), [guion](kata-zero/docs/GUION.md) y [presentación](presentation/intro-junit-kata-zero/README.md). La precisión monetaria con BigDecimal y los componentes de una prueba se desarrollan después, en el módulo 1.
 
 ## Público, idioma y objetivos
 
@@ -180,7 +182,7 @@ Ejemplo recurrente: saldo 50.00 USD; compra de 40.00 USD a 125.00 USD por acció
 
 ## Producción y materiales
 
-Duración estimada: **205 minutos en 16 videos**, incluyendo Kata Zero. Cada video presenta una regla, pide predecir un resultado, muestra una falla útil y termina con práctica opcional de 5–15 minutos. Incluir soluciones sin calificación y criterios observables.
+Duración estimada: **198 minutos en 16 videos**, incluyendo Kata Zero. La introducción cierra presentando la ruta del curso. Los demás videos presentan una regla, piden predecir un resultado, muestran una falla útil y terminan con práctica opcional de 5–15 minutos. Incluir soluciones sin calificación y criterios observables.
 
 Entregar README y guiones en español de México, instrucciones para los tres sistemas operativos y Maven Wrapper. Etiquetas inmutables por episodio: ep-1.2-start, ep-1.2-end y ep-1.2-solution. Cada end pasa toda la suite; identificar fallas intencionales. Se puede seguir el curso solo viendo los videos.
 

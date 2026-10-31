@@ -1,53 +1,40 @@
-# Qué cambió y por qué
+# Evolución vigente: int → double no basta
 
-## Problema y contrato
+## Qué cambia en esta introducción
 
-Una cuenta contiene 10 META y 10 AAPL. El objetivo es 40% del valor en META y 60% en AAPL. Los precios son datos ficticios en USD. El programa propone compras y ventas sin modificar las posiciones.
+El usuario redujo el alcance a una historia para motivar el curso. Los primeros diseños —140 líneas, extracción guiada, precisión BigDecimal e intValue— permanecen en Git y en DECISIONS.md. No describen el video actual.
 
-Solo se usan los datos válidos preparados: cantidades de hasta cuatro decimales, precios positivos y proporciones que suman 1. No hay edición interactiva, efectivo, comisiones, impuestos, ejecución ni cotizaciones reales. Las órdenes finales se redondean a cuatro decimales con HALF_EVEN; puede quedar un residuo pequeño por redondeo. No modelamos su liquidación.
+## 1. El programa original
 
-## Dos ejemplos que explican el defecto
+Datos fijos: diez META, diez AAPL, ambas a 100 USD, proporciones 40/60. Arreglos y resultados int, menú con println y BufferedReader. Calcula un plan; no ejecuta operaciones. El caso manual da vender 2 y comprar 2.
 
-| Concepto | Ejemplo habitual | Nuevo precio |
+## 2. El cambio ingenuo
+
+El nuevo requisito permite fracciones. La persona cambia solo targetShares y difference a double. Antes y después, `targetValue / price` divide dos int. En el ejemplo habitual 800/100 y 1200/100 son divisiones exactas, así que el resultado parece correcto.
+
+## 3. Los datos que distinguen comportamientos
+
+| Concepto | Caso habitual | META a 150 USD |
 |---|---:|---:|
-| Precio META | 100 USD | 150 USD |
-| Precio AAPL | 100 USD | 100 USD |
-| Cantidad de cada una | 10 | 10 |
-| Valor de la cuenta | 2000 USD | 2500 USD |
-| Valor objetivo META, 40% | 800 USD | 1000 USD |
-| Cantidad objetivo META | 8 | 6.666666... |
-| Orden correcta META | -2.0000 | -3.3333 |
-| Orden con el defecto | -2.0000 | -4.0000 |
-| Orden correcta AAPL | +2.0000 | +5.0000 |
+| Valor total | 2000 USD | 2500 USD |
+| Objetivo META, 40% | 800 USD | 1000 USD |
+| Cantidad objetivo exacta | 8 | 6.666666… |
+| Cantidad obtenida por división entera | 8 | 6 |
+| Venta correcta | 2 | 3.333333… |
+| Venta del programa adaptado | 2.0 | 4.0 |
 
-En el nuevo escenario, truncar el objetivo a seis acciones propone vender cuatro. El error principal equivale a aproximadamente 100 USD vendidos de más, no a una diezmilésima perdida. No confundirlo con el residuo normal de redondeo al representar una fracción periódica.
+El fallo sucede antes de la asignación a double. No es una pequeña discrepancia binaria ni el residuo normal de representar una fracción periódica.
 
-## Antes: todo en main
+## 4. La suite
 
-El main original de esta revisión tiene 52 líneas, dos instrumentos y tres opciones. Mezcla menú, BufferedReader, arreglos paralelos, cálculo e impresión. El total aparece en dos ramas. El desorden es pequeño y deliberado.
+Dos pruebas automatizan los ejemplos originales y pasan incluso con el defecto. Una tercera expresa el nuevo caso y falla. Conservar solo las primeras no habría encontrado el problema.
 
-La historia del ejercicio es una adaptación de acciones completas a fraccionadas: quedó una variable `int target`. La operación decimal se convierte con intValue, perdiendo la parte fraccionaria. El primer ejemplo no lo revela porque sus cantidades objetivo ya son enteras.
+Se usa una tolerancia explícita para comparar double, sin enseñar toda la API de assertions. Se proporciona el esperado calculado a mano. No se presenta este recorrido como TDD: el código existía antes de la prueba.
 
-## Después 1: extraer sin corregir
+## 5. Corrección y alcance
 
-RebalanceCalculator.quantityToTrade recibe total, peso objetivo, precio y posición actual. Devuelve una cantidad firmada: negativa para vender, positiva para comprar. Se extraen las mismas operaciones, incluida la conversión defectuosa. Repetir ambos escenarios conserva la salida de before.
+Promover un operando mediante `(double) price` permite la división fraccionaria. La suite mantiene sus tres expectativas y pasa. La lógica se separa en un método únicamente para ejecutar las pruebas; la extracción no es un capítulo del video.
 
-No se introducen modelos, mocks, validaciones generales ni una arquitectura de producción. La extracción solo permite hacer una pregunta al cálculo sin navegar por el menú.
+El ejemplo usa precios enteros y valores preparados. No resuelve toda la precisión monetaria ni cualquier entrada de un sistema financiero. La elección de casos, BigDecimal, estructura de pruebas y metodologías se estudian en el curso.
 
-## Primera prueba: rojo
-
-La prueba de after/02 usa el nuevo precio y comprueba únicamente META. Preparar: cuenta de 2500 USD. Ejecutar: objetivo .40, precio 150, posición 10. Comprobar: -3.3333, calculado a mano.
-
-En la etiqueta `kata-zero-v3-first-test-red` obtiene -4.0000 y falla. La prueba no copia la fórmula de producción ni falla solamente por escala de BigDecimal. Introduce @Test, @DisplayName y assertEquals con una sola comprobación.
-
-## Corrección: verde
-
-Se calcula el valor objetivo menos el valor actual y se divide por el precio, conservando decimales y redondeando una vez la orden final. La prueba no cambia. Main sigue idéntico entre las carpetas after; el calculador cambia expresamente para corregir el defecto.
-
-El ejemplo habitual mantiene vender 2 META y comprar 2 AAPL; el nuevo escenario ahora vende 3.3333 META. Esto es una prueba de regresión añadida a código existente, no un recorrido de TDD.
-
-## Límites de la evidencia
-
-La primera prueba no cubre el total calculado en main, la consola ni todos los redondeos. El script de preparación agrega comparaciones del material, pero no se presenta como parte de la primera prueba del estudiante.
-
-Los antecedentes de 140 líneas y del defecto de dos decimales se conservan en Git y DECISIONS.md. Esta revisión sustituye sus ejemplos y comandos de menú.
+Las capturas son extractos reales ejecutados con Zulu 25.0.5+8, renderizados para legibilidad. El texto y manifiesto permiten comprobar su procedencia.
