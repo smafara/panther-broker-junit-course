@@ -52,9 +52,9 @@ La etiqueta `kata-zero-v4-first-test-red` conserva la suite ampliada fallida; `k
 Para regenerar las imágenes desde ejecuciones reales:
 
 ```sh
-python3 -m venv /tmp/fraccion-captures
-/tmp/fraccion-captures/bin/pip install -r scripts/requirements-captures.txt
-/tmp/fraccion-captures/bin/python scripts/verify-kata-zero.py --captures
+python3 -m venv /tmp/panther-broker-captures
+/tmp/panther-broker-captures/bin/pip install -r scripts/requirements-captures.txt
+/tmp/panther-broker-captures/bin/python scripts/verify-kata-zero.py --captures
 ```
 
 El script usa el JDK exacto, verifica el reactor, ejecuta 15 recorridos de consola y reproduce verde/rojo/verde. Las imágenes son representaciones de extractos reales, con texto, SVG y manifiesto de procedencia; no son fotografías de una ventana de terminal.

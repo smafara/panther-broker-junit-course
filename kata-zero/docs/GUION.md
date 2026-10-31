@@ -4,7 +4,7 @@ Duración: 7–8 minutos. Español de México. Objetivo: querer aprender pruebas
 
 ## 1. El programa original · 0:00–1:00
 
-Presentar la cuenta: diez META y diez AAPL, ambas a 100 USD; distribución 40/60. Explicar brevemente rebalancear por valor. Calcular a mano vender 2 META y comprar 2 AAPL. Abrir before, mostrar el menú y ejecutar el caso.
+Después de la portada, presentar el fragmento original de Panther Broker: datos, valor total y cálculo de las órdenes. Explicar que proponía un plan por consola para acciones completas, sin ejecutar compras o ventas. Después presentar la cuenta: diez META y diez AAPL, ambas a 100 USD; distribución 40/60. Explicar brevemente rebalancear por valor. Calcular a mano vender 2 META y comprar 2 AAPL. Abrir before, mostrar el menú y ejecutar el caso.
 
 «Hice un programa para acciones completas. Lo ejecuté, comparé los números y parece funcionar».
 

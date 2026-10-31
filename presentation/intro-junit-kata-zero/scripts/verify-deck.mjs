@@ -9,6 +9,10 @@ const raw=await fs.readFile('slides.md','utf8');
 const baseUrl=process.env.SLIDEV_URL || 'http://localhost:3030';
 const deck=parseSync(raw);
 const expectedDiagrams=(raw.match(/^```mermaid/gm)||[]).length;
+const cover=deck.slides[0].content.replace(/<!--[\s\S]*?-->/g,'').trim();
+if(!/^# [^\n]+$/.test(cover)) throw new Error('La portada debe contener solo un título, sin subtítulo ni etiquetas.');
+if(/class="eyebrow"/.test(raw)||/\d+\s*(?:–\s*\d+\s*)?minutos?\b/i.test(raw)) throw new Error('El deck no debe mostrar antetítulos ni estimaciones de tiempo.');
+const normalize=text=>text.replace(/<[^>]*>/g,'').replace(/\s/g,'');
 const missing=deck.slides.map((s,i)=>!s.note?.trim()?i+1:null).filter(Boolean);
 if(missing.length) throw new Error(`Faltan notas: ${missing}`);
 await fs.mkdir('.validation',{recursive:true});
@@ -48,6 +52,8 @@ for(let n=1;n<=deck.slides.length;n++){
     }
     return {title:root.querySelector('h1')?.textContent,overflow:over,diagrams:[...root.querySelectorAll('.mermaid')].filter(el=>el.shadowRoot?.querySelector('svg')).length,captures:[...root.querySelectorAll('img.terminal-capture')].map(img=>({loaded:img.complete&&img.naturalWidth>0,src:img.getAttribute('src')})),codeSpans:root.querySelectorAll('pre span').length,magic:root.querySelectorAll('[class*="shiki-magic-move"]').length};
   },n);
+  const expectedTitle=deck.slides[n-1].content.match(/^# (.+)$/m)?.[1];
+  if(!expectedTitle||normalize(info.title||'')!==normalize(expectedTitle)) throw new Error(`Título desactualizado en diapositiva ${n}: ${info.title}`);
   console.log(`Revisada diapositiva ${n}: ${info.title}`);
   results.push({slide:n,clicks,...info});
 }

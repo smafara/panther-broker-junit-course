@@ -1,10 +1,10 @@
 # Curso de pruebas unitarias con Java
 
-Material de servicio social para estudiantes de México. Videos y práctica opcional, sin entregas calificadas.
+Material de servicio social para estudiantes de México. Proyecto: **Panther Broker**. Videos y práctica opcional, sin entregas calificadas.
 
 - [Temario](COURSEWORK.md).
 - [Kata Zero: del menú de consola a la primera prueba](kata-zero/README.md).
-- [Presentación: Introducción a JUnit con Kata Zero](presentation/intro-junit-kata-zero/README.md).
+- [Presentación: Introducción a JUnit](presentation/intro-junit-kata-zero/README.md).
 - [Decisiones del curso](DECISIONS.md).
 - [Registro de cambios](CHANGELOG.md).
 

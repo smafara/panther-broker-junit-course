@@ -1,8 +1,8 @@
 ---
 theme: default
-title: 'Introducción a JUnit con Kata Zero'
-info: 'Un video introductorio · Curso Fracción · Servicio social · México'
-author: 'Curso Fracción'
+title: 'Introducción a JUnit'
+info: 'Un video introductorio · Panther Broker · Servicio social · México'
+author: 'Panther Broker'
 lang: es-MX
 colorSchema: dark
 aspectRatio: 16/9
@@ -22,27 +22,56 @@ mdc: false
 class: cover
 ---
 
-<div class="eyebrow">FRACCIÓN / KATA ZERO</div>
-
-# Introducción a JUnit<br>con Kata Zero
-
-<p class="lead">Un programa que parecía funcionar.<br>Un requisito nuevo. Una falla que pudimos detectar antes.</p>
-
-<div class="cover-meta">
-<span class="chip">Java 25 · Zulu</span>
-<span class="chip">JUnit 6.1.3</span>
-<span class="chip">Maven</span>
-<span class="chip">Introducción · 7–8 minutos</span>
-</div>
+# Introducción a JUnit
 
 <!--
-Entrada,15s: presentar la historia de un cambio pequeño que dejó un defecto. Cuenta y precios son ficticios.
+Entrada: presentar la historia de un cambio pequeño que dejó un defecto. Cuenta y precios son ficticios.
 Transición: primero mostrar el programa antes del requisito nuevo, sin explicar todavía JUnit.
 -->
 
 ---
 
-<div class="eyebrow">01 / EL PROGRAMA ORIGINAL</div>
+# El código original de Panther Broker
+
+<div class="split code-original">
+<div>
+
+```java {1-4|5-8|9-17|*}{lines:true}
+String[] symbols = {"META", "AAPL"};
+int[] prices = {100, 100};
+int[] quantities = {10, 10};
+int[] percentages = {40, 60};
+int total = 0;
+for (int i = 0; i < symbols.length; i++) {
+    total += prices[i] * quantities[i];
+}
+for (int i = 0; i < symbols.length; i++) {
+    int targetValue = total * percentages[i] / 100;
+    int targetShares = targetValue / prices[i];
+    int difference = targetShares - quantities[i];
+    if (difference != 0) {
+        System.out.println((difference < 0 ? "VENDER " : "COMPRAR ")
+                + symbols[i] + " " + Math.abs(difference) + " acciones");
+    }
+}
+```
+
+<p class="caption">Datos y cálculo de before/Main.java. Omitimos imports y menú; todo estaba dentro de main.</p>
+</div>
+<div class="stack">
+<div class="card"><h3>Su propósito</h3><p>Proponer qué vender y comprar para repartir el valor de la cuenta en 40% META y 60% AAPL.</p></div>
+<div class="card purple" v-click><h3>Cómo lo hacía</h3><p>Calculaba el valor total, las cantidades objetivo y la diferencia frente a las acciones disponibles.</p></div>
+<div class="card" v-click><h3>Qué entregaba</h3><p>Un plan por consola con acciones completas. No ejecutaba operaciones.</p></div>
+</div>
+</div>
+
+<!--
+Entrada: presentar el programa de Panther Broker antes de mostrar el ejemplo. La consulta y el menú permanecen en el archivo original.
+Focos: datos, valor total y cálculo de las órdenes. Las tarjetas explican el propósito, sin adelantar el requisito de fracciones ni el defecto.
+Transición: usar estos datos para comprobar a mano el primer plan.
+-->
+
+---
 
 # Al principio, solo manejábamos acciones completas
 
@@ -52,7 +81,6 @@ Transición: primero mostrar el programa antes del requisito nuevo, sin explicar
 <div class="card" style="margin-top:24px"><h3>El menú propone operaciones</h3><p>Ver cuenta · Calcular rebalanceo · Salir.</p></div>
 </div>
 <div class="receipt">
-<div class="eyebrow">CUENTA DE 2000 USD</div>
 <div class="receipt-row"><span>Objetivo META</span><b>800 USD → 8 acciones</b></div>
 <div class="receipt-row"><span>Objetivo AAPL</span><b>1200 USD → 12 acciones</b></div>
 <div class="receipt-row total"><span>Plan</span><b>Vender 2 META</b></div>
@@ -61,15 +89,13 @@ Transición: primero mostrar el programa antes del requisito nuevo, sin explicar
 </div>
 
 <!--
-Entrada,35s: explicar rebalancear como ajustar el valor repartido entre instrumentos. No enseñar teoría financiera.
+Entrada: explicar rebalancear como ajustar el valor repartido entre instrumentos. No enseñar teoría financiera.
 Transición: el programa funciona para este caso de acciones completas, pero el requisito cambia.
 -->
 
 ---
 transition: fade
 ---
-
-<div class="eyebrow">02 / LLEGA UN REQUISITO NUEVO</div>
 
 # Ahora también queremos comprar y vender fracciones
 
@@ -87,13 +113,11 @@ flowchart LR
 <div class="card purple" style="margin-top:26px" v-click><h3>«Entonces cambio int por double»</h3><p>Una adaptación que parece pequeña. ¿Será suficiente?</p></div>
 
 <!--
-Entrada,30s: introducir el requisito sin hablar de precisión financiera avanzada.
+Entrada: introducir el requisito sin hablar de precisión financiera avanzada.
 Clic: representar el razonamiento de quien adapta el programa. Transición: mostrar exactamente ese cambio.
 -->
 
 ---
-
-<div class="eyebrow">03 / LA ADAPTACIÓN RÁPIDA</div>
 
 # Cambiamos el tipo de la cantidad
 
@@ -122,13 +146,11 @@ double difference = targetShares - currentQuantity;
 <p class="caption">Fragmento del cálculo: por ahora conservamos los importes y precios enteros del ejemplo.</p>
 
 <!--
-Entrada,35s: un clic transforma int en double. No señalar todavía el tipo de los operandos de la división.
+Entrada: un clic transforma int en double. No señalar todavía el tipo de los operandos de la división.
 Transición: hacemos lo habitual: volver a ejecutar con los mismos datos y comparar a mano.
 -->
 
 ---
-
-<div class="eyebrow">VOLVEMOS A PROBAR A MANO</div>
 
 # El ejemplo de siempre sigue funcionando
 
@@ -140,13 +162,11 @@ Transición: hacemos lo habitual: volver a ejecutar con los mismos datos y compa
 </div>
 
 <!--
-Entrada,30s: captura de una ejecución real del programa adaptado. No simular una terminal con texto inventado.
+Entrada: captura de una ejecución real del programa adaptado. No simular una terminal con texto inventado.
 Clic: mostrar el salto de confianza. Transición: cambiar un precio, manteniendo la misma cuenta.
 -->
 
 ---
-
-<div class="eyebrow">04 / OTROS DATOS</div>
 
 # Solo cambia META: de 100 a 150 USD
 
@@ -158,13 +178,11 @@ Clic: mostrar el salto de confianza. Transición: cambiar un precio, manteniendo
 <p class="lead" style="margin-top:30px">Ese es el resultado esperado. <strong>Lo calculamos antes de ejecutar.</strong></p>
 
 <!--
-Entrada,45s: una operación por clic y tiempo para seguirla. Se proporciona el esperado, no se pide resolver un acertijo.
+Entrada: una operación por clic y tiempo para seguirla. Se proporciona el esperado, no se pide resolver un acertijo.
 Transición: ejecutar el programa adaptado con estos datos nuevos.
 -->
 
 ---
-
-<div class="eyebrow">EL RESULTADO YA NO COINCIDE</div>
 
 # Esperábamos vender 3.333333. Propone vender 4.
 
@@ -173,13 +191,11 @@ Transición: ejecutar el programa adaptado con estos datos nuevos.
 <div class="card warning" style="margin-top:24px" v-click><h3>El programa ejecuta, pero no cumple el requisito nuevo</h3><p>Ahora tenemos que volver a revisar y repetir la comparación cada vez que cambiemos el código.</p></div>
 
 <!--
-Entrada,35s: comparar explícitamente el esperado con la salida real. No llamar redondeo correcto a la pérdida de la fracción.
+Entrada: comparar explícitamente el esperado con la salida real. No llamar redondeo correcto a la pérdida de la fracción.
 Transición: ¿y si esa comparación quedara escrita y se pudiera ejecutar automáticamente?
 -->
 
 ---
-
-<div class="eyebrow">05 / INTRODUCIMOS PRUEBAS UNITARIAS</div>
 
 # Podemos guardar las expectativas en código
 
@@ -188,13 +204,11 @@ Transición: ¿y si esa comparación quedara escrita y se pudiera ejecutar autom
 <div class="card warning" style="margin-top:22px" v-click><h3>Dos pruebas verdes todavía pueden omitir el defecto</h3><p>Repetir automáticamente el mismo caso entero no comprueba que funcionen las fracciones.</p></div>
 
 <!--
-Entrada,45s: mostrar el resultado real de dos pruebas. Explicar que una suite necesita ejemplos adecuados: JUnit no descubre requisitos por sí solo.
+Entrada: mostrar el resultado real de dos pruebas. Explicar que una suite necesita ejemplos adecuados: JUnit no descubre requisitos por sí solo.
 Clic: hacer explícito por qué verde no equivale a corrección universal. Transición: agregar el caso que faltaba.
 -->
 
 ---
-
-<div class="eyebrow">06 / LA PRUEBA QUE FALTABA</div>
 
 # Escribimos la expectativa del caso fraccionario
 
@@ -213,13 +227,11 @@ void sellsFractionalSharesWhenPriceChanges() {
 <p class="caption">Primero lo esperado; después lo obtenido. La tolerancia permite comparar este resultado aproximado.</p>
 
 <!--
-Entrada,55s: los focos señalan la llamada con datos nuevos y luego el esperado con tolerancia. No enseñar todavía toda la API de assertions.
+Entrada: los focos señalan la llamada con datos nuevos y luego el esperado con tolerancia. No enseñar todavía toda la API de assertions.
 Mostrar la captura real: las pruebas anteriores pasan y la nueva revela el defecto. Transición: explicar qué quedó del supuesto de enteros.
 -->
 
 ---
-
-<div class="eyebrow">AHORA PODEMOS COMPROBAR LA CORRECCIÓN</div>
 
 # Guardar en double no cambia una división entre int
 
@@ -248,13 +260,11 @@ return targetShares - currentQuantity;
 <p class="caption">Usamos un ejemplo numérico pequeño para introducir pruebas. La representación decimal del dinero se abordará después.</p>
 
 <!--
-Entrada,45s: explicar el orden: primero se calcula la expresión, después se asigna. Un clic transforma solo la división.
+Entrada: explicar el orden: primero se calcula la expresión, después se asigna. Un clic transforma solo la división.
 La prueba se mantiene igual. Transición: volver a ejecutar toda la suite, no solo el caso nuevo.
 -->
 
 ---
-
-<div class="eyebrow">VOLVEMOS A EJECUTAR LA SUITE</div>
 
 # Las anteriores siguen pasando. La nueva también.
 
@@ -266,7 +276,7 @@ La prueba se mantiene igual. Transición: volver a ejecutar toda la suite, no so
 </div>
 
 <!--
-Entrada,35s: captura real de tres pruebas verdes. No afirmar que la suite valida todos los posibles resultados.
+Entrada: captura real de tres pruebas verdes. No afirmar que la suite valida todos los posibles resultados.
 Clic: conectar el beneficio con la historia inicial. Transición: anunciar lo que se aprenderá durante el curso.
 -->
 
@@ -274,8 +284,6 @@ Clic: conectar el beneficio con la historia inicial. Transición: anunciar lo qu
 class: chapter
 transition: fade
 ---
-
-<div class="eyebrow">07 / LO QUE APRENDEREMOS EN EL CURSO</div>
 
 # Pruebas que explican.<br>Cambios con confianza.
 
@@ -287,9 +295,9 @@ transition: fade
 <span class="chip" v-click>TDD y refactorización</span>
 <span class="chip" v-click>Tiempo, precisión y cobertura</span>
 </div>
-<p class="lead" style="margin-top:26px">Seguiremos con ejemplos del simulador Fracción.<br>Videos y práctica opcional, sin actividades calificadas.</p>
+<p class="lead" style="margin-top:26px">Seguiremos con ejemplos del simulador Panther Broker.<br>Videos y práctica opcional, sin actividades calificadas.</p>
 
 <!--
-Entrada,30s: anunciar los temas del curso sin explicar sus técnicas todavía. Los nombres son una ruta, no prerrequisitos.
+Entrada: anunciar los temas del curso sin explicar sus técnicas todavía. Los nombres son una ruta, no prerrequisitos.
 Salida: esta introducción motiva el curso; los detalles y la metodología se trabajan en las siguientes lecciones.
 -->

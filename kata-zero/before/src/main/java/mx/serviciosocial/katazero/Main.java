@@ -10,7 +10,7 @@ public class Main {
         int[] prices = {100, 100};
         int[] quantities = {10, 10};
         int[] percentages = {40, 60};
-        System.out.println("Cuenta de Alex · precios ficticios en USD · objetivo 40/60");
+        System.out.println("Panther Broker · Cuenta de Alex · precios ficticios en USD · objetivo 40/60");
         while (true) {
             System.out.println("\n1. Ver cuenta\n2. Calcular rebalanceo\n0. Salir");
             String option = reader.readLine();

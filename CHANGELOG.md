@@ -1,5 +1,13 @@
 # Registro de cambios
 
+## 2026-10-31 — Panther Broker y títulos limpios
+
+- Se agrega el código original y su propósito inmediatamente después de la portada.
+- El deck pasa a 13 diapositivas y se titula «Introducción a JUnit».
+- Se eliminan subtítulo, etiquetas complementarias, antetítulos y duraciones del deck y de sus notas.
+- Se registra esa regla para presentaciones futuras en presentation/AGENTS.md.
+- El proyecto adopta Panther Broker, referencia elegida por el usuario a la UAM Azcapotzalco; se actualizan programa, temario y material vigente.
+
 ## 2026-10-31 — Introducción reducida a una historia
 
 - Se adopta la secuencia de siete momentos solicitada y se reduce el deck a 12 diapositivas, 7–8 minutos.

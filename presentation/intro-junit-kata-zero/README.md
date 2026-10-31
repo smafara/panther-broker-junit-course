@@ -1,6 +1,6 @@
-# Introducción a JUnit con Kata Zero
+# Introducción a JUnit
 
-Deck Slidev en español de México para **un video introductorio de 7–8 minutos**, con 12 diapositivas. Motiva las pruebas con una historia de cambio de requisito; no es todavía un tutorial de arquitectura, AAA, refactorización ni de la API completa de JUnit.
+Deck Slidev en español de México para **un video introductorio**, con 13 diapositivas. Motiva las pruebas con una historia de cambio de requisito; no es todavía un tutorial de arquitectura, AAA, refactorización ni de la API completa de JUnit.
 
 ## Ejecutar
 
@@ -23,13 +23,13 @@ La versión interactiva conserva revelados y transformaciones. El PDF es una cap
 
 | Paso | Diapositivas | Contenido |
 |---|---|---|
-| 1 | 1–2 | Presentar el programa de acciones completas |
-| 2 | 3 | Permitir comprar y vender fracciones |
-| 3 | 4–5 | Cambiar int por double y volver a probar con el ejemplo habitual |
-| 4 | 6–7 | Otros valores revelan la pérdida de la fracción |
-| 5 | 8 | Introducir pruebas unitarias; automatizar el mismo caso todavía omite el defecto |
-| 6 | 9–11 | Agregar el caso fraccionario, ver rojo, corregir y ejecutar tres pruebas verdes |
-| 7 | 12 | Presentar lo que enseñará el curso |
+| 1 | 1–3 | Portada, código original y propósito del programa; después el ejemplo entero |
+| 2 | 4 | Permitir comprar y vender fracciones |
+| 3 | 5–6 | Cambiar int por double y volver a probar con el ejemplo habitual |
+| 4 | 7–8 | Otros valores revelan la pérdida de la fracción |
+| 5 | 9 | Introducir pruebas unitarias; automatizar el mismo caso todavía omite el defecto |
+| 6 | 10–12 | Agregar el caso fraccionario, ver rojo, corregir y ejecutar tres pruebas verdes |
+| 7 | 13 | Presentar lo que enseñará el curso |
 
 ## Datos y defecto vigentes
 
@@ -64,3 +64,7 @@ La narración, las notas y las capturas corresponden al guion vigente de introdu
 Con npm run dev, abrir http://localhost:3030/; las notas están en http://localhost:3030/presenter/. Con el servidor abierto, ejecutar npm run check:deck en otra terminal. La comprobación incluye la carga de las cinco imágenes.
 
 El PDF estático se genera como intro-junit-kata-zero.pdf; la SPA compilada queda en dist. El fuente, las capturas y su procedencia se versionan; el PDF y dist se regeneran.
+
+## Convención de presentación
+
+El programa se llama **Panther Broker**, referencia elegida a la UAM Azcapotzalco. El deck se titula **Introducción a JUnit** y la portada muestra solo el título, sin subtítulo ni duración. Se omiten también antetítulos decorativos y tiempos en las diapositivas y sus notas. La regla para las siguientes presentaciones está en [AGENTS.md](../AGENTS.md).

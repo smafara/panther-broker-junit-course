@@ -219,3 +219,21 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Evidencia:** reactor Maven en verde con tres pruebas; dos casos originales también pasan con el defecto; la suite ampliada falla uno de tres y pasa tras promover el denominador. Se verifican 15 recorridos de consola y la carga de las cinco imágenes. Deck compilado y PDF de 12 páginas exportado; revisión en navegador sin desbordamientos detectados.
 
 **Procedencia visual:** las capturas se renderizan desde extractos reales, con colores y encabezados añadidos. No se presentan como fotos de un emulador de terminal. SVG, PNG, texto y manifest.json se versionan por el requisito explícito del usuario; esta excepción amplía la exclusión genérica de artefactos de D021. PDF, dist y dependencias permanecen excluidos.
+
+## D027 — Código original antes del ejemplo · 2026-10-31
+
+**Origen:** el usuario pide una diapositiva entre las primeras dos para presentar el código original y su propósito.
+
+**Decisión:** insertar inmediatamente después de la portada un fragmento fiel de los arreglos y el cálculo de before/Main.java, con explicación de cómo propone ventas y compras para el objetivo 40/60. Se aclara que imports y menú se omiten de la diapositiva, no del programa. El deck pasa a 13 diapositivas.
+
+## D028 — Títulos sin subtítulos ni duración · 2026-10-31
+
+**Origen:** regla explícita del usuario para esta y las siguientes presentaciones.
+
+**Decisión:** la presentación se titula «Introducción a JUnit», con ortografía normalizada. La portada muestra solo ese título. Quitar subtítulo, etiquetas complementarias, antetítulos decorativos y duración del contenido del deck; quitar también los tiempos de sus notas. Conservar la planificación de grabación en el guion interno. Se registra la convención en presentation/AGENTS.md para futuras ediciones.
+
+## D029 — Panther Broker · 2026-10-31
+
+**Origen:** el usuario elige Panther Broker como referencia a la UAM Azcapotzalco.
+
+**Decisión:** sustituir la marca Fracción por Panther Broker en el temario vigente, presentación, documentación operativa y encabezados del programa. No se cambia el problema, los números ni las expectativas de las pruebas. Conservar las decisiones históricas como antecedentes y no incorporar logotipos institucionales ni atribuir un aval de la UAM.

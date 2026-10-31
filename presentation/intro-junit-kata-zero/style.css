@@ -28,7 +28,7 @@ html.dark { color-scheme: dark; }
   background: linear-gradient(90deg, #5eead4, #9282ee 65%, transparent);
 }
 .slidev-layout::after {
-  content: 'FRACCIÓN  /  PRUEBAS UNITARIAS CON JUNIT 6';
+  content: 'PANTHER BROKER';
   position: absolute;
   left: 58px;
   right: 58px;
@@ -127,3 +127,9 @@ html.dark { color-scheme: dark; }
 }
 .compact-capture { height: 315px; }
 .short-capture { height: 235px; margin-top: 22px; }
+
+/* El programa original se presenta como fragmento fiel, sin recortar líneas. */
+.code-original { grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr); gap: 24px; }
+.code-original pre { font-size: 15px !important; line-height: 1.4 !important; }
+.code-original .card { padding: 18px 20px; }
+.code-original .card p { font-size: 19px; }

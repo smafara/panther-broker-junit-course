@@ -1,6 +1,6 @@
 # Pruebas unitarias con JUnit 6: un simulador de inversión fraccionada
 
-Curso de servicio social para estudiantes de México. Proyecto: **Fracción**. Modalidad: videos con práctica opcional, sin entregas ni calificaciones. Tecnologías previstas: JDK 25, JUnit 6 y Mockito 5.
+Curso de servicio social para estudiantes de México. Proyecto: **Panther Broker**. Modalidad: videos con práctica opcional, sin entregas ni calificaciones. Tecnologías previstas: JDK 25, JUnit 6 y Mockito 5.
 
 JDK obligatorio para todos los ejemplos y verificaciones: **`25.0.5.0+8-zulu` de SDKMAN**. Está fijado en `.sdkmanrc`; activar con `sdk env` y usar la misma instalación en el IDE.
 
