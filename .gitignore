@@ -1,0 +1,6 @@
+**/target/
+.DS_Store
+.idea/
+*.iml
+# Repositorio de referencia independiente; no incorporarlo como repositorio anidado.
+/fintual-kata/
