@@ -177,3 +177,35 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Revisión:** compilar la SPA, exportar PDF de 19 páginas, comprobar contenido contra Kata Zero v3 y revisar visualmente páginas representativas. Se dividió una línea que quedaba recortada y se centraron los diagramas. El script `check:deck` revisa las diapositivas activas y las notas en el servidor local; el PDF no sustituye la revisión de animaciones en el navegador al preparar la grabación.
 
 **Consecuencia:** solo se entrega el video introductorio. La propuesta inicial de cubrir todo el módulo 1 quedó fuera de alcance. Los archivos generados y dependencias instaladas se excluyen de Git; se versionan fuente, configuración, lockfile e instrucciones.
+
+## D022 — Introducción narrativa en siete momentos · 2026-10-31
+
+**Origen:** el usuario considera excesivo el alcance del deck y define una secuencia nueva: programa de acciones completas; requisito de fracciones; cambio ingenuo de int a double; caso manual habitual que sigue pasando; nuevos datos que revelan el error; introducción y demostración de pruebas con capturas reales; avance de contenidos del curso.
+
+**Decisión:** sustituir el recorrido de explicación de arquitectura, AAA y refactorización por una historia de aproximadamente 7–8 minutos. Esos conceptos se anuncian para el curso, sin enseñarlos aquí. Reducir el deck a unos 12 apoyos visuales.
+
+## D023 — Cambio de tipo que conserva una división entera · 2026-10-31
+
+**Origen:** requisito del usuario de mostrar un cambio de int a double que parece funcionar al repetir el ejemplo original.
+
+**Decisión:** before usa cantidades objetivo y diferencias int. En `after/01-naive-fractions` solo cambian esas dos variables a double; los operandos de `targetValue / price` siguen siendo int. La fracción se descarta antes de asignarse a double. Esta etapa sustituye la carpeta after/01-small-refactor.
+
+**Ejemplos:** precios 100/100, diez acciones de cada una y objetivo 40/60 dan vender 2 y comprar 2 en ambas versiones. Con META a 150 USD, el total es 2500, el objetivo META vale 1000 y la división entera 1000/150 produce 6: venta incorrecta de 4, frente a 3.333333... requerida.
+
+**Sustituye:** el intValue heredado de D017. El error actual es truncamiento por división entera; no se atribuye a la representación binaria de double. La corrección demostrada promueve un operando de la división. Son precios enteros y datos preparados, no una implementación financiera general; BigDecimal y sus contratos se enseñan después.
+
+## D024 — Una suite necesita casos que distingan comportamientos · 2026-10-31
+
+**Origen:** precisión pedagógica al implementar el punto cinco solicitado.
+
+**Decisión:** mostrar dos pruebas del ejemplo original que pasan incluso con el defecto. Agregar una tercera para el nuevo escenario, verla fallar y después ver las tres pasar con la corrección. Repetir solamente el caso original en JUnit no descubre el error.
+
+**Consecuencia:** no afirmar que tener pruebas por sí solo garantiza detectar el defecto. Se usa una tolerancia pequeña y explícita al comparar double; el detalle de assertions y precisión queda para después. La extracción necesaria para llamar al cálculo es material de apoyo, sin ocupar una sección del video.
+
+## D025 — Capturas verificables de las salidas · 2026-10-31
+
+**Origen:** solicitud del usuario de capturas de terminal con resultados verdes o con errores.
+
+**Decisión:** ejecutar los proyectos Maven con Zulu 25.0.5+8, conservar extractos textuales reales y generar imágenes de terminal a partir de esos extractos. No inventar errores, cantidades ni conteos de pruebas. Las capturas y su script reproducible se versionan como material del video.
+
+**Historial:** `kata-zero-v4-first-test-red` conserva la fórmula defectuosa y la suite ampliada; un commit posterior corrige producción sin cambiar el esperado. Las etiquetas anteriores permanecen como antecedentes.

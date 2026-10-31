@@ -2,45 +2,35 @@ package mx.serviciosocial.katazero;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String[] symbols = {"META", "AAPL"};
-        BigDecimal[] prices = {new BigDecimal("100.00"), new BigDecimal("100.00")};
-        BigDecimal[] quantities = {new BigDecimal("10"), new BigDecimal("10")};
-        BigDecimal[] weights = {new BigDecimal("0.40"), new BigDecimal("0.60")};
+        int[] prices = {100, 100};
+        int[] quantities = {10, 10};
+        int[] percentages = {40, 60};
         System.out.println("Cuenta de Alex · precios ficticios en USD · objetivo 40/60");
         while (true) {
-            System.out.println("\n1. Ver cuenta");
-            System.out.println("2. Calcular rebalanceo");
-            System.out.println("0. Salir");
+            System.out.println("\n1. Ver cuenta\n2. Calcular rebalanceo\n0. Salir");
             String option = reader.readLine();
             if (option == null || option.equals("0")) break;
             if (option.equals("1")) {
-                BigDecimal total = BigDecimal.ZERO;
                 for (int i = 0; i < symbols.length; i++) {
-                    total = total.add(prices[i].multiply(quantities[i]));
                     System.out.println(symbols[i] + ": " + quantities[i] + " acciones a " + prices[i] + " USD");
                 }
-                System.out.println("Valor total: " + total + " USD");
             } else if (option.equals("2")) {
-                BigDecimal total = BigDecimal.ZERO;
-                for (int i = 0; i < symbols.length; i++) {
-                    total = total.add(prices[i].multiply(quantities[i]));
-                }
+                int total = 0;
+                for (int i = 0; i < symbols.length; i++) total += prices[i] * quantities[i];
+                System.out.println("Valor total: " + total + " USD");
                 System.out.println("Plan sugerido (no modifica la cuenta):");
                 for (int i = 0; i < symbols.length; i++) {
-                    int target = total.multiply(weights[i])
-                            .divide(prices[i], 4, RoundingMode.HALF_EVEN).intValue();
-                    BigDecimal difference = BigDecimal.valueOf(target).subtract(quantities[i]).setScale(4);
-                    if (difference.signum() != 0) {
-                        System.out.println((difference.signum() < 0 ? "VENDER " : "COMPRAR ")
-                                + symbols[i] + " " + difference.abs().toPlainString() + " acciones");
-                    } else {
-                        System.out.println("Sin cambios para " + symbols[i]);
+                    int targetValue = total * percentages[i] / 100;
+                    int targetShares = targetValue / prices[i];
+                    int difference = targetShares - quantities[i];
+                    if (difference != 0) {
+                        System.out.println((difference < 0 ? "VENDER " : "COMPRAR ")
+                                + symbols[i] + " " + Math.abs(difference) + " acciones");
                     }
                 }
             } else {

@@ -8,7 +8,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>kata-zero/before</module>
-        <module>kata-zero/after/01-small-refactor</module>
+        <module>kata-zero/after/01-naive-fractions</module>
         <module>kata-zero/after/02-first-test</module>
     </modules>
 </project>
