@@ -43,3 +43,5 @@ Se corrigió el recorte vertical: el estilo global de pre heredaba un interlinea
 Se insertó «¿Qué es una prueba unitaria?» como diapositiva 9. PDF de 16 páginas regenerado y página nueva revisada visualmente: definición breve, tres tarjetas y conexión con JUnit. Se actualizaron el mapa del deck y los índices de las grabaciones en la verificación.
 
 Narrativa ampliada a 16 diapositivas: límite manual y regresiones → presentación de pruebas unitarias → dos métodos del requisito entero → mismos casos verdes tras cambiar a double → caso fraccionario rojo → corrección de producción → tres casos verdes. Se revisaron visualmente las páginas de motivación y pruebas originales del PDF; el código mostrado coincide con OriginalExamplesTest salvo formato e imports/anotaciones omitidas, según las notas.
+
+Se renombraron los tres métodos y sus DisplayName con Given–When–Then; sin cambiar datos ni expectativas. Se volvió a verificar Maven, los 15 recorridos y el flujo verde/rojo/verde con el JDK exacto. Capturas y grabaciones se regeneraron desde esas fuentes.

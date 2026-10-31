@@ -5,3 +5,4 @@
 - Mantener una sola cabecera por diapositiva: sin antetítulos decorativos ni estimaciones de tiempo. Las notas pueden explicar las transiciones, sin duraciones. La planificación interna del guion queda fuera del deck.
 - Conservar español de México, tema oscuro, código legible y notas para quien presenta.
 - Mostrar código fiel a las fuentes y señalar si se omiten imports, menú u otras partes. Las salidas de ejecución deben proceder de las verificaciones reales del proyecto.
+- Nombrar las pruebas con el esquema `givenCondicion_whenAccion_thenResultado`, usando escenarios y resultados concretos. Mantener los nombres de los ejemplos iguales a los de las fuentes Java.

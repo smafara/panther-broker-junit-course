@@ -86,3 +86,5 @@ El script selecciona exclusivamente SDKMAN `25.0.5.0+8-zulu`, prepara copias tem
 Referencias: [integración del reproductor](https://docs.asciinema.org/manual/player/quick-start/), [opciones](https://docs.asciinema.org/manual/player/options/) y [formato asciicast v2](https://docs.asciinema.org/manual/asciicast/v2/).
 
 El reproductor usa la misma paleta slate/mint que los bloques de código, sin controles visibles ni botón superpuesto. No muestra enlaces de descarga debajo del contenido; las grabaciones siguen disponibles en public/terminal. Las sesiones terminan al volver al prompt, sin echo de estado.
+
+Los métodos de prueba usan `givenCondicion_whenAccion_thenResultado`: primero el escenario, después la acción y al final el resultado esperado. Los nombres del deck coinciden con las fuentes Java.

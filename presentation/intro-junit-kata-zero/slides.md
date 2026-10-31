@@ -242,14 +242,14 @@ Transición: guardar primero las expectativas del ejemplo habitual y ejecutarlas
 
 ```java {1-6|8-13|*}{lines:true}
 @Test
-void sellsWholeSharesInOriginalExample() {
+void givenTenSharesAt100_whenRebalancingTo40Percent_thenSellTwo() {
     assertEquals(-2.0,
         RebalanceCalculator.quantityToTrade(2000, 40, 100, 10),
         0.000001);
 }
 
 @Test
-void buysWholeSharesInOriginalExample() {
+void givenTenSharesAt100_whenRebalancingTo60Percent_thenBuyTwo() {
     assertEquals(2.0,
         RebalanceCalculator.quantityToTrade(2000, 60, 100, 10),
         0.000001);
@@ -287,7 +287,7 @@ Clic: hacer explícito por qué verde no equivale a corrección universal. Trans
 
 ```java {1|3|4|*}{lines:true}
 @Test
-void sellsFractionalSharesWhenPriceChanges() {
+void givenTenSharesAt150_whenRebalancingTo40Percent_thenSellThreeAndAThird() {
     double order = RebalanceCalculator.quantityToTrade(2500, 40, 150, 10);
     assertEquals(-3.333333, order, 0.000001);
 }

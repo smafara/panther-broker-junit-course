@@ -281,3 +281,9 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Origen:** el usuario pide que «JUnit nos ayuda…» aparezca al final.
 
 **Decisión:** revelar esa frase con el cuarto clic, después de las tres tarjetas, usando la transición de aparición del deck. Actualizar la nota de presentación; el texto final del PDF permanece igual.
+
+## D037 — Nombres de pruebas Given–When–Then · 2026-10-31
+
+**Origen:** el usuario pide nombres reales y el esquema given → when → then.
+
+**Decisión:** renombrar los tres métodos de pruebas con condiciones, acción de rebalanceo y resultado concreto, usando givenCondicion_whenAccion_thenResultado. Actualizar los DisplayName en español, fragmentos del deck, capturas y grabaciones que puedan incluir nombres. Mantener los datos y las expectativas sin cambios. Registrar la convención para futuras presentaciones.
