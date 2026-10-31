@@ -5,8 +5,8 @@
 ## Verificación
 
 - `npm run build`: SPA compilada correctamente.
-- `npm run export:pdf`: PDF de 13 páginas generado.
-- `npm run check:deck`, con dev activo: 13 diapositivas y 13 notas; cinco grabaciones con reproducción y pausa verificadas, cinco imágenes estáticas en exportación, un Mermaid, dos diapositivas con magic-move; sin errores de página, recursos externos ni desbordamientos detectados.
+- `npm run export:pdf`: PDF de 14 páginas generado.
+- `npm run check:deck`, con dev activo: 14 diapositivas y 14 notas; cinco grabaciones con reproducción y pausa verificadas, cinco imágenes estáticas en exportación, un Mermaid, dos diapositivas con magic-move; sin errores de página, recursos externos ni desbordamientos detectados.
 - Revisión visual de páginas rasterizadas del PDF: resultados originales verdes, nueva prueba con falla, suite corregida y cierre del curso. Se quitaron esquinas blancas de los PNG al renderizar el fondo completo.
 - Verificación Java y consola mediante scripts/verify-kata-zero.py: 15 recorridos, dos pruebas originales verdes con defecto, tres pruebas con una falla al agregar el caso y tres verdes después de corregir.
 
@@ -39,3 +39,5 @@ Ajuste de integración: se regeneraron las cinco sesiones sin `echo "Salida: ...
 Se inspeccionó la apariencia interactiva mediante rasterización de una impresión de navegador en modo screen: fondo continuo, terminal sin controles visibles y ausencia del enlace de descarga. SPA compilada y PDF regenerados tras el ajuste.
 
 Se corrigió el recorte vertical: el estilo global de pre heredaba un interlineado de 1.5 mientras la cuadrícula del reproductor usa 1.15. Ahora respeta --term-line-height. El verificador compara interlineado y altura de fila, además de comprobar que la barra y la superposición inicial están ocultas. Un botón transparente accesible controla reproducir/pausar/repetir.
+
+Se insertó «¿Qué es una prueba unitaria?» como diapositiva 9. PDF de 14 páginas regenerado y página nueva revisada visualmente: definición breve, tres tarjetas y conexión con JUnit. Se actualizaron el mapa del deck y los índices de las grabaciones en la verificación.

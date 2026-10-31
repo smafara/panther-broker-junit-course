@@ -197,6 +197,26 @@ Transición: ¿y si esa comparación quedara escrita y se pudiera ejecutar autom
 
 ---
 
+# ¿Qué es una prueba unitaria?
+
+<p class="lead">Una comprobación automática de un comportamiento concreto de una pequeña parte del programa, como un método.</p>
+
+<div class="trio" style="margin-top:30px">
+<div class="card" v-click><h3>Datos conocidos</h3><p>Una cuenta, un precio y un porcentaje objetivo.</p></div>
+<div class="card purple" v-click><h3>Una operación</h3><p>Calcular cuántas acciones comprar o vender.</p></div>
+<div class="card success" v-click><h3>Un resultado esperado</h3><p>Comparar lo obtenido con lo que debería pasar.</p></div>
+</div>
+
+<p class="small" style="margin-top:26px">JUnit nos ayuda a escribir y ejecutar esas pruebas en Java.</p>
+
+<!--
+Entrada: dar nombre a la comparación que acabamos de hacer a mano: una prueba unitaria la convierte en una comprobación automática de una parte pequeña del código.
+Clics: conectar datos, operación y resultado esperado con el cálculo de Panther Broker. No introducir todavía anotaciones ni la estructura completa de una prueba.
+Transición: guardar primero las expectativas del ejemplo habitual y ejecutarlas con JUnit.
+-->
+
+---
+
 # Podemos guardar las expectativas en código
 
 <p class="small">Dos pruebas guardan el ejemplo habitual: vender 2 META y comprar 2 AAPL.</p>

@@ -60,7 +60,7 @@ for(let n=1;n<=deck.slides.length;n++){
   results.push({slide:n,clicks,...info});
 }
 const recordingChecks=[];
-for(const n of [6,8,9,10,12]){
+for(const n of [6,8,10,11,13]){
   await page.goto(`${baseUrl}/${n}?clicks=999`,{waitUntil:'networkidle'});
   const root=page.locator(`#slide-content [data-slidev-no="${n}"]`);
   const terminal=root.locator('.terminal-recording');

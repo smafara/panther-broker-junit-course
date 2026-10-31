@@ -263,3 +263,9 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Origen:** el usuario solicita ocultar el reproductor y aporta una captura de texto recortado.
 
 **Decisión:** ocultar barra de controles y superposición inicial; reproducir y pausar al hacer clic en el terminal, con botón transparente accesible por teclado y repetición al terminar. Corregir el interlineado global de pre para respetar --term-line-height: el interlineado heredado excedía la altura de las filas y recortaba los glifos. Agregar comprobaciones de geometría y controles ocultos al verificador del deck. Conservar pausa al navegar y capturas de PDF.
+
+## D034 — Definir prueba unitaria antes de mostrar JUnit · 2026-10-31
+
+**Origen:** el usuario pide una diapositiva breve entre las diapositivas 8 y 9.
+
+**Decisión:** insertar «¿Qué es una prueba unitaria?» como nueva diapositiva 9. Definir la comprobación automática de un comportamiento concreto de una pequeña parte del programa y conectar datos conocidos, operación y resultado esperado con Panther Broker. Presentar a JUnit como herramienta para escribir y ejecutar esas pruebas en Java. Mantener la explicación breve, con notas y tres revelados; el deck pasa a 14 diapositivas.
