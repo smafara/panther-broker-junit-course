@@ -192,12 +192,31 @@ Transición: ejecutar el programa adaptado con estos datos nuevos.
 
 <!--
 Entrada: comparar explícitamente el esperado con la salida real. No llamar redondeo correcto a la pérdida de la fracción.
-Transición: ¿y si esa comparación quedara escrita y se pudiera ejecutar automáticamente?
+Transición: reconocer que ese caso podía haberse comprobado al cambiar el requisito, antes de dar la adaptación por terminada.
 -->
 
 ---
 
-# ¿Qué es una prueba unitaria?
+# Pudimos y debimos detectar el error antes
+
+<v-clicks>
+
+- No podemos comprobar **todos los casos a mano** después de cada cambio.
+- Una función nueva puede introducir errores o **romper lo que ya funcionaba**.
+- Necesitamos guardar las comprobaciones **en código** y ejecutarlas automáticamente.
+- Con datos y condiciones controladas, podemos repetirlas y obtener **el mismo resultado**.
+
+</v-clicks>
+
+<!--
+Entrada: conectar con el caso fraccionario que faltó comprobar al adaptar el programa. No responsabilizar a quien aprende de anticipar todos los errores posibles.
+Clics: explicar el límite de la revisión manual, el riesgo de regresión y la necesidad de comprobaciones programables y deterministas. Las pruebas requieren casos adecuados y condiciones controladas.
+Transición: dar nombre a esta herramienta: pruebas unitarias.
+-->
+
+---
+
+# Presentamos las pruebas unitarias
 
 <p class="lead">Una comprobación automática de un comportamiento concreto de una pequeña parte del programa, como un método.</p>
 
@@ -217,9 +236,41 @@ Transición: guardar primero las expectativas del ejemplo habitual y ejecutarlas
 
 ---
 
-# Podemos guardar las expectativas en código
+# Las pruebas que pudimos tener desde la versión int
 
-<p class="small">Dos pruebas guardan el ejemplo habitual: vender 2 META y comprar 2 AAPL.</p>
+<div class="code-compact">
+
+```java {1-6|8-13|*}{lines:true}
+@Test
+void sellsWholeSharesInOriginalExample() {
+    assertEquals(-2.0,
+        RebalanceCalculator.quantityToTrade(2000, 40, 100, 10),
+        0.000001);
+}
+
+@Test
+void buysWholeSharesInOriginalExample() {
+    assertEquals(2.0,
+        RebalanceCalculator.quantityToTrade(2000, 60, 100, 10),
+        0.000001);
+}
+```
+
+</div>
+<p class="caption">Casos del requisito original, escritos sobre el cálculo extraído del main: vender 2 META y comprar 2 AAPL.</p>
+
+<!--
+Entrada: volver al contrato de acciones completas. Estas dos expectativas podían haberse guardado desde la primera versión; no afirmar que el main original ya tenía pruebas.
+Clics: mostrar la venta esperada y después la compra esperada. Los ejemplos corresponden a OriginalExamplesTest; se omiten imports y DisplayName y se distribuyen las llamadas en varias líneas.
+El cálculo se extrae del main para poder llamarlo directamente. Usamos la firma actual compatible con la evolución fraccionaria; el detalle de la extracción y la tolerancia se explicará durante el curso.
+Transición: ejecutar esos casos después del cambio a double para comprobar que el comportamiento anterior se conserva.
+-->
+
+---
+
+# El cambio a double conserva los casos originales
+
+<p class="small">Reutilizamos las expectativas de la versión entera después de agregar fracciones.</p>
 <TerminalRecording name="tests-original-green" alt="Grabación real de JUnit: las dos pruebas del ejemplo habitual pasan aunque el defecto sigue presente" compact />
 <div class="card warning" style="margin-top:22px" v-click><h3>Dos pruebas verdes todavía pueden omitir el defecto</h3><p>Repetir automáticamente el mismo caso entero no comprueba que funcionen las fracciones.</p></div>
 
@@ -230,7 +281,7 @@ Clic: hacer explícito por qué verde no equivale a corrección universal. Trans
 
 ---
 
-# Escribimos la expectativa del caso fraccionario
+# El requisito fraccionario necesita una prueba nueva
 
 <div class="code-compact">
 
@@ -281,12 +332,12 @@ return targetShares - currentQuantity;
 
 <!--
 Entrada: explicar el orden: primero se calcula la expresión, después se asigna. Un clic transforma solo la división.
-La prueba se mantiene igual. Transición: volver a ejecutar toda la suite, no solo el caso nuevo.
+Corregimos el cálculo, sin cambiar lo que espera la prueba. Transición: volver a ejecutar toda la suite, no solo el caso nuevo.
 -->
 
 ---
 
-# Las anteriores siguen pasando. La nueva también.
+# Corregimos el cálculo. Todas las pruebas pasan.
 
 <TerminalRecording name="tests-fixed-green" alt="Grabación real de Maven y JUnit después de corregir: las tres pruebas pasan" />
 

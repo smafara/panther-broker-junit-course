@@ -1,6 +1,6 @@
 # Introducción a JUnit
 
-Deck Slidev en español de México para **un video introductorio**, con 14 diapositivas. Motiva las pruebas con una historia de cambio de requisito; no es todavía un tutorial de arquitectura, AAA, refactorización ni de la API completa de JUnit.
+Deck Slidev en español de México para **un video introductorio**, con 16 diapositivas. Motiva las pruebas con una historia de cambio de requisito; no es todavía un tutorial de arquitectura, AAA, refactorización ni de la API completa de JUnit.
 
 ## Ejecutar
 
@@ -27,9 +27,9 @@ La versión interactiva conserva revelados y transformaciones. El PDF es una cap
 | 2 | 4 | Permitir comprar y vender fracciones |
 | 3 | 5–6 | Cambiar int por double y volver a probar con el ejemplo habitual |
 | 4 | 7–8 | Otros valores revelan la pérdida de la fracción |
-| 5 | 9–10 | Introducir pruebas unitarias; automatizar el mismo caso todavía omite el defecto |
-| 6 | 11–13 | Agregar el caso fraccionario, ver rojo, corregir y ejecutar tres pruebas verdes |
-| 7 | 14 | Presentar lo que enseñará el curso |
+| 5 | 9–12 | Límites de la revisión manual, pruebas unitarias, ejemplos del requisito entero y conservación del comportamiento al cambiar a double |
+| 6 | 13–15 | Agregar el caso fraccionario, ver rojo, corregir y ejecutar tres pruebas verdes |
+| 7 | 16 | Presentar lo que enseñará el curso |
 
 ## Datos y defecto vigentes
 

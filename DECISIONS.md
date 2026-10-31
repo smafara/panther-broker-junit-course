@@ -269,3 +269,9 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Origen:** el usuario pide una diapositiva breve entre las diapositivas 8 y 9.
 
 **Decisión:** insertar «¿Qué es una prueba unitaria?» como nueva diapositiva 9. Definir la comprobación automática de un comportamiento concreto de una pequeña parte del programa y conectar datos conocidos, operación y resultado esperado con Panther Broker. Presentar a JUnit como herramienta para escribir y ejecutar esas pruebas en Java. Mantener la explicación breve, con notas y tres revelados; el deck pasa a 14 diapositivas.
+
+## D035 — Del límite manual a una red de pruebas · 2026-10-31
+
+**Origen:** el usuario propone explicar detección temprana, límites de probar a mano, regresiones y comprobaciones deterministas antes de presentar pruebas unitarias; después mostrar ejemplos del requisito entero, caso fraccionario rojo y solución verde.
+
+**Decisión:** agregar una diapositiva de motivación después del fallo manual, presentar el concepto y mostrar los dos métodos reales de OriginalExamplesTest antes de su ejecución. Explicar que esos casos podían guardarse desde el requisito int y se ejecutan con el cálculo extraído y su firma vigente. Mostrar que al cambiar a double siguen verdes, agregar el caso fraccionario, corregir producción sin debilitar expectativas y terminar con tres pruebas verdes. El deck pasa a 16 diapositivas. Detectar automáticamente las diapositivas con grabaciones en el verificador para tolerar inserciones futuras.
