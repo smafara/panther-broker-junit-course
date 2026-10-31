@@ -1,4 +1,4 @@
-package mx.serviciosocial.katazero;
+package mx.azc.uam.pantherbroker;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

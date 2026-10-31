@@ -14,17 +14,17 @@
     },
     "tests-original-green": {
       "title": "Dos pruebas del ejemplo original · calculador con defecto",
-      "text": "[INFO] Running mx.serviciosocial.katazero.OriginalExamplesTest\n[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0\n[INFO] BUILD SUCCESS\n",
+      "text": "[INFO] Running mx.azc.uam.pantherbroker.OriginalExamplesTest\n[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0\n[INFO] BUILD SUCCESS\n",
       "exitCode": 0
     },
     "tests-fractional-red": {
       "title": "Agregamos el caso fraccionario · aparece la falla",
-      "text": "[INFO] Running mx.serviciosocial.katazero.FractionalSharesTest\n[INFO] Running mx.serviciosocial.katazero.OriginalExamplesTest\norg.opentest4j.AssertionFailedError: expected: <-3.333333> but was: <-4.0>\n[ERROR] Tests run: 3, Failures: 1, Errors: 0, Skipped: 0\n[ERROR] BUILD FAILURE\n",
+      "text": "[INFO] Running mx.azc.uam.pantherbroker.FractionalSharesTest\n[INFO] Running mx.azc.uam.pantherbroker.OriginalExamplesTest\norg.opentest4j.AssertionFailedError: expected: <-3.333333> but was: <-4.0>\n[ERROR] Tests run: 3, Failures: 1, Errors: 0, Skipped: 0\n[ERROR] BUILD FAILURE\n",
       "exitCode": 1
     },
     "tests-fixed-green": {
       "title": "Misma suite · división corregida",
-      "text": "[INFO] Running mx.serviciosocial.katazero.FractionalSharesTest\n[INFO] Running mx.serviciosocial.katazero.OriginalExamplesTest\n[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0\n[INFO] BUILD SUCCESS\n",
+      "text": "[INFO] Running mx.azc.uam.pantherbroker.FractionalSharesTest\n[INFO] Running mx.azc.uam.pantherbroker.OriginalExamplesTest\n[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0\n[INFO] BUILD SUCCESS\n",
       "exitCode": 0
     }
   }

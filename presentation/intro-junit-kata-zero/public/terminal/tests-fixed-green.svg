@@ -3,8 +3,8 @@
 <path d="M0 65H1520" stroke="#304253"/>
 <circle cx="29" cy="32" r="7" fill="#ef7185"/><circle cx="54" cy="32" r="7" fill="#e5c36b"/><circle cx="79" cy="32" r="7" fill="#5ee0a1"/>
 <text x="112" y="40" font-family="Arial,sans-serif" font-size="22" fill="#b1c5da">Misma suite · división corregida</text>
-<text x="30" y="112" font-family="monospace" font-size="28" fill="#e2e8f0" xml:space="preserve">[INFO] Running mx.serviciosocial.katazero.FractionalSharesTest</text>
-<text x="30" y="157" font-family="monospace" font-size="28" fill="#e2e8f0" xml:space="preserve">[INFO] Running mx.serviciosocial.katazero.OriginalExamplesTest</text>
+<text x="30" y="112" font-family="monospace" font-size="28" fill="#e2e8f0" xml:space="preserve">[INFO] Running mx.azc.uam.pantherbroker.FractionalSharesTest</text>
+<text x="30" y="157" font-family="monospace" font-size="28" fill="#e2e8f0" xml:space="preserve">[INFO] Running mx.azc.uam.pantherbroker.OriginalExamplesTest</text>
 <text x="30" y="202" font-family="monospace" font-size="28" fill="#5eead4" xml:space="preserve">[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0</text>
 <text x="30" y="247" font-family="monospace" font-size="28" fill="#5eead4" xml:space="preserve">[INFO] BUILD SUCCESS</text>
 </svg>

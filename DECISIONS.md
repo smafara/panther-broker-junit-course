@@ -237,3 +237,9 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Origen:** el usuario elige Panther Broker como referencia a la UAM Azcapotzalco.
 
 **Decisión:** sustituir la marca Fracción por Panther Broker en el temario vigente, presentación, documentación operativa y encabezados del programa. No se cambia el problema, los números ni las expectativas de las pruebas. Conservar las decisiones históricas como antecedentes y no incorporar logotipos institucionales ni atribuir un aval de la UAM.
+
+## D030 — Paquete de Panther Broker · 2026-10-31
+
+**Origen:** el usuario solicita mx.azc.uam.pantherbroker.
+
+**Decisión:** adoptar ese paquete en las tres etapas de Kata Zero, mover fuentes y pruebas a su ruta correspondiente y actualizar mainClass, groupId de Maven y verificación reproducible. No modificar las etiquetas históricas.

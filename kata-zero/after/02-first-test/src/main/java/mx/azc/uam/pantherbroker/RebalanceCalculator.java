@@ -1,4 +1,4 @@
-package mx.serviciosocial.katazero;
+package mx.azc.uam.pantherbroker;
 
 final class RebalanceCalculator {
     static double quantityToTrade(int totalValue, int targetPercent,

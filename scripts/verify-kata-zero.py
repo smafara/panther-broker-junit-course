@@ -30,7 +30,7 @@ if args.captures or args.render_only:
 
 wrapper = str(ROOT / 'mvnw')
 stages = [ROOT / 'kata-zero' / p for p in ['before', 'after/01-naive-fractions', 'after/02-first-test']]
-source = Path('src/main/java/mx/serviciosocial/katazero')
+source = Path('src/main/java/mx/azc/uam/pantherbroker')
 records = {}
 
 
@@ -42,7 +42,7 @@ def maven(project, *goals, expected=0):
 
 
 def console(project, input_text='2\n0\n'):
-    result = subprocess.run([java, '-cp', str(project / 'target/classes'), 'mx.serviciosocial.katazero.Main'],
+    result = subprocess.run([java, '-cp', str(project / 'target/classes'), 'mx.azc.uam.pantherbroker.Main'],
                             input=input_text, env=env, capture_output=True, text=True, check=True, timeout=10)
     assert not result.stderr, result.stderr
     return result.stdout
@@ -55,7 +55,7 @@ def plan_excerpt(output):
 def test_excerpt(output):
     clean = re.sub(r'\x1b\[[0-9;]*m', '', output)
     lines = clean.splitlines()
-    running = [line for line in lines if 'Running mx.serviciosocial' in line]
+    running = [line for line in lines if 'Running mx.azc.uam.pantherbroker' in line]
     failures = [line for line in lines if line.startswith('org.opentest4j.AssertionFailedError:')]
     summary = [line for line in lines if 'Tests run:' in line and 'Time elapsed:' not in line]
     result = [line for line in lines if 'BUILD SUCCESS' in line or 'BUILD FAILURE' in line]

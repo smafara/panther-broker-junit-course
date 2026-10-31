@@ -1,4 +1,4 @@
-package mx.serviciosocial.katazero;
+package mx.azc.uam.pantherbroker;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

@@ -1,5 +1,5 @@
-[INFO] Running mx.serviciosocial.katazero.FractionalSharesTest
-[INFO] Running mx.serviciosocial.katazero.OriginalExamplesTest
+[INFO] Running mx.azc.uam.pantherbroker.FractionalSharesTest
+[INFO] Running mx.azc.uam.pantherbroker.OriginalExamplesTest
 org.opentest4j.AssertionFailedError: expected: <-3.333333> but was: <-4.0>
 [ERROR] Tests run: 3, Failures: 1, Errors: 0, Skipped: 0
 [ERROR] BUILD FAILURE
