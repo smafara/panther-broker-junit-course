@@ -91,7 +91,8 @@ html.dark { color-scheme: dark; }
 .slidev-layout pre, .slidev-layout code { font-family:'SFMono-Regular', Consolas, 'Liberation Mono', monospace; }
 .slidev-layout pre { font-size:18px !important; line-height:1.55 !important; background:#0b1220 !important; padding:19px 15px !important; }
 .slidev-layout .slidev-code { background:#0b1220 !important; }
-.slidev-layout .slidev-code .line { min-height:1.55em; }
+.slidev-layout .slidev-code > code { display: grid; }
+.slidev-layout .slidev-code .line { display: block; min-height: 1lh; }
 .slidev-layout .slidev-code .line.dim { opacity:.30; }
 .slidev-layout .slidev-code .highlighted { background:#5eead413; }
 .code-compact pre { font-size:16px !important; line-height:1.45 !important; }

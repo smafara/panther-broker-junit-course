@@ -299,3 +299,9 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Origen:** el usuario pide fundido, reproducción automática al 50% y una lista de resultados similar a un IDE.
 
 **Decisión:** revelar el terminal con fundido y reproducir a 0.5× solo cuando está visible en la diapositiva activa. En la prueba roja, esperar al cuarto clic después del código. Pausar al salir y reiniciar al volver. Mantener los controles ocultos y la interacción accesible para pausar/repetir. Agregar un panel inferior de pruebas cuyos nombres y estados se leen de los XML reales de Surefire; después del final de la grabación, revelar primero las dos originales y después la fraccionaria. Dos verdes y una roja con defecto; tres verdes tras corregir. Es una visualización de resultados de las diapositivas, no un IDE real ni el orden interno de ejecución. El PDF muestra estados finales. No agregar plugins Maven para fines visuales.
+
+## D040 — Resaltado continuo de código multilínea · 2026-10-31
+
+**Origen:** el usuario pide resaltar el bloque completo en vez de franjas del ancho de cada línea.
+
+**Decisión:** hacer que las líneas de Shiki ocupen todo el ancho y compartan exactamente el interlineado, usando una cuadrícula que evita huecos por saltos de línea. Un rango contiguo se ve como un solo rectángulo. Conservar los focos por clic, números de línea y colores de sintaxis; no modificar el terminal.
