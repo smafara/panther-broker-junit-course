@@ -67,3 +67,11 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Decisión:** inicializar Git en la raíz del curso; conservar `fintual-kata` como referencia excluida; commits por etapa, etiquetas de recorrido, documentación del cambio y guion. No publicar ni configurar un remoto sin una solicitud posterior.
 
 **Consecuencia:** como no había identidad Git configurada, los commits generados por el asistente usarán la identidad explícita `Codex <codex@localhost>` mediante opciones por comando, sin cambiar la configuración global.
+
+## D010 — Distribución exacta del JDK · 2026-10-31
+
+**Origen:** requisito explícito del usuario durante la implementación.
+
+**Decisión:** usar exclusivamente `25.0.5.0+8-zulu` de SDKMAN para todos los proyectos, compilaciones, pruebas y ejemplos. Se fija en `.sdkmanrc`; ejecutar `sdk env` en la raíz del curso. Para el IDE, seleccionar esa misma instalación.
+
+**Consecuencia:** sustituye cualquier uso anterior del JDK Temurin configurado por defecto en la máquina. No cambiar el JDK global; las verificaciones usarán JAVA_HOME y PATH del JDK solicitado.
