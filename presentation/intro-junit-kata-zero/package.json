@@ -17,5 +17,8 @@
     "@slidev/cli": "53.0.0",
     "@slidev/theme-default": "0.25.0",
     "playwright-chromium": "1.64.1"
+  },
+  "dependencies": {
+    "asciinema-player": "3.17.0"
   }
 }

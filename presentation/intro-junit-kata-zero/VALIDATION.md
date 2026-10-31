@@ -6,7 +6,7 @@
 
 - `npm run build`: SPA compilada correctamente.
 - `npm run export:pdf`: PDF de 13 páginas generado.
-- `npm run check:deck`, con dev activo: 13 diapositivas y 13 notas; cinco imágenes de terminal cargadas, un Mermaid, dos diapositivas con magic-move; sin errores de página, recursos externos ni desbordamientos detectados.
+- `npm run check:deck`, con dev activo: 13 diapositivas y 13 notas; cinco grabaciones con reproducción y pausa verificadas, cinco imágenes estáticas en exportación, un Mermaid, dos diapositivas con magic-move; sin errores de página, recursos externos ni desbordamientos detectados.
 - Revisión visual de páginas rasterizadas del PDF: resultados originales verdes, nueva prueba con falla, suite corregida y cierre del curso. Se quitaron esquinas blancas de los PNG al renderizar el fondo completo.
 - Verificación Java y consola mediante scripts/verify-kata-zero.py: 15 recorridos, dos pruebas originales verdes con defecto, tres pruebas con una falla al agregar el caso y tres verdes después de corregir.
 
@@ -25,3 +25,11 @@ El verificador del navegador selecciona solo la diapositiva activa, comprueba lo
 ## Ajuste de título, marca y código original
 
 Se agregó una diapositiva inmediatamente después de la portada con un fragmento del programa original y tarjetas que explican su propósito. El nombre vigente es Panther Broker. Portada con solo «Introducción a JUnit» y contenido sin subtítulos decorativos ni estimaciones de tiempo. La regla se conserva en presentation/AGENTS.md.
+
+## Grabaciones de terminal
+
+Se generaron cinco archivos `.cast` con scripts/record-kata-zero.py y el JDK exacto del curso. El script comprueba las dos salidas de consola y el flujo de pruebas 2/0, 3/1 y 3/0 (pruebas/fallas), incluidos los códigos de salida 0, 1 y 0. Todas son ejecuciones reales completas; las entradas se automatizan con pausas. La compilación previa de los ejemplos de consola no forma parte de esas dos grabaciones.
+
+El verificador abre cada demostración, carga su archivo, confirma que el contenido avanza al reproducir, pausa con el control y al navegar a otra diapositiva. La ruta de impresión carga cinco imágenes como sustitución estática. Se revisó visualmente la página del caso rojo exportada al PDF para confirmar que muestra la captura, sin controles de reproducción.
+
+También se verificó la SPA compilada con vite preview: la grabación manual reproduce el comando, el menú, VENDER META 2.0 y el código de salida 0 con los recursos del reproductor servidos localmente y sin errores de página.

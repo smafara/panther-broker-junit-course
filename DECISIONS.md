@@ -243,3 +243,11 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Origen:** el usuario solicita mx.azc.uam.pantherbroker.
 
 **Decisión:** adoptar ese paquete en las tres etapas de Kata Zero, mover fuentes y pruebas a su ruta correspondiente y actualizar mainClass, groupId de Maven y verificación reproducible. No modificar las etiquetas históricas.
+
+## D031 — Ejecuciones reproducibles en movimiento · 2026-10-31
+
+**Origen:** el usuario autoriza agregar grabaciones de terminal a las diapositivas.
+
+**Decisión:** sustituir las cinco imágenes en la presentación interactiva por asciinema-player, con reproducción manual, controles y pausa al cambiar de diapositiva. Conservar PNG en PDF y como alternativa ante errores. Versionar archivos asciicast v2 grabados de pseudoterminales reales mediante un script Python, con entrada automatizada y salida completa sin editar. Los tiempos de captura son reales; el reproductor acorta solo pausas inactivas. No publicar sesiones en servidores externos.
+
+**Reproducción:** scripts/record-kata-zero.py usa el JDK Zulu solicitado, copias temporales de los módulos Maven y valida cantidades, conteos de pruebas y códigos de salida. Documentar que la compilación de consola y la preparación de los escenarios preceden a la grabación.

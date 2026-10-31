@@ -45,7 +45,7 @@ El JDK de los ejemplos sigue siendo SDKMAN `25.0.5.0+8-zulu`, con JUnit6.1.3 y M
 
 ## Capturas y recursos visuales
 
-Las diapositivas usan **imágenes PNG generadas desde salidas reales** del flujo de preparación del repositorio, en public/terminal. Se agregan encabezados y colores para legibilidad; no son fotografías de una ventana de terminal:
+El PDF usa **imágenes PNG generadas desde salidas reales** del flujo de preparación del repositorio, en public/terminal. Se agregan encabezados y colores para legibilidad; no son fotografías de una ventana de terminal:
 
 - manual-original.png
 - manual-fractional.png
@@ -61,10 +61,26 @@ La narración, las notas y las capturas corresponden al guion vigente de introdu
 
 ## Presentar y verificar
 
-Con npm run dev, abrir http://localhost:3030/; las notas están en http://localhost:3030/presenter/. Con el servidor abierto, ejecutar npm run check:deck en otra terminal. La comprobación incluye la carga de las cinco imágenes.
+Con npm run dev, abrir http://localhost:3030/; las notas están en http://localhost:3030/presenter/. Con el servidor abierto, ejecutar npm run check:deck en otra terminal. La comprobación incluye las cinco grabaciones, reproducción, pausa al cambiar de diapositiva y las imágenes de exportación.
 
 El PDF estático se genera como intro-junit-kata-zero.pdf; la SPA compilada queda en dist. El fuente, las capturas y su procedencia se versionan; el PDF y dist se regeneran.
 
 ## Convención de presentación
 
 El programa se llama **Panther Broker**, referencia elegida a la UAM Azcapotzalco. El deck se titula **Introducción a JUnit** y la portada muestra solo el título, sin subtítulo ni duración. Se omiten también antetítulos decorativos y tiempos en las diapositivas y sus notas. La regla para las siguientes presentaciones está en [AGENTS.md](../AGENTS.md).
+
+## Grabaciones de terminal
+
+Las cinco demostraciones se reproducen con **asciinema-player 3.17.0**, instalado desde npm y servido localmente. Presionar ▶ para comenzar; los controles permiten pausar, recorrer la línea de tiempo, cambiar velocidad y expandir el terminal. Al salir de una diapositiva se pausa su grabación. El PDF conserva los PNG como alternativa estática.
+
+Para regenerarlas desde la raíz:
+
+```sh
+python3 scripts/record-kata-zero.py
+```
+
+El script selecciona exclusivamente SDKMAN `25.0.5.0+8-zulu`, prepara copias temporales de los proyectos Maven y registra sesiones reales de pseudoterminal en formato asciicast v2. Teclea automáticamente los comandos y las opciones 1, 2 y 0 con pausas: no es una persona escribiendo ni una animación fabricada de resultados. Los ejemplos de consola ya están compilados antes de grabar; las tres sesiones de pruebas muestran Maven completo, su resultado y el código de salida. La preparación modifica únicamente las copias temporales para reconstruir el defecto y cambiar META a 150 USD.
+
+`public/terminal/*.cast` conserva las salidas completas con sus tiempos originales; `recordings.json` documenta comandos, duración, JDK y códigos de salida. El reproductor comprime pausas sin actividad a dos segundos; no elimina salida. No se suben grabaciones a servicios externos. Si falla el reproductor, se muestra la imagen estática.
+
+Referencias: [integración del reproductor](https://docs.asciinema.org/manual/player/quick-start/), [opciones](https://docs.asciinema.org/manual/player/options/) y [formato asciicast v2](https://docs.asciinema.org/manual/asciicast/v2/).

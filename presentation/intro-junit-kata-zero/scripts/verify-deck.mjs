@@ -18,6 +18,7 @@ if(missing.length) throw new Error(`Faltan notas: ${missing}`);
 await fs.mkdir('.validation',{recursive:true});
 const browser=await chromium.launch({headless:true});
 const page=await browser.newPage({viewport:{width:1600,height:900},deviceScaleFactor:1});
+page.setDefaultTimeout(10000);
 await page.addInitScript(()=>{
   localStorage.setItem('slidev-wake-lock','false');
   window.requestAnimationFrame=callback=>window.setTimeout(()=>callback(performance.now()),16);
@@ -40,7 +41,8 @@ for(let n=1;n<=deck.slides.length;n++){
     if(!root) throw new Error(`No se renderizó la diapositiva ${no}`);
     const bounds=canvas.getBoundingClientRect();
     const over=[];
-    for(const el of root.querySelectorAll('h1,h2,h3,p,pre,table,img,.card,.terminal,.formula,.diagram')){
+    for(const el of root.querySelectorAll('h1,h2,h3,p,pre,table,img,.card,.terminal,.formula,.diagram,.terminal-recording')){
+      if(el.closest('.ap-player'))continue;
       const style=getComputedStyle(el);
       if(style.visibility==='hidden'||Number(style.opacity)===0||el.closest('.slidev-vclick-hidden'))continue;
       const box=el.getBoundingClientRect();
@@ -57,7 +59,41 @@ for(let n=1;n<=deck.slides.length;n++){
   console.log(`Revisada diapositiva ${n}: ${info.title}`);
   results.push({slide:n,clicks,...info});
 }
-await fs.writeFile('.validation/report.json',JSON.stringify({slides:deck.slides.length,missingNotes:missing,errors,external,results},null,2));
+const recordingChecks=[];
+for(const n of [6,8,9,10,12]){
+  await page.goto(`${baseUrl}/${n}?clicks=999`,{waitUntil:'networkidle'});
+  const root=page.locator(`#slide-content [data-slidev-no="${n}"]`);
+  const terminal=root.locator('.terminal-recording');
+  const name=await terminal.getAttribute('data-recording');
+  await terminal.locator('.ap-playback-button').waitFor();
+  const response=await page.request.get(`${baseUrl}/terminal/${name}.cast`);
+  if(!response.ok())throw new Error(`No se cargó ${name}`);
+  const rows=(await response.text()).trim().split('\n').map(line=>JSON.parse(line));
+  if(rows[0].version!==2||rows.length<3)throw new Error(`Grabación inválida: ${name}`);
+  const before=await terminal.locator('.ap-term-text').textContent();
+  await terminal.locator('.ap-playback-button').click();
+  await terminal.locator('.ap-playback-button[aria-label="Pause"]').waitFor();
+  await page.waitForTimeout(1800);
+  const after=await terminal.locator('.ap-term-text').textContent();
+  if(before===after)throw new Error(`No avanzó la reproducción: ${name}`);
+  await terminal.locator('.ap-playback-button').click();
+  await terminal.locator('.ap-playback-button[aria-label="Play"]').waitFor();
+  // Changing slides must pause the preloaded player, without needing a click.
+  await terminal.locator('.ap-playback-button').click();
+  await page.evaluate(()=>window.__slidev__.nav.nextSlide());
+  await page.waitForTimeout(200);
+  if(await terminal.locator('.ap-playback-button[aria-label="Pause"]').count())
+    throw new Error(`La grabación sigue reproduciéndose fuera de su diapositiva: ${name}`);
+  recordingChecks.push({slide:n,name,events:rows.length-1,playback:true,pause:true});
+}
+await page.goto(`${baseUrl}/print?print=true`,{waitUntil:'networkidle'});
+await page.waitForTimeout(1000);
+const fallback=page.locator('.terminal-recording img.terminal-capture');
+if(await fallback.count()!==5)throw new Error('La exportación necesita cinco imágenes estáticas.');
+if(!await fallback.evaluateAll(images=>images.every(img=>img.complete&&img.naturalWidth>0)))
+  throw new Error('No se cargaron las imágenes de exportación.');
+console.log('Grabaciones verificadas:',JSON.stringify(recordingChecks));
+await fs.writeFile('.validation/report.json',JSON.stringify({slides:deck.slides.length,missingNotes:missing,errors,external,recordingChecks,staticFallbackImages:5,results},null,2));
 await browser.close();
 console.log(JSON.stringify({slides:results.length,notes:deck.slides.length-missing.length,errors,external:[...new Set(external)],overflow:results.filter(x=>x.overflow.length),diagrams:results.reduce((s,x)=>s+x.diagrams,0),magicSlides:results.filter(x=>x.magic>0).map(x=>x.slide)},null,2));
 if(results.some(x=>x.captures.some(img=>!img.loaded))||errors.length||external.length||results.some(x=>x.overflow.length)||results.reduce((sum,x)=>sum+x.diagrams,0)!==expectedDiagrams||!results.some(x=>x.magic>0))process.exitCode=1;

@@ -1,0 +1,36 @@
+{
+  "jdk": "25.0.5.0+8-zulu",
+  "provenance": "Sesiones PTY reales en formato asciicast v2. Entradas automatizadas con pausas; salida completa sin editar. Directorios temporales; preparación fuera de la grabación. Reproductor limita pausas inactivas a dos segundos.",
+  "scenarios": {
+    "manual-original": {
+      "file": "manual-original.cast",
+      "command": "java -cp target/classes mx.azc.uam.pantherbroker.Main",
+      "exitCode": 0,
+      "duration": 6.682669
+    },
+    "manual-fractional": {
+      "file": "manual-fractional.cast",
+      "command": "java -cp target/classes mx.azc.uam.pantherbroker.Main",
+      "exitCode": 0,
+      "duration": 6.742651
+    },
+    "tests-original-green": {
+      "file": "tests-original-green.cast",
+      "command": "../mvnw -B -ntp -Dtest=OriginalExamplesTest test",
+      "exitCode": 0,
+      "duration": 5.280129
+    },
+    "tests-fractional-red": {
+      "file": "tests-fractional-red.cast",
+      "command": "../mvnw -B -ntp test",
+      "exitCode": 1,
+      "duration": 3.924214
+    },
+    "tests-fixed-green": {
+      "file": "tests-fixed-green.cast",
+      "command": "../mvnw -B -ntp test",
+      "exitCode": 0,
+      "duration": 4.255374
+    }
+  }
+}

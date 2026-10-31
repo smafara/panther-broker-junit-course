@@ -55,3 +55,7 @@ Cerrar con formato: videos y práctica opcional sin calificación. No agregar un
 Ejecutar `sdk env` y `python3 scripts/verify-kata-zero.py`. Las cinco capturas y sus extractos están en presentation/intro-junit-kata-zero/public/terminal. Son imágenes renderizadas a partir de salidas reales, no fotos de una ventana ni resultados inventados.
 
 Las etiquetas v4 conservan el estado rojo y su corrección. El deck es apoyo a la historia, no un sustituto del programa y sus resultados.
+
+## Reproducción de terminal en las diapositivas
+
+En la presentación interactiva, usar ▶ para mostrar las ejecuciones completas en lugar de las capturas. Se pueden pausar mientras se explica la cuenta o el fallo; al cambiar de diapositiva se detiene la reproducción. Para volver a grabar las cinco sesiones: `python3 scripts/record-kata-zero.py` desde la raíz. Las entradas son automatizadas, las salidas son reales y el JDK es Zulu 25.0.5.0+8-zulu. El PDF conserva capturas estáticas. Los comandos de consola parten de proyectos Maven compilados previamente.

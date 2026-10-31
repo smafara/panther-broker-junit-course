@@ -154,7 +154,7 @@ Transición: hacemos lo habitual: volver a ejecutar con los mismos datos y compa
 
 # El ejemplo de siempre sigue funcionando
 
-<img class="terminal-capture" src="/terminal/manual-original.png" alt="Captura real de la consola con el ejemplo habitual: vender dos META y comprar dos AAPL" />
+<TerminalRecording name="manual-original" alt="Grabación real de la consola con el ejemplo habitual: vender dos META y comprar dos AAPL" />
 
 <div class="split equal" style="margin-top:22px">
 <div class="card success"><h3>Vender 2 · Comprar 2</h3><p>Coincide con lo que ya esperábamos.</p></div>
@@ -162,7 +162,7 @@ Transición: hacemos lo habitual: volver a ejecutar con los mismos datos y compa
 </div>
 
 <!--
-Entrada: captura de una ejecución real del programa adaptado. No simular una terminal con texto inventado.
+Entrada: reproducir la grabación completa del programa adaptado: comando, menú, cuenta, cálculo y salida. No simular una terminal con texto inventado.
 Clic: mostrar el salto de confianza. Transición: cambiar un precio, manteniendo la misma cuenta.
 -->
 
@@ -186,7 +186,7 @@ Transición: ejecutar el programa adaptado con estos datos nuevos.
 
 # Esperábamos vender 3.333333. Propone vender 4.
 
-<img class="terminal-capture" src="/terminal/manual-fractional.png" alt="Captura real del programa adaptado con META a150USD: propone vender cuatro acciones" />
+<TerminalRecording name="manual-fractional" alt="Grabación real del programa adaptado con META a150USD: propone vender cuatro acciones" />
 
 <div class="card warning" style="margin-top:24px" v-click><h3>El programa ejecuta, pero no cumple el requisito nuevo</h3><p>Ahora tenemos que volver a revisar y repetir la comparación cada vez que cambiemos el código.</p></div>
 
@@ -200,11 +200,11 @@ Transición: ¿y si esa comparación quedara escrita y se pudiera ejecutar autom
 # Podemos guardar las expectativas en código
 
 <p class="small">Dos pruebas guardan el ejemplo habitual: vender 2 META y comprar 2 AAPL.</p>
-<img class="terminal-capture compact-capture" src="/terminal/tests-original-green.png" alt="Captura real de JUnit: las dos pruebas del ejemplo habitual pasan aunque el defecto sigue presente" />
+<TerminalRecording name="tests-original-green" alt="Grabación real de JUnit: las dos pruebas del ejemplo habitual pasan aunque el defecto sigue presente" compact />
 <div class="card warning" style="margin-top:22px" v-click><h3>Dos pruebas verdes todavía pueden omitir el defecto</h3><p>Repetir automáticamente el mismo caso entero no comprueba que funcionen las fracciones.</p></div>
 
 <!--
-Entrada: mostrar el resultado real de dos pruebas. Explicar que una suite necesita ejemplos adecuados: JUnit no descubre requisitos por sí solo.
+Entrada: reproducir Maven y mostrar el resultado real de dos pruebas. Explicar que una suite necesita ejemplos adecuados: JUnit no descubre requisitos por sí solo.
 Clic: hacer explícito por qué verde no equivale a corrección universal. Transición: agregar el caso que faltaba.
 -->
 
@@ -223,12 +223,12 @@ void sellsFractionalSharesWhenPriceChanges() {
 ```
 
 </div>
-<img class="terminal-capture short-capture" src="/terminal/tests-fractional-red.png" alt="Captura real de la suite con el nuevo caso fraccionario: se esperaba aproximadamente menos3.333333 y se obtuvo menos4" />
+<TerminalRecording name="tests-fractional-red" alt="Grabación real de la suite con el nuevo caso fraccionario: se esperaba aproximadamente menos3.333333 y se obtuvo menos4" short />
 <p class="caption">Primero lo esperado; después lo obtenido. La tolerancia permite comparar este resultado aproximado.</p>
 
 <!--
 Entrada: los focos señalan la llamada con datos nuevos y luego el esperado con tolerancia. No enseñar todavía toda la API de assertions.
-Mostrar la captura real: las pruebas anteriores pasan y la nueva revela el defecto. Transición: explicar qué quedó del supuesto de enteros.
+Reproducir la grabación de Maven: las pruebas anteriores pasan y la nueva revela el defecto. Transición: explicar qué quedó del supuesto de enteros.
 -->
 
 ---
@@ -268,7 +268,7 @@ La prueba se mantiene igual. Transición: volver a ejecutar toda la suite, no so
 
 # Las anteriores siguen pasando. La nueva también.
 
-<img class="terminal-capture" src="/terminal/tests-fixed-green.png" alt="Captura real de Maven y JUnit después de corregir: las tres pruebas pasan" />
+<TerminalRecording name="tests-fixed-green" alt="Grabación real de Maven y JUnit después de corregir: las tres pruebas pasan" />
 
 <div class="split equal" style="margin-top:22px">
 <div class="card success"><h3>Una comprobación reutilizable</h3><p>Ahora el caso fraccionario forma parte de nuestra red de pruebas.</p></div>
@@ -276,7 +276,7 @@ La prueba se mantiene igual. Transición: volver a ejecutar toda la suite, no so
 </div>
 
 <!--
-Entrada: captura real de tres pruebas verdes. No afirmar que la suite valida todos los posibles resultados.
+Entrada: reproducir Maven de principio a fin y mostrar las tres pruebas verdes. No afirmar que la suite valida todos los posibles resultados.
 Clic: conectar el beneficio con la historia inicial. Transición: anunciar lo que se aprenderá durante el curso.
 -->
 
