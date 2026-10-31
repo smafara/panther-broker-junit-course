@@ -75,3 +75,27 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Decisión:** usar exclusivamente `25.0.5.0+8-zulu` de SDKMAN para todos los proyectos, compilaciones, pruebas y ejemplos. Se fija en `.sdkmanrc`; ejecutar `sdk env` en la raíz del curso. Para el IDE, seleccionar esa misma instalación.
 
 **Consecuencia:** sustituye cualquier uso anterior del JDK Temurin configurado por defecto en la máquina. No cambiar el JDK global; las verificaciones usarán JAVA_HOME y PATH del JDK solicitado.
+
+## D011 — Versiones y construcción comprobadas · 2026-10-31
+
+**Origen:** implementación y verificación del material.
+
+**Decisión:** Maven Wrapper 3.3.4 con Maven 3.10.0; Compiler Plugin 3.16.0 (estable, evitando 4.0 beta), Surefire 3.6.1, Enforcer 3.7.0 y Exec Plugin 3.6.4. Primera prueba con BOM JUnit 6.1.3 y junit-jupiter. Las versiones se fijan en los archivos de construcción y se resolvieron y ejecutaron con el JDK solicitado.
+
+**Consecuencia:** cada etapa funciona con su POM sin heredar configuración del agregador. Repetir configuración es intencional para que cada fotografía pueda copiarse de forma independiente. Enforcer exige Java 25.0.5 de Azul; .sdkmanrc fija el build y el script de verificación comprueba 25.0.5+8-LTS. El wrapper no cambia la configuración global del equipo.
+
+## D012 — Evidencia docente y evidencia de producción · 2026-10-31
+
+**Origen:** necesidad de preparar una demostración reproducible.
+
+**Decisión:** una sola prueba JUnit como material del estudiante; un script separado de preparación compara 12 recorridos entre tres versiones y comprueba que after/02 no cambie producción respecto a after/01. Verificar además que la prueba falla con un defecto temporal y pasa tras restaurarlo.
+
+**Consecuencia:** no confundir la primera prueba con una suite completa. El defecto no se conserva en el historial final ni se afirma que escribir una prueba después del programa sea TDD. Python es opcional y exclusivo de la preparación del material.
+
+## D013 — Integración de la lección cero · 2026-10-31
+
+**Origen:** nuevo enfoque solicitado por el usuario.
+
+**Decisión:** agregar una introducción de aproximadamente 20 minutos antes de los 15 videos del temario. El video 1.2 consolida configuración y estructura ya vistas de forma breve en Kata Zero. Mantener el simulador de compras del curso principal como evolución posterior, sin introducir toda su arquitectura en la introducción.
+
+**Consecuencia:** 16 videos principales y aproximadamente 210 minutos previstos. Los cuatro decimales de órdenes en Kata Zero siguen la referencia; los seis decimales del simulador posterior deben anunciarse como un cambio explícito de contrato cuando se implemente, no mezclarse silenciosamente.

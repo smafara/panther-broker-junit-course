@@ -1,5 +1,7 @@
 # Unit testing a fractional investing simulator
 
+Historical research/design snapshot in English. The current Spanish syllabus adds a runnable Kata Zero and requires SDKMAN `25.0.5.0+8-zulu` throughout. See [COURSEWORK.md](COURSEWORK.md), [Kata Zero](kata-zero/README.md), and [DECISIONS.md](DECISIONS.md) for the implementation and subsequent decisions. Statements below about an absent scaffold describe the original research stage.
+
 Research and course design: 31 October 2026. Intended stack: JDK 25, JUnit Jupiter 6, Mockito 5, Maven. Video-only course with optional, ungraded practice. Working project name: **Fracción**.
 
 ## Research that changes the project

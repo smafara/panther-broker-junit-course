@@ -2,6 +2,14 @@
 
 Curso de servicio social para estudiantes de México. Proyecto: **Fracción**. Modalidad: videos con práctica opcional, sin entregas ni calificaciones. Tecnologías previstas: JDK 25, JUnit 6 y Mockito 5.
 
+JDK obligatorio para todos los ejemplos y verificaciones: **`25.0.5.0+8-zulu` de SDKMAN**. Está fijado en `.sdkmanrc`; activar con `sdk env` y usar la misma instalación en el IDE.
+
+## Lección cero — Del menú de consola a la primera prueba · 20 minutos
+
+Antes del módulo 1, resolver el rebalanceo de una cuenta siguiendo tres fotografías Maven: un main desordenado con println y BufferedReader, la extracción de una fórmula y la primera prueba JUnit. Partir del resultado calculado a mano: vender 5.2 META y comprar 13 AAPL para llegar a 40/60. Mostrar una falla deliberada y restaurar el cálculo.
+
+El rebalanceo introduce la motivación sin adelantar toda la arquitectura del simulador posterior. El módulo 1 consolida la configuración y las técnicas presentadas brevemente aquí. Ver [Kata Zero](kata-zero/README.md), [guion](kata-zero/docs/GUION.md) y [decisiones](DECISIONS.md).
+
 ## Público, idioma y objetivos
 
 Se requieren métodos, clases, constructores, interfaces, excepciones y colecciones en Java. Explicar Maven, records y BigDecimal cuando aparecen. No se requieren conocimientos de bolsa, contabilidad o impuestos ni experiencia invirtiendo.
@@ -172,7 +180,7 @@ Ejemplo recurrente: saldo 50.00 USD; compra de 40.00 USD a 125.00 USD por acció
 
 ## Producción y materiales
 
-Duración estimada: **190 minutos**. Cada video presenta una regla, pide predecir un resultado, muestra una falla útil y termina con práctica opcional de 5–15 minutos. Incluir soluciones sin calificación y criterios observables.
+Duración estimada: **210 minutos en 16 videos**, incluyendo Kata Zero. Cada video presenta una regla, pide predecir un resultado, muestra una falla útil y termina con práctica opcional de 5–15 minutos. Incluir soluciones sin calificación y criterios observables.
 
 Entregar README y guiones en español de México, instrucciones para los tres sistemas operativos y Maven Wrapper. Etiquetas inmutables por episodio: ep-1.2-start, ep-1.2-end y ep-1.2-solution. Cada end pasa toda la suite; identificar fallas intencionales. Se puede seguir el curso solo viendo los videos.
 
@@ -190,4 +198,4 @@ Versiones identificadas: JUnit 6.1.3, Mockito 5.24.0 y Surefire 3.6.1, junto con
 
 El agente de Mockito requiere configuración tanto en Maven como en el IDE, o delegar pruebas a Maven. Seguir las instrucciones oficiales para Java 21+. [Mockito](https://javadoc.io/static/org.mockito/mockito-core/5.24.0/org.mockito/org/mockito/Mockito.html#0.3)
 
-Este documento define el curso; todavía no hay repositorio Java ejecutable ni POM verificado mediante compilación. Antes de grabar, ejecutar la suite con JDK 25 desde el wrapper y el IDE y congelar las versiones que funcionen.
+Kata Zero ya cuenta con proyectos Java ejecutables y construcción verificada con Zulu 25.0.5+8. El resto del curso permanece en diseño. Antes de grabar, ejecutar las comprobaciones también desde el IDE elegido. La evidencia de terminal se registra en [VALIDACION.md](kata-zero/docs/VALIDACION.md).
