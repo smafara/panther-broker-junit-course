@@ -1,14 +1,11 @@
-# Después 1: una extracción pequeña
+# Después 1: extraer sin corregir
 
-Se extrae la fórmula repetida a RebalanceCalculator.quantityToTrade. Main sigue controlando entrada, validación, estado y presentación. No se introducen pruebas todavía y no se cambia el cálculo.
+Se extraen las dos líneas que calculan la cantidad a negociar a RebalanceCalculator.quantityToTrade. El defecto se conserva. La lectura, el estado y la impresión siguen en main.
 
-Desde la raíz:
+Desde la raíz, después de `sdk env`:
 
 ```sh
-sdk env
 ./mvnw -q -f kata-zero/after/01-small-refactor/pom.xml compile exec:java
 ```
 
-En Windows usar mvnw.cmd. Desde esta carpeta también se puede ejecutar `mvn compile exec:java` con el JDK indicado en .sdkmanrc.
-
-Repetir las entradas de `kata-zero/samples`. La salida debe coincidir con before. Ya es posible invocar el cálculo sin leer el teclado ni capturar la consola.
+El ejemplo inicial sigue proponiendo vender 2 META y comprar 2 AAPL. Con META a 150 USD conserva el resultado defectuoso de before. Esta extracción permite probar la fórmula sin navegar por el menú; no la vuelve correcta por sí misma.

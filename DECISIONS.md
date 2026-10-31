@@ -149,3 +149,11 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Decisión:** proporcionar el resultado esperado mediante una tabla calculada a mano. No pedir a quien ve su primera prueba que descubra el defecto solo ni que deduzca un resultado con múltiples decimales sin apoyo. Mostrar primero el ejemplo entero que parece funcionar y luego un cambio de precio que evidencia el supuesto perdido.
 
 **Consecuencia:** la historia de acciones completas es el contexto ficticio del ejercicio, no un defecto atribuido a Fintual o GBM. La primera prueba sigue teniendo una sola comprobación; el detalle de redondeo queda para lecciones posteriores.
+
+## D019 — Guion y validación de la versión simplificada · 2026-10-31
+
+**Origen:** implementación revisada por los dos miembros del consejo y comprobada en terminal.
+
+**Decisión:** guion de aproximadamente 15 minutos con ejemplo entero, cambio de precio, extracción, prueba roja y corrección. Usar `kata-zero-v3-first-test-red`, `kata-zero-v3-fixed` y `kata-zero-v3-ready` sin sobrescribir etiquetas previas. La validación compara cuatro recorridos habituales en tres etapas, el precio cambiado en copias temporales y la misma prueba con ambos calculadores.
+
+**Sustituye:** los 20 minutos de introducción de D013 y los 12 recorridos extensos de D012. El total previsto del curso pasa a 205 minutos. La comprobación actual comprende 15 ejecuciones de consola y rojo/verde, no igualdad completa de producción entre etapas.

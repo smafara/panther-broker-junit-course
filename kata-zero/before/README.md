@@ -1,16 +1,15 @@
-# Antes: probar navegando por el menú
+# Antes: un programa de consola que parece funcionar
 
-Toda la lógica está en Main.main: menú, lectura, validación, estado, cálculos y presentación. No hay pruebas automatizadas. El desorden es deliberado para la lección.
+Todo está en un main de 52 líneas: menú, lectura con BufferedReader, arreglos paralelos, total repetido, cálculo e impresión. Opciones: 1 ver cuenta, 2 proponer rebalanceo y 0 salir.
 
-Desde la raíz del repositorio:
+Desde la raíz, después de `sdk env`:
 
 ```sh
-sdk env
 ./mvnw -q -f kata-zero/before/pom.xml compile exec:java
 ```
 
-En Windows usar `mvnw.cmd`. Desde esta carpeta, con Maven instalado y el mismo JDK: `mvn compile exec:java`.
+Caso inicial: 10 META y 10 AAPL a 100 USD cada una, objetivo 40/60. Debe imprimir VENDER META 2.0000 y COMPRAR AAPL 2.0000. Volver a la opción 1 confirma que no se aplicó el plan.
 
-Entra a la opción 4. Con los datos iniciales debes ver VENDER META 5.2000 y COMPRAR AAPL 13.0000. Vuelve a la opción 1: la cuenta sigue teniendo 10 META y 5 AAPL. El programa propone, no ejecuta.
+Esta fotografía contiene intencionalmente un defecto del ejercicio. El instructor tiene su explicación en docs/GUION.md; no es una solución financiera terminada. No hay pruebas automatizadas.
 
-Después cambia un precio y repite. Observa cuánto trabajo exige verificar los resultados manualmente. No añadas clases ni pruebas todavía.
+Para preparar el segundo escenario, cambiar solo el primer precio de 100.00 a 150.00 y recompilar. No existe una opción de menú para editar precios. Conservar el original para comparar fotografías.

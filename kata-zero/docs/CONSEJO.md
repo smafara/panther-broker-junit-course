@@ -1,5 +1,7 @@
 # Revisión colegiada de la simplificación
 
+Decisión vigente: defecto por conversión a entero, descrito en la revisión posterior al final de este documento. Los apartados iniciales conservan la primera propuesta de precisión como antecedente.
+
 Fecha: 31 de octubre de 2026. Solicitada explícitamente por el usuario. Participaron el implementador y dos revisores independientes: enseñanza y revisión técnica del defecto. Los revisores consultaron el código y las decisiones y no editaron archivos.
 
 ## Diagnóstico

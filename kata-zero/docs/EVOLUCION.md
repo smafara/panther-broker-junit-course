@@ -1,64 +1,53 @@
 # Qué cambió y por qué
 
-## Punto de partida
+## Problema y contrato
 
-La persona estudiante recibe una cuenta con posiciones, precios conocidos y porcentajes objetivo. Debe producir un plan para acercar el valor de cada posición a su porcentaje. Primero resuelve el problema como suele hacerlo en ejercicios de consola: menú, BufferedReader y comprobación visual.
+Una cuenta contiene 10 META y 10 AAPL. El objetivo es 40% del valor en META y 60% en AAPL. Los precios son datos ficticios en USD. El programa propone compras y ventas sin modificar las posiciones.
 
-La primera versión funciona para el alcance definido. El problema docente es el esfuerzo de comprobarla repetidamente y la dificultad de separar entrada, cálculo y salida.
+Solo se usan los datos válidos preparados: cantidades de hasta cuatro decimales, precios positivos y proporciones que suman 1. No hay edición interactiva, efectivo, comisiones, impuestos, ejecución ni cotizaciones reales. Las órdenes finales se redondean a cuatro decimales con HALF_EVEN; puede quedar un residuo pequeño por redondeo. No modelamos su liquidación.
 
-## Antes: el programa manual
+## Dos ejemplos que explican el defecto
 
-`before/src/main/java/mx/serviciosocial/katazero/Main.java` contiene toda la lógica en `public static void main(String[] args)`. Arreglos paralelos representan símbolos, precios, cantidades y pesos. El total se repite en consulta y rebalanceo. La fórmula de orden se repite para imprimir primero ventas y luego compras. Los nombres breves y las ramas del menú dificultan seguir el cálculo.
-
-Se mantiene una validación básica de precio positivo, cantidad no negativa y proporciones que suman 1. El desorden no consiste en inventar errores aritméticos ocultos ni provocar fallas evitables al introducir datos.
-
-La opción 4 solo imprime un plan. Volver a la opción 1 permite comprobar que no cambió la cuenta.
-
-## Resultado esperado calculado a mano
-
-| Concepto | META | AAPL |
+| Concepto | Ejemplo habitual | Nuevo precio |
 |---|---:|---:|
-| Precio USD | 500 | 200 |
-| Cantidad actual | 10 | 5 |
-| Valor actual USD | 5000 | 1000 |
-| Porcentaje objetivo | 40% | 60% |
-| Valor objetivo USD, sobre 6000 | 2400 | 3600 |
-| Cantidad objetivo | 4.8 | 18 |
-| Cambio de cantidad | -5.2 | +13 |
+| Precio META | 100 USD | 150 USD |
+| Precio AAPL | 100 USD | 100 USD |
+| Cantidad de cada una | 10 | 10 |
+| Valor de la cuenta | 2000 USD | 2500 USD |
+| Valor objetivo META, 40% | 800 USD | 1000 USD |
+| Cantidad objetivo META | 8 | 6.666666... |
+| Orden correcta META | -2.0000 | -3.3333 |
+| Orden con el defecto | -2.0000 | -4.0000 |
+| Orden correcta AAPL | +2.0000 | +5.0000 |
 
-Un valor negativo significa vender; uno positivo, comprar. NVDA está en el catálogo con cantidad y objetivo cero, por lo que no produce orden. Vender libera 2600 USD y comprar requiere 2600 USD en este ejemplo exacto; no generalizar esa igualdad a casos con redondeo.
+En el nuevo escenario, truncar el objetivo a seis acciones propone vender cuatro. El error principal equivale a aproximadamente 100 USD vendidos de más, no a una diezmilésima perdida. No confundirlo con el residuo normal de redondeo al representar una fracción periódica.
 
-## Alcance y limitaciones
+## Antes: todo en main
 
-Una cuenta, tres instrumentos fijos y una moneda (USD). Sin efectivo, comisiones, impuestos, red de mercado ni ejecución. Las proporciones deben sumar exactamente 1. Cero permite retirar un instrumento de la distribución. Las órdenes se redondean a cuatro decimales con HALF_EVEN; una venta se limita a las acciones disponibles. El redondeo puede dejar una diferencia entre valor de compras y ventas.
+El main original de esta revisión tiene 52 líneas, dos instrumentos y tres opciones. Mezcla menú, BufferedReader, arreglos paralelos, cálculo e impresión. El total aparece en dos ramas. El desorden es pequeño y deliberado.
 
-El programa conserva la estructura imperfecta para mostrar un cambio pequeño. No representa la arquitectura final del curso ni una plataforma de inversión real.
+La historia del ejercicio es una adaptación de acciones completas a fraccionadas: quedó una variable `int target`. La operación decimal se convierte con intValue, perdiendo la parte fraccionaria. El primer ejemplo no lo revela porque sus cantidades objetivo ya son enteras.
 
-## Después 1: extraer sin rediseñar
+## Después 1: extraer sin corregir
 
-En `after/01-small-refactor` se extrae la fórmula repetida a `RebalanceCalculator.quantityToTrade`. La fórmula calcula `(total × peso - cantidadActual × precio) / precio`, redondea una vez y limita una venta a lo disponible. Las dos ramas de impresión llaman al mismo método. No se agregan validaciones nuevas ni se cambian tipos numéricos.
+RebalanceCalculator.quantityToTrade recibe total, peso objetivo, precio y posición actual. Devuelve una cantidad firmada: negativa para vender, positiva para comprar. Se extraen las mismas operaciones, incluida la conversión defectuosa. Repetir ambos escenarios conserva la salida de before.
 
-El resto de main sigue igual: nombres breves, arreglos paralelos, lectura y presentación mezcladas. Este paso no pretende terminar la refactorización. Solo permite preguntar por un resultado sin simular teclas.
+No se introducen modelos, mocks, validaciones generales ni una arquitectura de producción. La extracción solo permite hacer una pregunta al cálculo sin navegar por el menú.
 
-Para comparar: `git diff --no-index kata-zero/before/src/main/java kata-zero/after/01-small-refactor/src/main/java`. Un código de salida 1 en ese comando significa que encontró diferencias.
+## Primera prueba: rojo
 
-## Después 2: la primera prueba
+La prueba de after/02 usa el nuevo precio y comprueba únicamente META. Preparar: cuenta de 2500 USD. Ejecutar: objetivo .40, precio 150, posición 10. Comprobar: -3.3333, calculado a mano.
 
-En `after/02-first-test` el código de producción es idéntico al de la etapa anterior. Se agrega el BOM de JUnit 6.1.3, la dependencia `junit-jupiter` con alcance test y `RebalanceCalculatorTest`.
+En la etiqueta `kata-zero-v3-first-test-red` obtiene -4.0000 y falla. La prueba no copia la fórmula de producción ni falla solamente por escala de BigDecimal. Introduce @Test, @DisplayName y assertEquals con una sola comprobación.
 
-La prueba prepara el valor total de 6000 USD y calcula las dos cantidades firmadas. Comprueba los resultados literales -5.2000 y 13.0000, obtenidos de la tabla de este documento. No reconstruye dentro de la prueba la fórmula que pretende verificar.
+## Corrección: verde
 
-Se presentan únicamente @Test, @DisplayName y assertEquals. Hay un escenario y dos comprobaciones; si falla la primera, no se ejecuta la segunda. assertAll llegará después en el curso. equals de BigDecimal también comprueba escala: aquí cuatro decimales forman parte del resultado esperado.
+Se calcula el valor objetivo menos el valor actual y se divide por el precio, conservando decimales y redondeando una vez la orden final. La prueba no cambia. Main sigue idéntico entre las carpetas after; el calculador cambia expresamente para corregir el defecto.
 
-La prueba detecta un cambio de resta a suma sin navegar por el menú. No verifica todavía el total calculado en main, la validación de entrada, el orden de impresión ni todos los redondeos. Evitar afirmar que una prueba significa que el programa completo es correcto.
+El ejemplo habitual mantiene vender 2 META y comprar 2 AAPL; el nuevo escenario ahora vende 3.3333 META. Esto es una prueba de regresión añadida a código existente, no un recorrido de TDD.
 
-## Comparación de responsabilidades
+## Límites de la evidencia
 
-| Responsabilidad | Antes | Después 1 | Después 2 |
-|---|---|---|---|
-| Lectura, menú y estado | main | main | main |
-| Cantidad a comprar/vender | Repetida en main | Método extraído | Mismo método |
-| Verificación del cálculo | A mano | A mano | Primera prueba JUnit |
-| Arquitectura completa | No | No | No |
+La primera prueba no cubre el total calculado en main, la consola ni todos los redondeos. El script de preparación agrega comparaciones del material, pero no se presenta como parte de la primera prueba del estudiante.
 
-El script `scripts/verify-kata-zero.py` es una herramienta de preparación del curso: compila con Maven, ejecuta escenarios de consola y compara resultados entre fotografías. No se presenta al estudiante como parte de su primera prueba ni se exige Python para usar los proyectos Maven.
+Los antecedentes de 140 líneas y del defecto de dos decimales se conservan en Git y DECISIONS.md. Esta revisión sustituye sus ejemplos y comandos de menú.

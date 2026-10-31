@@ -4,9 +4,9 @@ Curso de servicio social para estudiantes de México. Proyecto: **Fracción**. M
 
 JDK obligatorio para todos los ejemplos y verificaciones: **`25.0.5.0+8-zulu` de SDKMAN**. Está fijado en `.sdkmanrc`; activar con `sdk env` y usar la misma instalación en el IDE.
 
-## Lección cero — Del menú de consola a la primera prueba · 20 minutos
+## Lección cero — Del menú de consola a la primera prueba · 15 minutos
 
-Antes del módulo 1, resolver el rebalanceo de una cuenta siguiendo tres fotografías Maven: un main desordenado con println y BufferedReader, la extracción de una fórmula y la primera prueba JUnit. Partir del resultado calculado a mano: vender 5.2 META y comprar 13 AAPL para llegar a 40/60. Mostrar una falla deliberada y restaurar el cálculo.
+Antes del módulo 1, resolver el rebalanceo de una cuenta siguiendo tres fotografías Maven: un main pequeño y desordenado con println y BufferedReader, la extracción de una fórmula y la primera prueba JUnit. Con 10 META y 10 AAPL a 100 USD, el objetivo 40/60 requiere vender 2 y comprar 2. Cambiar solo META a 150 USD revela un supuesto heredado de acciones completas: el programa vende 4 en lugar de 3.3333. Mostrar la primera prueba fallida y corregir la conversión a entero, conservando el esperado calculado a mano.
 
 El rebalanceo introduce la motivación sin adelantar toda la arquitectura del simulador posterior. El módulo 1 consolida la configuración y las técnicas presentadas brevemente aquí. Ver [Kata Zero](kata-zero/README.md), [guion](kata-zero/docs/GUION.md) y [decisiones](DECISIONS.md).
 
@@ -180,7 +180,7 @@ Ejemplo recurrente: saldo 50.00 USD; compra de 40.00 USD a 125.00 USD por acció
 
 ## Producción y materiales
 
-Duración estimada: **210 minutos en 16 videos**, incluyendo Kata Zero. Cada video presenta una regla, pide predecir un resultado, muestra una falla útil y termina con práctica opcional de 5–15 minutos. Incluir soluciones sin calificación y criterios observables.
+Duración estimada: **205 minutos en 16 videos**, incluyendo Kata Zero. Cada video presenta una regla, pide predecir un resultado, muestra una falla útil y termina con práctica opcional de 5–15 minutos. Incluir soluciones sin calificación y criterios observables.
 
 Entregar README y guiones en español de México, instrucciones para los tres sistemas operativos y Maven Wrapper. Etiquetas inmutables por episodio: ep-1.2-start, ep-1.2-end y ep-1.2-solution. Cada end pasa toda la suite; identificar fallas intencionales. Se puede seguir el curso solo viendo los videos.
 
