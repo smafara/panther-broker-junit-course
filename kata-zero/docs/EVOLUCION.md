@@ -33,3 +33,11 @@ Un valor negativo significa vender; uno positivo, comprar. NVDA está en el cat�
 Una cuenta, tres instrumentos fijos y una moneda (USD). Sin efectivo, comisiones, impuestos, red de mercado ni ejecución. Las proporciones deben sumar exactamente 1. Cero permite retirar un instrumento de la distribución. Las órdenes se redondean a cuatro decimales con HALF_EVEN; una venta se limita a las acciones disponibles. El redondeo puede dejar una diferencia entre valor de compras y ventas.
 
 El programa conserva la estructura imperfecta para mostrar un cambio pequeño. No representa la arquitectura final del curso ni una plataforma de inversión real.
+
+## Después 1: extraer sin rediseñar
+
+En `after/01-small-refactor` se extrae la fórmula repetida a `RebalanceCalculator.quantityToTrade`. La fórmula calcula `(total × peso - cantidadActual × precio) / precio`, redondea una vez y limita una venta a lo disponible. Las dos ramas de impresión llaman al mismo método. No se agregan validaciones nuevas ni se cambian tipos numéricos.
+
+El resto de main sigue igual: nombres breves, arreglos paralelos, lectura y presentación mezcladas. Este paso no pretende terminar la refactorización. Solo permite preguntar por un resultado sin simular teclas.
+
+Para comparar: `git diff --no-index kata-zero/before/src/main/java kata-zero/after/01-small-refactor/src/main/java`. Un código de salida 1 en ese comando significa que encontró diferencias.
