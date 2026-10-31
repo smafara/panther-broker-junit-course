@@ -15,6 +15,7 @@ import subprocess
 import tempfile
 import termios
 import time
+import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 DEST = ROOT / 'presentation/intro-junit-kata-zero/public/terminal'
@@ -136,6 +137,21 @@ with tempfile.TemporaryDirectory(prefix='panther-recording-') as directory:
     ]:
         scenarios[name] = record(stages[stage], name, f'../mvnw -B -ntp {arguments}test', False, exit_code,
                                  [count, 'BUILD SUCCESS' if exit_code == 0 else 'BUILD FAILURE'])
+        results = {}
+        for report in (stages[stage] / 'target/surefire-reports').glob('TEST-*.xml'):
+            for case in ET.parse(report).getroot().findall('testcase'):
+                status = 'failed' if case.find('failure') is not None or case.find('error') is not None else 'passed'
+                assert case.find('skipped') is None
+                results[case.attrib['name']] = status
+        order = ['sellsTwoSharesWhenAboveTarget', 'buysTwoSharesWhenBelowTarget', 'preservesFractionalSharesWhenSelling']
+        expected_results = 2 if name == 'tests-original-green' else 3
+        assert len(results) == expected_results, results
+        assert sum(status == 'failed' for status in results.values()) == exit_code, results
+        scenarios[name]['tests'] = [dict(name=test, status=results[test]) for test in order if test in results]
 (DEST / 'recordings.json').write_text(json.dumps(dict(jdk=JDK,
     provenance='Sesiones PTY reales en formato asciicast v2. Entradas automatizadas con pausas; salida completa sin editar. Directorios temporales; preparación fuera de la grabación. Reproductor limita pausas inactivas a dos segundos.',
     scenarios=scenarios), ensure_ascii=False, indent=2) + '\n')
+data = ROOT / 'presentation/intro-junit-kata-zero/data'
+data.mkdir(exist_ok=True)
+(data / 'test-results.json').write_text(json.dumps({name: item['tests'] for name, item in scenarios.items()
+                                                 if 'tests' in item}, ensure_ascii=False, indent=2) + '\n')

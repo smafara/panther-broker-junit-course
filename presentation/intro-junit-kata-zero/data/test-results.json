@@ -1,0 +1,40 @@
+{
+  "tests-original-green": [
+    {
+      "name": "sellsTwoSharesWhenAboveTarget",
+      "status": "passed"
+    },
+    {
+      "name": "buysTwoSharesWhenBelowTarget",
+      "status": "passed"
+    }
+  ],
+  "tests-fractional-red": [
+    {
+      "name": "sellsTwoSharesWhenAboveTarget",
+      "status": "passed"
+    },
+    {
+      "name": "buysTwoSharesWhenBelowTarget",
+      "status": "passed"
+    },
+    {
+      "name": "preservesFractionalSharesWhenSelling",
+      "status": "failed"
+    }
+  ],
+  "tests-fixed-green": [
+    {
+      "name": "sellsTwoSharesWhenAboveTarget",
+      "status": "passed"
+    },
+    {
+      "name": "buysTwoSharesWhenBelowTarget",
+      "status": "passed"
+    },
+    {
+      "name": "preservesFractionalSharesWhenSelling",
+      "status": "passed"
+    }
+  ]
+}

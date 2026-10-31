@@ -71,7 +71,7 @@ El programa se llama **Panther Broker**, referencia elegida a la UAM Azcapotzalc
 
 ## Grabaciones de terminal
 
-Las cinco demostraciones se reproducen con **asciinema-player 3.17.0**, instalado desde npm y servido localmente. Hacer clic en cualquier parte del terminal para reproducir o pausar. Con teclado, enfocar el terminal con Tab y usar Enter o Espacio. Al terminar, otro clic vuelve a reproducir desde el inicio. No se muestran controles, barra de tiempo ni botón superpuesto. Al salir de una diapositiva se pausa su grabación. El PDF conserva los PNG como alternativa estática.
+Las cinco demostraciones se reproducen con **asciinema-player 3.17.0**, instalado desde npm y servido localmente. El terminal aparece con un fundido y se reproduce automáticamente a velocidad 0.5×. La demostración roja espera al cuarto clic, después de recorrer el código. Hacer clic en el terminal permite pausar o continuar. Con teclado, enfocar el terminal con Tab y usar Enter o Espacio. Al terminar, otro clic vuelve a reproducir desde el inicio. No se muestran controles, barra de tiempo ni botón superpuesto. Al salir de una diapositiva se pausa su grabación. El PDF conserva los PNG como alternativa estática.
 
 Para regenerarlas desde la raíz:
 
@@ -81,10 +81,16 @@ python3 scripts/record-kata-zero.py
 
 El script selecciona exclusivamente SDKMAN `25.0.5.0+8-zulu`, prepara copias temporales de los proyectos Maven y registra sesiones reales de pseudoterminal en formato asciicast v2. Teclea automáticamente los comandos y las opciones 1, 2 y 0 con pausas: no es una persona escribiendo ni una animación fabricada de resultados. Los ejemplos de consola ya están compilados antes de grabar; las tres sesiones de pruebas muestran Maven completo, su resultado. El código de salida se valida internamente, sin imprimir comandos adicionales en la demostración. La preparación modifica únicamente las copias temporales para reconstruir el defecto y cambiar META a 150 USD.
 
-`public/terminal/*.cast` conserva las salidas completas con sus tiempos originales; `recordings.json` documenta comandos, duración, JDK y códigos de salida. El reproductor comprime pausas sin actividad a dos segundos; no elimina salida. No se suben grabaciones a servicios externos. Si falla el reproductor, se muestra la imagen estática.
+`public/terminal/*.cast` conserva las salidas completas con sus tiempos originales; `recordings.json` documenta comandos, duración, JDK y códigos de salida. El reproductor comprime pausas sin actividad a dos segundos y reproduce a mitad de velocidad; no elimina salida. No se suben grabaciones a servicios externos. Si falla el reproductor, se muestra la imagen estática.
 
 Referencias: [integración del reproductor](https://docs.asciinema.org/manual/player/quick-start/), [opciones](https://docs.asciinema.org/manual/player/options/) y [formato asciicast v2](https://docs.asciinema.org/manual/asciicast/v2/).
 
 El reproductor usa la misma paleta slate/mint que los bloques de código, sin controles visibles ni botón superpuesto. No muestra enlaces de descarga debajo del contenido; las grabaciones siguen disponibles en public/terminal. Las sesiones terminan al volver al prompt, sin echo de estado.
 
-Los métodos de prueba usan `givenCondicion_whenAccion_thenResultado`: primero el escenario, después la acción y al final el resultado esperado. Los nombres del deck coinciden con las fuentes Java.
+Los métodos usan nombres breves de comportamiento y condición, como `sellsTwoSharesWhenAboveTarget`. Given–When–Then se reserva para explicar la estructura de una prueba. Los nombres del deck coinciden con las fuentes Java.
+
+## Resumen visual de pruebas
+
+Las demostraciones de JUnit incluyen una lista de pruebas debajo del terminal. Empiezan pendientes; cuando termina la grabación se presentan sus resultados uno por uno: las dos originales primero y después la fraccionaria. La versión defectuosa muestra dos verdes y una roja; la corregida muestra tres verdes. Al repetir la grabación o volver a entrar a la diapositiva, la lista vuelve al estado inicial. El PDF muestra directamente los resultados finales.
+
+El panel es una visualización de las diapositivas, no una captura de un IDE. Sus nombres y estados proceden de los reportes XML reales de Surefire, que scripts/record-kata-zero.py lee tras cada ejecución y conserva en data/test-results.json y public/terminal/recordings.json. El orden de revelado facilita la explicación y no pretende representar el orden interno de ejecución de JUnit. La animación comienza después del final de la grabación; no simula resultados de pruebas aún no ejecutadas. No se agregan plugins Maven al proyecto del alumnado.

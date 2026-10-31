@@ -242,14 +242,14 @@ Transición: guardar primero las expectativas del ejemplo habitual y ejecutarlas
 
 ```java {1-6|8-13|*}{lines:true}
 @Test
-void givenTenSharesAt100_whenRebalancingTo40Percent_thenSellTwo() {
+void sellsTwoSharesWhenAboveTarget() {
     assertEquals(-2.0,
         RebalanceCalculator.quantityToTrade(2000, 40, 100, 10),
         0.000001);
 }
 
 @Test
-void givenTenSharesAt100_whenRebalancingTo60Percent_thenBuyTwo() {
+void buysTwoSharesWhenBelowTarget() {
     assertEquals(2.0,
         RebalanceCalculator.quantityToTrade(2000, 60, 100, 10),
         0.000001);
@@ -287,14 +287,14 @@ Clic: hacer explícito por qué verde no equivale a corrección universal. Trans
 
 ```java {1|3|4|*}{lines:true}
 @Test
-void givenTenSharesAt150_whenRebalancingTo40Percent_thenSellThreeAndAThird() {
+void preservesFractionalSharesWhenSelling() {
     double order = RebalanceCalculator.quantityToTrade(2500, 40, 150, 10);
     assertEquals(-3.333333, order, 0.000001);
 }
 ```
 
 </div>
-<TerminalRecording name="tests-fractional-red" alt="Grabación real de la suite con el nuevo caso fraccionario: se esperaba aproximadamente menos3.333333 y se obtuvo menos4" short />
+<TerminalRecording v-click="4" :reveal-at="4" name="tests-fractional-red" alt="Grabación real de la suite con el nuevo caso fraccionario: se esperaba aproximadamente menos3.333333 y se obtuvo menos4" short />
 <p class="caption">Primero lo esperado; después lo obtenido. La tolerancia permite comparar este resultado aproximado.</p>
 
 <!--

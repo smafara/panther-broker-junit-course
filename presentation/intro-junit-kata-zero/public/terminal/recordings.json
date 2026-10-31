@@ -6,31 +6,69 @@
       "file": "manual-original.cast",
       "command": "java -cp target/classes mx.azc.uam.pantherbroker.Main",
       "exitCode": 0,
-      "duration": 6.003948
+      "duration": 6.016055
     },
     "manual-fractional": {
       "file": "manual-fractional.cast",
       "command": "java -cp target/classes mx.azc.uam.pantherbroker.Main",
       "exitCode": 0,
-      "duration": 6.029045
+      "duration": 5.985805
     },
     "tests-original-green": {
       "file": "tests-original-green.cast",
       "command": "../mvnw -B -ntp -Dtest=OriginalExamplesTest test",
       "exitCode": 0,
-      "duration": 4.518844
+      "duration": 4.648754,
+      "tests": [
+        {
+          "name": "sellsTwoSharesWhenAboveTarget",
+          "status": "passed"
+        },
+        {
+          "name": "buysTwoSharesWhenBelowTarget",
+          "status": "passed"
+        }
+      ]
     },
     "tests-fractional-red": {
       "file": "tests-fractional-red.cast",
       "command": "../mvnw -B -ntp test",
       "exitCode": 1,
-      "duration": 3.250379
+      "duration": 3.291723,
+      "tests": [
+        {
+          "name": "sellsTwoSharesWhenAboveTarget",
+          "status": "passed"
+        },
+        {
+          "name": "buysTwoSharesWhenBelowTarget",
+          "status": "passed"
+        },
+        {
+          "name": "preservesFractionalSharesWhenSelling",
+          "status": "failed"
+        }
+      ]
     },
     "tests-fixed-green": {
       "file": "tests-fixed-green.cast",
       "command": "../mvnw -B -ntp test",
       "exitCode": 0,
-      "duration": 3.420366
+      "duration": 3.410232,
+      "tests": [
+        {
+          "name": "sellsTwoSharesWhenAboveTarget",
+          "status": "passed"
+        },
+        {
+          "name": "buysTwoSharesWhenBelowTarget",
+          "status": "passed"
+        },
+        {
+          "name": "preservesFractionalSharesWhenSelling",
+          "status": "passed"
+        }
+      ]
     }
   }
 }

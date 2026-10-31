@@ -18,7 +18,7 @@ if(missing.length) throw new Error(`Faltan notas: ${missing}`);
 await fs.mkdir('.validation',{recursive:true});
 const browser=await chromium.launch({headless:true});
 const page=await browser.newPage({viewport:{width:1600,height:900},deviceScaleFactor:1});
-page.setDefaultTimeout(10000);
+page.setDefaultTimeout(20000);
 await page.addInitScript(()=>{
   localStorage.setItem('slidev-wake-lock','false');
   window.requestAnimationFrame=callback=>window.setTimeout(()=>callback(performance.now()),16);
@@ -80,22 +80,39 @@ for(const n of recordingSlides){
   });
   if(grid.lineHeight>grid.rowHeight+.5)throw new Error(`Texto recortado en ${name}: ${JSON.stringify(grid)}`);
   if(await terminal.locator('.ap-control-bar:visible,.ap-overlay-start:visible').count())throw new Error(`Controles visibles: ${name}`);
+  if(await terminal.getAttribute('data-speed')!=='0.5')throw new Error(`Velocidad incorrecta: ${name}`);
+  await page.waitForFunction(name=>document.querySelector(`#slide-content .terminal-recording[data-recording="${name}"]`)?.dataset.playing==='true',name);
+  if(await terminal.locator('.test-result:not(.pending)').count())throw new Error(`Resultados revelados antes de terminar: ${name}`);
   const before=await terminal.locator('.ap-term-text').textContent();
-  await terminal.locator('.recording-toggle').click();
-  await terminal.locator('.recording-toggle[aria-label="Pausar ejecución"]').waitFor();
-  await page.waitForTimeout(1800);
+  await page.waitForTimeout(1700);
   const after=await terminal.locator('.ap-term-text').textContent();
-  if(before===after)throw new Error(`No avanzó la reproducción: ${name}`);
+  if(before===after)throw new Error(`No avanzó la reproducción automática: ${name}`);
   await terminal.locator('.recording-toggle').click();
   await terminal.locator('.recording-toggle[aria-label="Reproducir ejecución"]').waitFor();
-  // Changing slides must pause the preloaded player, without needing a click.
   await terminal.locator('.recording-toggle').click();
+  await terminal.locator('.recording-toggle[aria-label="Pausar ejecución"]').waitFor();
+  if(name.startsWith('tests-')){
+    await page.waitForFunction(name=>{
+      const root=document.querySelector(`#slide-content .terminal-recording[data-recording="${name}"]`);
+      return root?.dataset.completed==='true'&&!root.querySelector('.test-result.pending');
+    },name);
+    const statuses=await terminal.locator('.test-result').evaluateAll(rows=>rows.map(row=>({name:row.dataset.testName,status:row.dataset.status})));
+    const expected=name==='tests-original-green'?['passed','passed']:name==='tests-fractional-red'?['passed','passed','failed']:['passed','passed','passed'];
+    if(JSON.stringify(statuses.map(test=>test.status))!==JSON.stringify(expected))throw new Error(`Resultados inesperados: ${JSON.stringify(statuses)}`);
+    console.log(`Panel ${name}: ${expected.join(', ')}`);
+    await terminal.locator('.recording-toggle').click();
+    await terminal.locator('.recording-toggle[aria-label="Pausar ejecución"]').waitFor();
+    if(await terminal.locator('.test-result:not(.pending)').count())throw new Error(`Repetición sin reiniciar resultados: ${name}`);
+  }
   await page.evaluate(()=>window.__slidev__.nav.nextSlide());
   await page.waitForTimeout(200);
   if(await terminal.getAttribute('data-playing')==='true')
     throw new Error(`La grabación sigue reproduciéndose fuera de su diapositiva: ${name}`);
   recordingChecks.push({slide:n,name,events:rows.length-1,playback:true,pause:true});
 }
+await page.goto(`${baseUrl}/13?clicks=3`,{waitUntil:'networkidle'});
+const gated=page.locator('#slide-content [data-slidev-no="13"] .terminal-recording');
+if(await gated.getAttribute('data-playing')==='true')throw new Error('La ejecución roja comenzó antes de revelar el terminal.');
 await page.goto(`${baseUrl}/print?print=true`,{waitUntil:'networkidle'});
 await page.waitForTimeout(1000);
 const fallback=page.locator('.terminal-recording img.terminal-capture');

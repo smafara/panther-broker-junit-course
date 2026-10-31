@@ -287,3 +287,15 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Origen:** el usuario pide nombres reales y el esquema given → when → then.
 
 **Decisión:** renombrar los tres métodos de pruebas con condiciones, acción de rebalanceo y resultado concreto, usando givenCondicion_whenAccion_thenResultado. Actualizar los DisplayName en español, fragmentos del deck, capturas y grabaciones que puedan incluir nombres. Mantener los datos y las expectativas sin cambios. Registrar la convención para futuras presentaciones.
+
+## D038 — Nombres breves de comportamiento · 2026-10-31
+
+**Origen:** el usuario acepta simplificar los nombres.
+
+**Decisión:** usar sellsTwoSharesWhenAboveTarget, buysTwoSharesWhenBelowTarget y preservesFractionalSharesWhenSelling. Actualizar Java, deck, grabaciones y la convención; Given–When–Then describe la estructura sin imponer longitud al nombre.
+
+## D039 — Autoplay pausado y resultados visuales verificables · 2026-10-31
+
+**Origen:** el usuario pide fundido, reproducción automática al 50% y una lista de resultados similar a un IDE.
+
+**Decisión:** revelar el terminal con fundido y reproducir a 0.5× solo cuando está visible en la diapositiva activa. En la prueba roja, esperar al cuarto clic después del código. Pausar al salir y reiniciar al volver. Mantener los controles ocultos y la interacción accesible para pausar/repetir. Agregar un panel inferior de pruebas cuyos nombres y estados se leen de los XML reales de Surefire; después del final de la grabación, revelar primero las dos originales y después la fraccionaria. Dos verdes y una roja con defecto; tres verdes tras corregir. Es una visualización de resultados de las diapositivas, no un IDE real ni el orden interno de ejecución. El PDF muestra estados finales. No agregar plugins Maven para fines visuales.
