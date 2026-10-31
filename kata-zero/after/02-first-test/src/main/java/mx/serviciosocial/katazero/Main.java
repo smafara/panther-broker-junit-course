@@ -8,8 +8,8 @@ public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String[] symbols = {"META", "AAPL"};
-        BigDecimal[] prices = {new BigDecimal("500.00"), new BigDecimal("200.00")};
-        BigDecimal[] quantities = {new BigDecimal("10"), new BigDecimal("5")};
+        BigDecimal[] prices = {new BigDecimal("100.00"), new BigDecimal("100.00")};
+        BigDecimal[] quantities = {new BigDecimal("10"), new BigDecimal("10")};
         BigDecimal[] weights = {new BigDecimal("0.40"), new BigDecimal("0.60")};
         System.out.println("Cuenta de Alex · precios ficticios en USD · objetivo 40/60");
         while (true) {

@@ -1,10 +1,5 @@
-# Primera prueba — estado rojo de la versión simplificada
+# Primera prueba — estado rojo del escenario vigente
 
-Esta revisión conserva intencionalmente el cálculo defectuoso extraído en after/01. La primera prueba verifica META a 350 USD: espera -4.8571 acciones y obtiene -4.8600.
+El cálculo conserva un int del supuesto de acciones completas. La prueba usa META a 150 USD, una cuenta de 2500 USD y objetivo 40%: espera vender 3.3333 META y obtiene 4.0000.
 
-```sh
-sdk env
-./mvnw -f kata-zero/after/02-first-test/pom.xml test
-```
-
-Aquí el comando debe fallar. La etiqueta `kata-zero-v2-first-test-red` identifica esta demostración; el siguiente cambio corrige el cálculo sin cambiar la prueba. El estado final del material estará identificado como `kata-zero-v2-ready`.
+Desde la raíz, `./mvnw -f kata-zero/after/02-first-test/pom.xml test` debe fallar en esta revisión. La etiqueta `kata-zero-v3-first-test-red` conserva esta demostración. El siguiente cambio corregirá el cálculo sin cambiar la prueba.

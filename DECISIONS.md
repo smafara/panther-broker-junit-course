@@ -129,3 +129,23 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Sustituye:** identidad de todo el código de producción entre after/01 y after/02 en D008/D012. Main debe seguir idéntico; el cambio del calculador es ahora una corrección explícita. Las etiquetas originales de la versión extensa se conservan sin moverlas.
 
 **Consecuencia:** verificar conservación de salida en la extracción; verificar diferencia intencional entre etapas para el escenario que revela el bug. No llamar TDD a una prueba agregada después del código existente.
+
+## D017 — Un defecto más visible: la suposición de acciones completas · 2026-10-31
+
+**Origen:** el usuario pide un defecto menos sutil que perder unas diezmilésimas y acepta explorar la conversión accidental a entero.
+
+**Decisión vigente:** presentar un programa que conserva un `int` del supuesto anterior de acciones completas al adaptarse a cantidades fraccionadas. La cantidad objetivo decimal se convierte con intValue; eso descarta la fracción antes de calcular la orden. No introducir saldos residuales ni conciliación de redondeo como problema inicial.
+
+**Caso habitual:** 10 META y 10 AAPL, ambas a 100 USD; total 2000 USD; objetivo 40/60; vender 2 META y comprar 2 AAPL. Las cantidades objetivo son enteras y ocultan el defecto.
+
+**Caso revelador:** solo cambia el precio de META a 150 USD. Total 2500 USD; objetivo META 1000 USD; cantidad objetivo 6.6666...; venta correcta 3.3333 y defectuosa 4.0000. AAPL requiere comprar 5. La pérdida es visible y no se confunde con una diferencia de escala.
+
+**Sustituye:** el defecto de dos decimales y los datos de D015. La etiqueta histórica `kata-zero-v2-first-test-red` se conserva como experimento anterior; `kata-zero-v3-first-test-red` identifica la primera prueba fallida del escenario vigente. Se mantiene el proceso de D016: extracción con defecto y corrección posterior separada.
+
+## D018 — Expectativas de aprendizaje y narración · 2026-10-31
+
+**Origen:** pregunta del usuario sobre si la expectativa es realista y revisión de enseñanza.
+
+**Decisión:** proporcionar el resultado esperado mediante una tabla calculada a mano. No pedir a quien ve su primera prueba que descubra el defecto solo ni que deduzca un resultado con múltiples decimales sin apoyo. Mostrar primero el ejemplo entero que parece funcionar y luego un cambio de precio que evidencia el supuesto perdido.
+
+**Consecuencia:** la historia de acciones completas es el contexto ficticio del ejercicio, no un defecto atribuido a Fintual o GBM. La primera prueba sigue teniendo una sola comprobación; el detalle de redondeo queda para lecciones posteriores.

@@ -9,8 +9,8 @@ public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String[] symbols = {"META", "AAPL"};
-        BigDecimal[] prices = {new BigDecimal("500.00"), new BigDecimal("200.00")};
-        BigDecimal[] quantities = {new BigDecimal("10"), new BigDecimal("5")};
+        BigDecimal[] prices = {new BigDecimal("100.00"), new BigDecimal("100.00")};
+        BigDecimal[] quantities = {new BigDecimal("10"), new BigDecimal("10")};
         BigDecimal[] weights = {new BigDecimal("0.40"), new BigDecimal("0.60")};
         System.out.println("Cuenta de Alex · precios ficticios en USD · objetivo 40/60");
         while (true) {
@@ -33,9 +33,9 @@ public class Main {
                 }
                 System.out.println("Plan sugerido (no modifica la cuenta):");
                 for (int i = 0; i < symbols.length; i++) {
-                    BigDecimal target = total.multiply(weights[i])
-                            .divide(prices[i], 2, RoundingMode.HALF_EVEN);
-                    BigDecimal difference = target.subtract(quantities[i]).setScale(4);
+                    int target = total.multiply(weights[i])
+                            .divide(prices[i], 4, RoundingMode.HALF_EVEN).intValue();
+                    BigDecimal difference = BigDecimal.valueOf(target).subtract(quantities[i]).setScale(4);
                     if (difference.signum() != 0) {
                         System.out.println((difference.signum() < 0 ? "VENDER " : "COMPRAR ")
                                 + symbols[i] + " " + difference.abs().toPlainString() + " acciones");
