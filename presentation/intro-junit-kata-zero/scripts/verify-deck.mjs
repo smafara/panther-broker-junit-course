@@ -65,7 +65,7 @@ for(const n of [6,8,9,10,12]){
   const root=page.locator(`#slide-content [data-slidev-no="${n}"]`);
   const terminal=root.locator('.terminal-recording');
   const name=await terminal.getAttribute('data-recording');
-  await terminal.locator('.ap-playback-button').waitFor();
+  await terminal.locator('.ap-term-text').waitFor();
   const response=await page.request.get(`${baseUrl}/terminal/${name}.cast`);
   if(!response.ok())throw new Error(`No se cargó ${name}`);
   const rows=(await response.text()).trim().split('\n').map(line=>JSON.parse(line));
@@ -73,19 +73,25 @@ for(const n of [6,8,9,10,12]){
   if(rows.slice(1).some(row=>/Salida:|echo ["']?Salida/.test(row[2])))throw new Error(`La grabación aún muestra el código de salida: ${name}`);
   const palette=await terminal.locator('.ap-player').evaluate(el=>getComputedStyle(el).getPropertyValue('--term-color-background').trim());
   if(palette!=='#0b1220')throw new Error(`El terminal no usa la paleta de la presentación: ${name}`);
+  const grid=await terminal.locator('.ap-term-text').evaluate(pre=>{
+    const row=pre.querySelector('.ap-line');
+    return {lineHeight:parseFloat(getComputedStyle(pre).lineHeight),rowHeight:parseFloat(getComputedStyle(row).height)};
+  });
+  if(grid.lineHeight>grid.rowHeight+.5)throw new Error(`Texto recortado en ${name}: ${JSON.stringify(grid)}`);
+  if(await terminal.locator('.ap-control-bar:visible,.ap-overlay-start:visible').count())throw new Error(`Controles visibles: ${name}`);
   const before=await terminal.locator('.ap-term-text').textContent();
-  await terminal.locator('.ap-playback-button').click();
-  await terminal.locator('.ap-playback-button[aria-label="Pause"]').waitFor();
+  await terminal.locator('.recording-toggle').click();
+  await terminal.locator('.recording-toggle[aria-label="Pausar ejecución"]').waitFor();
   await page.waitForTimeout(1800);
   const after=await terminal.locator('.ap-term-text').textContent();
   if(before===after)throw new Error(`No avanzó la reproducción: ${name}`);
-  await terminal.locator('.ap-playback-button').click();
-  await terminal.locator('.ap-playback-button[aria-label="Play"]').waitFor();
+  await terminal.locator('.recording-toggle').click();
+  await terminal.locator('.recording-toggle[aria-label="Reproducir ejecución"]').waitFor();
   // Changing slides must pause the preloaded player, without needing a click.
-  await terminal.locator('.ap-playback-button').click();
+  await terminal.locator('.recording-toggle').click();
   await page.evaluate(()=>window.__slidev__.nav.nextSlide());
   await page.waitForTimeout(200);
-  if(await terminal.locator('.ap-playback-button[aria-label="Pause"]').count())
+  if(await terminal.getAttribute('data-playing')==='true')
     throw new Error(`La grabación sigue reproduciéndose fuera de su diapositiva: ${name}`);
   recordingChecks.push({slide:n,name,events:rows.length-1,playback:true,pause:true});
 }

@@ -71,7 +71,7 @@ El programa se llama **Panther Broker**, referencia elegida a la UAM Azcapotzalc
 
 ## Grabaciones de terminal
 
-Las cinco demostraciones se reproducen con **asciinema-player 3.17.0**, instalado desde npm y servido localmente. Presionar ▶ para comenzar; los controles permiten pausar, recorrer la línea de tiempo, cambiar velocidad y expandir el terminal. Al salir de una diapositiva se pausa su grabación. El PDF conserva los PNG como alternativa estática.
+Las cinco demostraciones se reproducen con **asciinema-player 3.17.0**, instalado desde npm y servido localmente. Hacer clic en cualquier parte del terminal para reproducir o pausar. Con teclado, enfocar el terminal con Tab y usar Enter o Espacio. Al terminar, otro clic vuelve a reproducir desde el inicio. No se muestran controles, barra de tiempo ni botón superpuesto. Al salir de una diapositiva se pausa su grabación. El PDF conserva los PNG como alternativa estática.
 
 Para regenerarlas desde la raíz:
 
@@ -85,4 +85,4 @@ El script selecciona exclusivamente SDKMAN `25.0.5.0+8-zulu`, prepara copias tem
 
 Referencias: [integración del reproductor](https://docs.asciinema.org/manual/player/quick-start/), [opciones](https://docs.asciinema.org/manual/player/options/) y [formato asciicast v2](https://docs.asciinema.org/manual/asciicast/v2/).
 
-El reproductor usa la misma paleta slate/mint que los bloques de código, con controles discretos y un botón «Reproducir ejecución». No muestra enlaces de descarga debajo del contenido; las grabaciones siguen disponibles en public/terminal. Las sesiones terminan al volver al prompt, sin echo de estado.
+El reproductor usa la misma paleta slate/mint que los bloques de código, sin controles visibles ni botón superpuesto. No muestra enlaces de descarga debajo del contenido; las grabaciones siguen disponibles en public/terminal. Las sesiones terminan al volver al prompt, sin echo de estado.

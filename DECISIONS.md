@@ -257,3 +257,9 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Origen:** el usuario pide quitar echo de Salida y mejorar la integración visual.
 
 **Decisión:** regenerar las cinco sesiones para terminar al regresar al prompt. Verificar el código de salida por un archivo de control del shell, sin imprimir diagnósticos adicionales. Usar fondo slate y acentos mint/violeta del deck, borde del mismo estilo que Shiki, controles discretos y botón de reproducción en español. Quitar el enlace de descarga bajo cada terminal; conservar archivos y procedencia en el repositorio. Mantener controles, pausa al navegar y capturas de PDF.
+
+## D033 — Solo terminal y corrección del recorte de texto · 2026-10-31
+
+**Origen:** el usuario solicita ocultar el reproductor y aporta una captura de texto recortado.
+
+**Decisión:** ocultar barra de controles y superposición inicial; reproducir y pausar al hacer clic en el terminal, con botón transparente accesible por teclado y repetición al terminar. Corregir el interlineado global de pre para respetar --term-line-height: el interlineado heredado excedía la altura de las filas y recortaba los glifos. Agregar comprobaciones de geometría y controles ocultos al verificador del deck. Conservar pausa al navegar y capturas de PDF.

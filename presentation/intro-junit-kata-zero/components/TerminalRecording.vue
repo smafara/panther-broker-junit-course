@@ -11,16 +11,29 @@ const { isPrintMode: printable } = useNav()
 const active = computed(() => $nav.value.currentSlideNo === $page.value)
 const host = ref<HTMLElement>()
 const failed = ref(false)
+const playing = ref(false)
 let player: ReturnType<typeof AsciinemaPlayer.create> | undefined
+async function togglePlayback() {
+  if (!player) return
+  if (playing.value) await player.pause()
+  else {
+    const duration = player.getDuration()
+    if (duration !== undefined && player.getCurrentTime() >= duration) await player.seek(0)
+    await player.play()
+  }
+}
 onMounted(() => {
   if (printable.value || !host.value) return
   player = AsciinemaPlayer.create(`${import.meta.env.BASE_URL}terminal/${props.name}.cast`, host.value, {
-    controls: true, autoPlay: false, preload: true, idleTimeLimit: 2,
+    controls: false, autoPlay: false, preload: true, idleTimeLimit: 2,
     rows: props.short ? 12 : 20, terminalLineHeight: 1.15,
     fit: 'both', theme: 'panther', terminalFontFamily: 'Consolas, Liberation Mono, monospace',
     poster: 'npt:0:0.4',
   })
   player.addEventListener('error', () => { failed.value = true })
+  player.addEventListener('playing', () => { playing.value = true })
+  player.addEventListener('pause', () => { playing.value = false })
+  player.addEventListener('ended', () => { playing.value = false })
 })
 watch(active, (value) => { if (!value) player?.pause() })
 onBeforeUnmount(() => player?.dispose())
@@ -28,9 +41,12 @@ onBeforeUnmount(() => player?.dispose())
 
 <template>
   <div class="terminal-recording" :class="{ compact, short }"
-       :data-recording="name">
+       :data-recording="name" :data-playing="playing">
     <img v-if="printable || failed" class="terminal-capture" :src="`${base}terminal/${name}.png`" :alt="alt" />
     <div v-else ref="host" class="recording-player" role="region" :aria-label="alt" />
+    <button v-if="!printable && !failed" class="recording-toggle" type="button"
+            :aria-label="playing ? 'Pausar ejecución' : 'Reproducir ejecución'"
+            @click.stop="togglePlayback" />
   </div>
 </template>
 
@@ -40,6 +56,8 @@ onBeforeUnmount(() => player?.dispose())
 .terminal-recording.short { height: 235px; margin-top: 22px; }
 .recording-player { width: 100%; height: 100%; overflow: hidden; border-radius: 12px; }
 .terminal-capture { height: 100%; border: 0; }
+.recording-toggle { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; padding: 0; background: transparent; cursor: pointer; border-radius: 12px; }
+.recording-toggle:focus-visible { outline: 2px solid #5eead4; outline-offset: 3px; }
 :deep(.ap-player) {
   --term-color-background: #0b1220;
   --term-color-foreground: #e2e8f0;
@@ -53,23 +71,5 @@ onBeforeUnmount(() => player?.dispose())
   --term-color-7: #e2e8f0;
   border-radius: 0 !important;
 }
-:deep(.ap-control-bar) { background: #0b1220; border-top: 1px solid #38516b88 !important; }
-:deep(.ap-control-bar .ap-icon path) { fill: #5eead4; }
-:deep(.ap-control-bar .ap-gutter-full) { background: #5eead4; }
-:deep(.ap-timer) { color: #aec0d5; }
-:deep(.ap-overlay-start) { background: transparent; }
-:deep(.ap-play-button) { position: static !important; width: auto !important; height: auto !important; max-height: none !important; margin: 0 !important; }
-:deep(.ap-play-button > div) { display: none; }
-:deep(.ap-play-button svg) { display: none; }
-:deep(.ap-play-button)::after {
-  content: '▶ Reproducir ejecución';
-  display: block;
-  padding: 12px 20px;
-  border: 1px solid #5eead466;
-  border-radius: 8px;
-  background: #12272b;
-  color: #5eead4;
-  font: 16px Arial, sans-serif;
-  letter-spacing: .01em;
-}
+:deep(.ap-control-bar), :deep(.ap-overlay-start) { display: none !important; }
 </style>
