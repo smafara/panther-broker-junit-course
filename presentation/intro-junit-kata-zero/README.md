@@ -79,8 +79,10 @@ Para regenerarlas desde la raíz:
 python3 scripts/record-kata-zero.py
 ```
 
-El script selecciona exclusivamente SDKMAN `25.0.5.0+8-zulu`, prepara copias temporales de los proyectos Maven y registra sesiones reales de pseudoterminal en formato asciicast v2. Teclea automáticamente los comandos y las opciones 1, 2 y 0 con pausas: no es una persona escribiendo ni una animación fabricada de resultados. Los ejemplos de consola ya están compilados antes de grabar; las tres sesiones de pruebas muestran Maven completo, su resultado y el código de salida. La preparación modifica únicamente las copias temporales para reconstruir el defecto y cambiar META a 150 USD.
+El script selecciona exclusivamente SDKMAN `25.0.5.0+8-zulu`, prepara copias temporales de los proyectos Maven y registra sesiones reales de pseudoterminal en formato asciicast v2. Teclea automáticamente los comandos y las opciones 1, 2 y 0 con pausas: no es una persona escribiendo ni una animación fabricada de resultados. Los ejemplos de consola ya están compilados antes de grabar; las tres sesiones de pruebas muestran Maven completo, su resultado. El código de salida se valida internamente, sin imprimir comandos adicionales en la demostración. La preparación modifica únicamente las copias temporales para reconstruir el defecto y cambiar META a 150 USD.
 
 `public/terminal/*.cast` conserva las salidas completas con sus tiempos originales; `recordings.json` documenta comandos, duración, JDK y códigos de salida. El reproductor comprime pausas sin actividad a dos segundos; no elimina salida. No se suben grabaciones a servicios externos. Si falla el reproductor, se muestra la imagen estática.
 
 Referencias: [integración del reproductor](https://docs.asciinema.org/manual/player/quick-start/), [opciones](https://docs.asciinema.org/manual/player/options/) y [formato asciicast v2](https://docs.asciinema.org/manual/asciicast/v2/).
+
+El reproductor usa la misma paleta slate/mint que los bloques de código, con controles discretos y un botón «Reproducir ejecución». No muestra enlaces de descarga debajo del contenido; las grabaciones siguen disponibles en public/terminal. Las sesiones terminan al volver al prompt, sin echo de estado.

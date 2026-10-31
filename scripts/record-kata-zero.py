@@ -32,7 +32,9 @@ def record(work, name, command, menu, expected, tokens):
     master, slave = pty.openpty()
     fcntl.ioctl(slave, termios.TIOCSWINSZ, struct.pack('HHHH', 20, 100, 0, 0))
     # A real interactive shell supplies the prompt and echoes the automated input.
-    process = subprocess.Popen(['/bin/sh', '-i'], cwd=work, env=ENV,
+    # Capture the last status through the prompt, outside the visible terminal stream.
+    shell_env = dict(ENV, PS1='$(printf "%s" "$?" > .recording-exit)panther$ ')
+    process = subprocess.Popen(['/bin/sh', '-i'], cwd=work, env=shell_env,
                                stdin=slave, stdout=slave, stderr=slave, start_new_session=True)
     os.close(slave)
     start = time.monotonic()
@@ -85,9 +87,7 @@ def record(work, name, command, menu, expected, tokens):
                 type_text(choice + '\n')
                 wait_for('Hasta luego.' if choice == '0' else '0. Salir', offset)
         wait_for('panther$ ', offset)
-        offset = len(output)
-        type_text('echo "Salida: $?"\n')
-        wait_for(f'Salida: {expected}\r\n', offset)
+        assert int((work / '.recording-exit').read_text()) == expected
         drain(1.5)
         assert all(token in output for token in tokens), output
         header = dict(version=2, width=100, height=20, title=name,

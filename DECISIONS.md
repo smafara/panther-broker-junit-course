@@ -251,3 +251,9 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Decisión:** sustituir las cinco imágenes en la presentación interactiva por asciinema-player, con reproducción manual, controles y pausa al cambiar de diapositiva. Conservar PNG en PDF y como alternativa ante errores. Versionar archivos asciicast v2 grabados de pseudoterminales reales mediante un script Python, con entrada automatizada y salida completa sin editar. Los tiempos de captura son reales; el reproductor acorta solo pausas inactivas. No publicar sesiones en servidores externos.
 
 **Reproducción:** scripts/record-kata-zero.py usa el JDK Zulu solicitado, copias temporales de los módulos Maven y valida cantidades, conteos de pruebas y códigos de salida. Documentar que la compilación de consola y la preparación de los escenarios preceden a la grabación.
+
+## D032 — Terminal integrado y sin comandos de diagnóstico visibles · 2026-10-31
+
+**Origen:** el usuario pide quitar echo de Salida y mejorar la integración visual.
+
+**Decisión:** regenerar las cinco sesiones para terminar al regresar al prompt. Verificar el código de salida por un archivo de control del shell, sin imprimir diagnósticos adicionales. Usar fondo slate y acentos mint/violeta del deck, borde del mismo estilo que Shiki, controles discretos y botón de reproducción en español. Quitar el enlace de descarga bajo cada terminal; conservar archivos y procedencia en el repositorio. Mantener controles, pausa al navegar y capturas de PDF.

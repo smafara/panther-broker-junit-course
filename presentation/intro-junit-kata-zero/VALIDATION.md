@@ -32,4 +32,8 @@ Se generaron cinco archivos `.cast` con scripts/record-kata-zero.py y el JDK exa
 
 El verificador abre cada demostración, carga su archivo, confirma que el contenido avanza al reproducir, pausa con el control y al navegar a otra diapositiva. La ruta de impresión carga cinco imágenes como sustitución estática. Se revisó visualmente la página del caso rojo exportada al PDF para confirmar que muestra la captura, sin controles de reproducción.
 
-También se verificó la SPA compilada con vite preview: la grabación manual reproduce el comando, el menú, VENDER META 2.0 y el código de salida 0 con los recursos del reproductor servidos localmente y sin errores de página.
+También se verificó la SPA compilada con vite preview: la grabación manual reproduce el comando, el menú, VENDER META 2.0 y el regreso al prompt con los recursos del reproductor servidos localmente y sin errores de página.
+
+Ajuste de integración: se regeneraron las cinco sesiones sin `echo "Salida: ..."`; los códigos de salida se verifican por un archivo de control escrito al mostrar el prompt, fuera del flujo visible. El verificador rechaza grabaciones con esa salida y comprueba la paleta Panther del reproductor.
+
+Se inspeccionó la apariencia interactiva mediante rasterización de una impresión de navegador en modo screen: fondo continuo, botón en español, controles mint y ausencia del enlace de descarga. SPA compilada y PDF regenerados tras el ajuste.

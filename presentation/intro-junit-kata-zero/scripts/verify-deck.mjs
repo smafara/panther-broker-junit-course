@@ -70,6 +70,9 @@ for(const n of [6,8,9,10,12]){
   if(!response.ok())throw new Error(`No se cargó ${name}`);
   const rows=(await response.text()).trim().split('\n').map(line=>JSON.parse(line));
   if(rows[0].version!==2||rows.length<3)throw new Error(`Grabación inválida: ${name}`);
+  if(rows.slice(1).some(row=>/Salida:|echo ["']?Salida/.test(row[2])))throw new Error(`La grabación aún muestra el código de salida: ${name}`);
+  const palette=await terminal.locator('.ap-player').evaluate(el=>getComputedStyle(el).getPropertyValue('--term-color-background').trim());
+  if(palette!=='#0b1220')throw new Error(`El terminal no usa la paleta de la presentación: ${name}`);
   const before=await terminal.locator('.ap-term-text').textContent();
   await terminal.locator('.ap-playback-button').click();
   await terminal.locator('.ap-playback-button[aria-label="Pause"]').waitFor();
