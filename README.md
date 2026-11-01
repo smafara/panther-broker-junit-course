@@ -4,7 +4,9 @@ Material de servicio social para estudiantes de México. Proyecto: **Panther Bro
 
 - [Temario](COURSEWORK.md).
 - [Kata Zero: del menú de consola a la primera prueba](kata-zero/README.md).
-- [Presentación: Introducción a JUnit](presentation/intro-junit-kata-zero/README.md).
+- [Presentación: Introducción a las pruebas unitarias con JUnit](presentation/intro-junit-kata-zero/README.md).
+- [Primeros pasos con JUnit: proyecto y práctica](primeros-pasos-junit/README.md).
+- [Presentación: Primeros pasos con JUnit](presentation/primeros-pasos-junit/README.md).
 - [Decisiones del curso](DECISIONS.md).
 - [Registro de cambios](CHANGELOG.md).
 

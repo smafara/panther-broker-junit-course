@@ -346,3 +346,95 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Origen:** el usuario acepta retirar la diapositiva redundante después de explicar el programa en la segunda diapositiva.
 
 **Decisión:** pasar directamente de la demostración al ejemplo de acciones completas. Explicar en ese ejemplo que los porcentajes corresponden al valor de la cuenta y que la propuesta no ejecuta operaciones ni modifica la cuenta. Actualizar la ruta de la presentación a 17 diapositivas.
+
+## D047 — Primeros pasos con JUnit · 2026-11-01
+
+**Origen:** el usuario solicita una nueva presentación sobre pruebas de software, JUnit, herramientas equivalentes, configuración y AAA.
+
+**Decisión:** crear una presentación independiente con el mismo tema y notas. Explicar pruebas manuales y automáticas, escalas, JUnit Jupiter y ejemplos de otros ecosistemas; usar Jest como framework de JavaScript. Reconocer la configuración manual con JAR y recomendar Maven o Gradle; el curso utiliza Maven Wrapper, BOM JUnit 6.1.3, Jupiter y Surefire 3.6.1. Crear snapshots Maven before/after con el cálculo corregido de Kata Zero y una prueba real AAA, JDK SDKMAN 25.0.5.0+8-zulu y práctica voluntaria. La presentación muestra fragmentos del POM y la prueba del repositorio, con fuentes oficiales en su README.
+
+## D048 — Tarjetas alineadas en cada fila · 2026-11-01
+
+**Origen:** el usuario solicita que los elementos equivalentes dispuestos lado a lado tengan el mismo tamaño de manera consistente.
+
+**Decisión:** estirar las tarjetas de cada fila para igualar su altura, manteniendo columnas iguales para grupos comparables. Aplicar la regla a ambas presentaciones y agregarla a las convenciones y verificadores del curso; mantener el diseño independiente de columnas con código o contenido distinto.
+
+## D049 — Revelado automático y logotipos de herramientas · 2026-11-01
+
+**Origen:** el usuario pide mostrar una por una las filas de la diapositiva 5 sin interacción e incluir logotipos correctos.
+
+**Decisión:** integrar recursos SVG y PNG de los repositorios oficiales como archivos locales. Al entrar a la diapositiva, revelar cada fila automáticamente con una separación de 400 ms; reiniciar al regresar. Respetar movimiento reducido y mostrar todas las filas en la exportación PDF. Registrar fuentes y atribuciones en el README y verificar la secuencia y carga de imágenes.
+
+
+## D050 — Introducir Maven y el POM antes de configurar JUnit · 2026-11-01
+
+**Origen:** el usuario pide explicar brevemente Maven y su configuración, enfocando las partes relevantes mediante animación.
+
+**Decisión:** agregar una diapositiva de Maven como herramienta de dependencias, compilación y pruebas, y otra con un fragmento real del POM, enfocando progresivamente la identidad del proyecto y sus propiedades. Aclarar que el archivo es XML declarativo y que el fragmento omite el resto. Mantener después las diapositivas de estructura del proyecto, BOM, dependencia y Surefire.
+
+## D051 — Resaltado de código Tokyo Night · 2026-11-01
+
+**Origen:** el usuario solicita una paleta de código más acorde con el fondo oscuro de las presentaciones.
+
+**Decisión:** configurar el tema integrado Tokyo Night de Shiki en las dos presentaciones, conservando el fondo slate, el foco progresivo y la legibilidad del código. Mantener una paleta común para las próximas presentaciones.
+
+
+## D052 — Mostrar el método probado y su ejecución · 2026-11-01
+
+**Origen:** el usuario solicita conocer el contenido de quantityToTrade y mostrar la ejecución con la técnica de panel verde de la introducción.
+
+**Decisión:** incorporar el método real de RebalanceCalculator antes de presentar su prueba, enfocando parámetros, cálculo y significado del signo. Sustituir el resumen estático por una sesión PTY real de Maven reproducida con asciinema al 50 %, con panel de resultado generado desde el XML real de Surefire después de la ejecución. Conservar una captura estática para PDF y agregar verificación de reproducción, pausa y resultado.
+
+## D053 — Iconos para la configuración de dependencias · 2026-11-01
+
+**Origen:** el usuario solicita un icono JAR y representaciones de Maven y Gradle en la diapositiva 6.
+
+**Decisión:** añadir una ilustración local de archivo JAR y logotipos locales de Maven y Gradle en las dos tarjetas, conservando sus dimensiones iguales y los revelados existentes. Registrar las fuentes y comprobar la carga de las imágenes.
+
+## D054 — Ubicación del código y de su prueba · 2026-11-01
+
+**Origen:** el usuario solicita omitir la aclaración de actividades no calificadas y mostrar la estructura de archivos cerca del método probado.
+
+**Decisión:** quitar la aclaración visible de las dos presentaciones; la práctica sigue siendo opcional. Agregar junto al método quantityToTrade un esquema de las rutas de producción y prueba bajo el mismo paquete, con notas explicativas.
+
+## D055 — Contexto de archivo junto a fragmentos de código · 2026-11-01
+
+**Origen:** el usuario propone mostrar la ubicación de los ejemplos de código y pide una revisión en consejo.
+
+**Decisión:** conservar el árbol completo donde se introduce la estructura y usar rutas compactas junto a los demás fragmentos de archivo en ambas presentaciones. La elipsis indica segmentos de paquete omitidos. En las transiciones de Kata Zero distinguir las etapas y aclarar cuándo el defecto se reconstruye en una copia temporal. No etiquetar diagramas ni grabaciones de terminal como archivos fuente.
+
+## D056 — Rutas visuales de archivo · 2026-11-01
+
+**Origen:** el usuario pide una presentación más atractiva de las rutas junto al código.
+
+**Decisión:** mostrar las rutas como pestañas de editor con icono discreto, borde mint y fondo en degradado, y armonizar el árbol de archivos con ese diseño. Mantener el texto legible, las rutas fieles y el espacio del código.
+
+## D057 — Cabeceras de código con estilo de editor · 2026-11-01
+
+**Origen:** el usuario busca consistencia con un editor sin reproducir una interfaz completa.
+
+**Decisión:** presentar nombre de archivo y ruta en una cabecera compacta común a las dos presentaciones; conservar el resaltado Tokyo Night, las transiciones y las explicaciones sobre fragmentos y copias. Evitar barras de herramientas y paneles decorativos.
+
+## D058 — Explorador del proyecto con estilo consistente · 2026-11-01
+
+**Origen:** el usuario propone armonizar la diapositiva del árbol de archivos con las cabeceras de editor.
+
+**Decisión:** identificar el árbol como explorador del proyecto y mostrar su carpeta raíz con la misma cabecera visual de las diapositivas de código, sin simular controles de editor.
+
+## D059 — Explorador visual para el árbol del proyecto · 2026-11-01
+
+**Origen:** el usuario aclara que desea rediseñar toda la diapositiva del árbol y solicita una revisión en consejo.
+
+**Decisión:** sustituir el bloque monoespaciado por un explorador visual protagonista, con carpetas de paquete agrupadas explícitamente y tres focos coordinados: POM, producción y prueba. Mantener visibles todos los nodos, revelar sus explicaciones por clic, conservar texto además de color y mostrar todo en el PDF.
+
+## D060 — Carpetas desplegables en el explorador · 2026-11-01
+
+**Origen:** el usuario solicita una jerarquía de carpetas más reconocible, inspirada en el explorador de IntelliJ IDEA.
+
+**Decisión:** mostrar src, main, test y java como carpetas anidadas y desplegables, con guías de indentación y el paquete agrupado. Utilizar controles nativos de HTML accesibles por teclado, abiertos inicialmente y también en el PDF; conservar los tres focos y evitar que un clic de carpeta avance la presentación.
+
+## D061 — Historial de Git por cambios coherentes · 2026-11-01
+
+**Origen:** el usuario pide mantener en adelante un historial de Git más útil para revisar o recuperar cambios.
+
+**Decisión:** agrupar el trabajo en commits pequeños y coherentes por tema o hito, con mensajes descriptivos, al cerrar cambios autorizados. Conservar las decisiones y las verificaciones relevantes; no subir al remoto ni alterar el historial existente sin que se solicite.

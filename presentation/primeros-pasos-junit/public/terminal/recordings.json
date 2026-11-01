@@ -1,0 +1,16 @@
+{
+  "jdk": "25.0.5.0+8-zulu",
+  "provenance": "Sesión PTY real; entrada automatizada, salida sin editar.",
+  "scenario": {
+    "file": "primera-prueba.cast",
+    "command": "./mvnw -B -ntp -f primeros-pasos-junit/after/pom.xml test",
+    "exitCode": 0,
+    "duration": 5.224122,
+    "tests": [
+      {
+        "name": "buysTwoSharesWhenBelowTarget",
+        "status": "passed"
+      }
+    ]
+  }
+}
