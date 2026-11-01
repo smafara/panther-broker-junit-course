@@ -438,3 +438,10 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Origen:** el usuario pide mantener en adelante un historial de Git más útil para revisar o recuperar cambios.
 
 **Decisión:** agrupar el trabajo en commits pequeños y coherentes por tema o hito, con mensajes descriptivos, al cerrar cambios autorizados. Conservar las decisiones y las verificaciones relevantes; no subir al remoto ni alterar el historial existente sin que se solicite.
+
+
+## D062 — Recuperar el código original y ajustar reproducción · 2026-11-01
+
+**Origen:** el usuario pregunta por el código original de la primera presentación y solicita acelerar sus grabaciones a 0.75×.
+
+**Decisión:** volver a mostrar fragmentos fieles del main original después del ejemplo de acciones completas y antes del requisito fraccionario, señalando las partes omitidas. Cambiar a 0.75× las grabaciones de la introducción y actualizar su comprobación y documentación. La segunda presentación conserva su velocidad.

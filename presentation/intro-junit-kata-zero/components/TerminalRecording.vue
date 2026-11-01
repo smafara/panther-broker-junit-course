@@ -49,7 +49,7 @@ async function togglePlayback() {
 onMounted(() => {
   if (printable.value || !host.value) return
   player = AsciinemaPlayer.create(`${import.meta.env.BASE_URL}terminal/${props.name}.cast`, host.value, {
-    controls: false, autoPlay: false, preload: true, idleTimeLimit: 2, speed: 0.5,
+    controls: false, autoPlay: false, preload: true, idleTimeLimit: 2, speed: 0.75,
     rows: props.short ? 8 : (tests.value.length ? 12 : 20), terminalLineHeight: 1.15,
     fit: 'both', theme: 'panther', terminalFontFamily: 'Consolas, Liberation Mono, monospace',
     poster: 'npt:0:0.4',
@@ -77,7 +77,7 @@ onBeforeUnmount(() => { clearTimers(); player?.dispose() })
 
 <template>
   <div class="terminal-recording" :class="{ compact, short, 'has-results': tests.length, 'is-visible': printable || visible }"
-       :data-recording="name" :data-playing="playing" data-speed="0.5" :data-completed="completed">
+       :data-recording="name" :data-playing="playing" data-speed="0.75" :data-completed="completed">
     <div class="recording-screen">
       <img v-if="printable || failed" class="terminal-capture" :src="`${base}terminal/${name}.png`" :alt="alt" />
       <div v-else ref="host" class="recording-player" role="region" :aria-label="alt" />

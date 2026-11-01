@@ -87,7 +87,7 @@ for(const n of recordingSlides){
   });
   if(grid.lineHeight>grid.rowHeight+.5)throw new Error(`Texto recortado en ${name}: ${JSON.stringify(grid)}`);
   if(await terminal.locator('.ap-control-bar:visible,.ap-overlay-start:visible').count())throw new Error(`Controles visibles: ${name}`);
-  if(await terminal.getAttribute('data-speed')!=='0.5')throw new Error(`Velocidad incorrecta: ${name}`);
+  if(await terminal.getAttribute('data-speed')!=='0.75')throw new Error(`Velocidad incorrecta: ${name}`);
   await page.waitForFunction(name=>document.querySelector(`#slide-content .terminal-recording[data-recording="${name}"]`)?.dataset.playing==='true',name);
   if(await terminal.locator('.test-result:not(.pending)').count())throw new Error(`Resultados revelados antes de terminar: ${name}`);
   const before=await terminal.locator('.ap-term-text').textContent();

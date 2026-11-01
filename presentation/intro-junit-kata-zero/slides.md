@@ -66,7 +66,41 @@ Transición: usar la cuenta de la demostración para explicar los porcentajes ob
 
 <!--
 Entrada: explicar que los porcentajes se refieren al valor de la cuenta, no al número de acciones. El programa solo propone operaciones; no las ejecuta ni modifica la cuenta.
-Transición: el programa funciona para este caso de acciones completas, pero el requisito cambia.
+Transición: mostrar el código que produjo esta propuesta.
+-->
+
+---
+
+# El código original de Panther Broker
+
+<p class="source-path" data-file="Main.java">kata-zero/before/src/main/java/…/Main.java</p>
+
+<div class="split code-compact">
+<div>
+
+```java {1-3|5-7|*}{lines:true}
+String[] symbols = {"META", "AAPL"};
+int[] prices = {100, 100};
+int[] quantities = {10, 10};
+
+// Fragmento dentro del ciclo de rebalanceo
+int targetValue = total * percentages[i] / 100;
+int targetShares = targetValue / prices[i];
+int difference = targetShares - quantities[i];
+```
+
+</div>
+<div class="stack">
+<div class="card"><h3>La cuenta</h3><p>Guarda símbolos, precios y cantidades de acciones completas.</p></div>
+<div class="card purple" v-click><h3>La propuesta</h3><p>Calcula la cantidad objetivo y la compara con la cantidad actual.</p></div>
+</div>
+</div>
+<p class="caption">Fragmentos de <code>main</code>; se omiten el menú, la lectura de objetivos y el resto del cálculo.</p>
+
+<!--
+Entrada: mostrar los datos y la parte del cálculo de la versión original.
+Focos: arreglos de la cuenta y cálculo de la cantidad objetivo; los bloques provienen de partes distintas del mismo main.
+Transición: introducir la compra y venta de fracciones como requisito nuevo.
 -->
 
 ---
