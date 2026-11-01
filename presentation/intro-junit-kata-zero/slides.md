@@ -264,7 +264,8 @@ Transición: guardar primero las expectativas del ejemplo habitual y ejecutarlas
 
 <div class="code-compact">
 
-```java {1|2|3-5|*}{lines:true}
+```java {2|3|4-6|*}{lines:true}
+// Compra dos acciones si está por debajo del objetivo.
 @Test
 void buysTwoSharesWhenBelowTarget() {
     assertEquals(2.0,
@@ -274,7 +275,7 @@ void buysTwoSharesWhenBelowTarget() {
 ```
 
 </div>
-<p class="caption"><code>@Test</code> marca la prueba; <code>assertEquals</code> compara el resultado con lo esperado. El nombre significa «compra dos acciones cuando está por debajo del objetivo». El último número permite comparar aproximaciones; lo veremos después. Se omiten clase e imports.</p>
+<p class="caption"><code>@Test</code> marca la prueba; <code>assertEquals</code> compara el resultado con lo esperado. El último número permite comparar aproximaciones; lo veremos después. Se omiten clase e imports.</p>
 
 <!--
 Entrada: presentar brevemente la anotación, el método de prueba y la comparación.
@@ -291,6 +292,7 @@ Transición: mostrar las dos expectativas del ejemplo original.
 <div class="code-compact">
 
 ```java {lines:true}
+// Compra dos acciones si está por debajo del objetivo.
 @Test
 void buysTwoSharesWhenBelowTarget() {
     assertEquals(2.0,
@@ -302,6 +304,7 @@ void buysTwoSharesWhenBelowTarget() {
 <div v-click>
 
 ```java {lines:true}
+// Vende dos acciones si está por encima del objetivo.
 @Test
 void sellsTwoSharesWhenAboveTarget() {
     assertEquals(-2.0,
@@ -313,7 +316,7 @@ void sellsTwoSharesWhenAboveTarget() {
 
 </div>
 </div>
-<p class="caption"><strong>Compra:</strong> esperamos 2 acciones. <strong>Venta:</strong> esperamos −2 acciones.</p>
+<p class="caption">Un resultado negativo indica una venta.</p>
 
 <!--
 Entrada: volver al contrato de acciones completas. Estas dos expectativas podían haberse guardado desde la primera versión; no afirmar que el main original ya tenía pruebas.

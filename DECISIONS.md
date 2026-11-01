@@ -478,3 +478,7 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 ## D068 — Revelar la segunda prueba · 2026-11-01
 
 **Decisión:** mantener visible la prueba de compra y revelar la venta al avanzar; explicar los nombres en español y conservar los identificadores del código.
+
+## D069 — Comentarios en español en las pruebas · 2026-11-01
+
+**Decisión:** explicar con comentarios breves en español qué comprueba cada prueba, junto al código, en lugar de traducir nombres en las leyendas.
