@@ -470,3 +470,7 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Origen:** el usuario acepta los ajustes pequeños de la revisión final.
 
 **Decisión:** conservar firma y llaves en ambos lados de la animación de corrección; precisar que cambia el tipo de retorno y la variable targetShares; explicar brevemente la tolerancia y eliminar de las notas la extracción que ya no ocurre. Evitar repetir la explicación de la estructura de prueba al presentar las dos expectativas originales.
+
+## D067 — Conectar las primeras pruebas · 2026-11-01
+
+**Decisión:** retomar la prueba de compra antes de añadir la venta, documentar brevemente el cálculo y mostrar los parámetros enteros al explicar la división.

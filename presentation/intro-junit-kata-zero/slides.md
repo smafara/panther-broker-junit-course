@@ -82,7 +82,8 @@ Transición: mostrar el código que produjo esta propuesta.
 <div class="split code-compact">
 <div>
 
-```java {1-2|3-4|5|*}{lines:true}
+```java {2-3|4-5|6|*}{lines:true}
+/** Calcula cuántas acciones comprar o vender. */
 static int quantityToTrade(int totalValue, int targetPercent,
                            int price, int currentQuantity) {
     int targetValue = totalValue * targetPercent / 100;
@@ -147,7 +148,8 @@ static int quantityToTrade(...) {
 }
 ```
 ```java
-static double quantityToTrade(...) {
+static double quantityToTrade(int totalValue, int targetPercent,
+                              int price, int currentQuantity) {
     int targetValue = totalValue * targetPercent / 100;
     double targetShares = targetValue / price;
     return targetShares - currentQuantity;
@@ -290,26 +292,26 @@ Transición: mostrar las dos expectativas del ejemplo original.
 
 ```java {1-6|8-13|*}{lines:true}
 @Test
-void sellsTwoSharesWhenAboveTarget() {
-    assertEquals(-2.0,
-        RebalanceCalculator.quantityToTrade(2000, 40, 100, 10),
-        0.000001);
-}
-
-@Test
 void buysTwoSharesWhenBelowTarget() {
     assertEquals(2.0,
         RebalanceCalculator.quantityToTrade(2000, 60, 100, 10),
         0.000001);
 }
+
+@Test
+void sellsTwoSharesWhenAboveTarget() {
+    assertEquals(-2.0,
+        RebalanceCalculator.quantityToTrade(2000, 40, 100, 10),
+        0.000001);
+}
 ```
 
 </div>
-<p class="caption">El primer argumento es el esperado; el segundo, el resultado. Un número negativo indica una venta.</p>
+<p class="caption">Conservamos la prueba de compra y agregamos una para la venta. Un número negativo indica una venta.</p>
 
 <!--
 Entrada: volver al contrato de acciones completas. Estas dos expectativas podían haberse guardado desde la primera versión; no afirmar que el main original ya tenía pruebas.
-Clics: mostrar la venta esperada y después la compra esperada. Los ejemplos corresponden a OriginalExamplesTest; se omiten imports y DisplayName y se distribuyen las llamadas en varias líneas.
+Clics: retomar la compra de la diapositiva anterior y mostrar después la venta esperada. Los ejemplos corresponden a OriginalExamplesTest; se omiten imports y DisplayName y se distribuyen las llamadas en varias líneas.
 El menú ya utiliza el método, y la prueba puede llamarlo directamente. Usamos la firma actual compatible con la evolución fraccionaria; la tolerancia se explicará durante el curso. En esta diapositiva centrarse en las dos expectativas guardadas, sin volver a explicar la estructura de la prueba.
 Transición: ejecutar esos casos después del cambio a double para comprobar que el comportamiento anterior se conserva.
 -->
@@ -363,14 +365,16 @@ Reproducir la grabación de Maven: las pruebas anteriores pasan y la nueva revel
 
 ````md magic-move {duration:650, lines:true}
 ```java
-static double quantityToTrade(...) {
+static double quantityToTrade(int totalValue, int targetPercent,
+                              int price, int currentQuantity) {
     int targetValue = totalValue * targetPercent / 100;
     double targetShares = targetValue / price;
     return targetShares - currentQuantity;
 }
 ```
 ```java
-static double quantityToTrade(...) {
+static double quantityToTrade(int totalValue, int targetPercent,
+                              int price, int currentQuantity) {
     int targetValue = totalValue * targetPercent / 100;
     double targetShares = targetValue / (double) price;
     return targetShares - currentQuantity;
