@@ -10,5 +10,7 @@
         <module>kata-zero/before</module>
         <module>kata-zero/after/01-naive-fractions</module>
         <module>kata-zero/after/02-first-test</module>
+        <module>primeros-pasos-junit/before</module>
+        <module>primeros-pasos-junit/after</module>
     </modules>
 </project>
