@@ -158,7 +158,7 @@ static double quantityToTrade(...) {
 </div>
 <div class="stack">
 <div class="card"><h3>Antes</h3><p>Cantidades completas en variables int.</p></div>
-<div class="card purple"><h3>Después</h3><p>El método y la cantidad objetivo ahora aceptan decimales.</p></div>
+<div class="card purple"><h3>Después</h3><p>El método ahora devuelve double y targetShares puede guardar decimales.</p></div>
 </div>
 </div>
 <p class="caption">Fragmento del método: se omiten los parámetros; los importes y precios siguen siendo enteros.</p>
@@ -272,7 +272,7 @@ void buysTwoSharesWhenBelowTarget() {
 ```
 
 </div>
-<p class="caption"><code>@Test</code> marca la prueba; <code>assertEquals</code> compara el resultado con lo esperado. Se omiten clase e imports.</p>
+<p class="caption"><code>@Test</code> marca la prueba; <code>assertEquals</code> compara el resultado con lo esperado. El último número permite comparar aproximaciones; lo veremos después. Se omiten clase e imports.</p>
 
 <!--
 Entrada: presentar brevemente la anotación, el método de prueba y la comparación.
@@ -310,7 +310,7 @@ void buysTwoSharesWhenBelowTarget() {
 <!--
 Entrada: volver al contrato de acciones completas. Estas dos expectativas podían haberse guardado desde la primera versión; no afirmar que el main original ya tenía pruebas.
 Clics: mostrar la venta esperada y después la compra esperada. Los ejemplos corresponden a OriginalExamplesTest; se omiten imports y DisplayName y se distribuyen las llamadas en varias líneas.
-El menú ya utiliza el método, y la prueba puede llamarlo directamente. Usamos la firma actual compatible con la evolución fraccionaria; el detalle de la extracción y la tolerancia se explicará durante el curso.
+El menú ya utiliza el método, y la prueba puede llamarlo directamente. Usamos la firma actual compatible con la evolución fraccionaria; la tolerancia se explicará durante el curso. En esta diapositiva centrarse en las dos expectativas guardadas, sin volver a explicar la estructura de la prueba.
 Transición: ejecutar esos casos después del cambio a double para comprobar que el comportamiento anterior se conserva.
 -->
 
@@ -370,9 +370,11 @@ static double quantityToTrade(...) {
 }
 ```
 ```java
-int targetValue = totalValue * targetPercent / 100;
-double targetShares = targetValue / (double) price;
-return targetShares - currentQuantity;
+static double quantityToTrade(...) {
+    int targetValue = totalValue * targetPercent / 100;
+    double targetShares = targetValue / (double) price;
+    return targetShares - currentQuantity;
+}
 ```
 ````
 

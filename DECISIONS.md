@@ -464,3 +464,9 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Origen:** el usuario solicita que quantityToTrade exista desde el principio y que la primera presentación muestre brevemente una prueba en vez de introducir una extracción.
 
 **Decisión:** separar el cálculo en RebalanceCalculator en las versiones original y fraccionaria ingenua; conservar la división entera y los mismos resultados. Presentar el método desde el inicio y sustituir la transición de extracción por un vistazo a @Test y assertEquals. Mantener el detalle para la segunda presentación y regenerar las demostraciones.
+
+## D066 — Ajustes finales del consejo para la introducción · 2026-11-01
+
+**Origen:** el usuario acepta los ajustes pequeños de la revisión final.
+
+**Decisión:** conservar firma y llaves en ambos lados de la animación de corrección; precisar que cambia el tipo de retorno y la variable targetShares; explicar brevemente la tolerancia y eliminar de las notas la extracción que ya no ocurre. Evitar repetir la explicación de la estructura de prueba al presentar las dos expectativas originales.
