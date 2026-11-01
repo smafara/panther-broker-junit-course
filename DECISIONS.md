@@ -311,3 +311,38 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Origen:** el usuario solicita ingresar los porcentajes objetivo y presentar el propósito antes del código original.
 
 **Decisión:** en las tres etapas, al calcular el rebalanceo se solicita un porcentaje entero por acción y se valida que estén entre 0 y 100 y sumen 100. El ejemplo usa 40/60 como entrada, no como regla fija; se conserva el defecto de división entera de la adaptación. Insertar después de la portada una explicación breve de entradas, propósito y plan propuesto. Actualizar fragmento, grabaciones, validaciones y guía.
+
+
+## D042 — Revisión pedagógica y apertura con el programa completo · 2026-11-01
+
+**Origen:** el usuario solicita revisar la presentación en consejo, cambiar el título, mostrar el programa completo antes de explicar su propósito y aplicar las recomendaciones.
+
+**Decisión:** titular la portada «Introducción a las pruebas unitarias con JUnit»; presentar el archivo real completo en un panel desplazable sin explicación, seguido de una descripción concisa de entradas y propuesta. El panel favorece legibilidad en pantalla; el PDF conserva solo la parte visible. Eliminar la diapositiva redundante del fragmento original. Agregar una transición explícita de extracción del cálculo antes de las pruebas; precisar resultado esperado, signo y tolerancia. Aclarar valores aproximados, menú real, división entera y límites del ejemplo; conservar los casos originales verdes, el nuevo caso rojo y su corrección. Agrupar la ruta del curso en tres temas. El verificador localiza dinámicamente la prueba roja.
+
+
+## D043 — Explicar el programa sin mostrar todo el código · 2026-11-01
+
+**Origen:** tras revisar la segunda diapositiva, el usuario prefiere retirar el archivo completo y explicar de manera sencilla de qué consta el programa y qué hace.
+
+**Decisión:** sustituir el panel desplazable por tres tarjetas breves: datos de la cuenta, menú y cálculo de propuestas con acciones completas. Indicar que todo está en main. Conservar la siguiente diapositiva para explicar el propósito del rebalanceo y la posterior para el ejemplo concreto. El código completo sigue disponible en kata-zero/before.
+
+
+## D044 — Presentar Panther Broker mediante una ejecución · 2026-11-01
+
+**Origen:** el usuario propone mostrar una breve demostración de terminal en la segunda diapositiva.
+
+**Decisión:** sustituir las tarjetas por una grabación asciicast de la versión original de acciones completas, generada con la misma herramienta de grabación PTY y el JDK del curso. La sesión consulta la cuenta, introduce 40/60 y muestra el plan; no se atribuye a la versión original la ejecución de la adaptación con double. Mantener reproducción automática integrada, velocidad y alternativa estática para PDF.
+
+
+## D045 — Explicar el propósito antes de la demostración · 2026-11-01
+
+**Origen:** el usuario aclara que desea una explicación en la parte superior de la segunda diapositiva, seguida de la demostración.
+
+**Decisión:** agregar una frase y un diagrama compacto con acciones, precios, distribución objetivo y propuesta de operaciones. Revelar y reproducir la grabación al avanzar para que la explicación aparezca primero. Usar la siguiente diapositiva para aclarar que la distribución se refiere al valor de la cuenta.
+
+
+## D046 — Eliminar la explicación duplicada · 2026-11-01
+
+**Origen:** el usuario acepta retirar la diapositiva redundante después de explicar el programa en la segunda diapositiva.
+
+**Decisión:** pasar directamente de la demostración al ejemplo de acciones completas. Explicar en ese ejemplo que los porcentajes corresponden al valor de la cuenta y que la propuesta no ejecuta operaciones ni modifica la cuenta. Actualizar la ruta de la presentación a 17 diapositivas.

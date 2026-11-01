@@ -1,6 +1,6 @@
 ---
 theme: default
-title: 'Introducción a JUnit'
+title: 'Introducción a las pruebas unitarias con JUnit'
 info: 'Un video introductorio · Panther Broker · Servicio social · México'
 author: 'Panther Broker'
 lang: es-MX
@@ -22,7 +22,7 @@ mdc: false
 class: cover
 ---
 
-# Introducción a JUnit
+# Introducción a las pruebas unitarias con JUnit
 
 <!--
 Entrada: presentar la historia de un cambio pequeño que dejó un defecto. Cuenta y precios son ficticios.
@@ -31,62 +31,20 @@ Transición: primero mostrar el programa antes del requisito nuevo, sin explicar
 
 ---
 
-# ¿Qué hace Panther Broker?
+# Supongamos que tenemos un programa: Panther Broker
 
-<p class="lead">Tenemos una cuenta con acciones, sus cantidades y precios. La persona elige cómo quiere distribuir el valor de su portafolio.</p>
+<p class="small">Propone compras y ventas para acercar una cuenta a la distribución que elige la persona.</p>
 
-<div class="split equal" style="margin-top:30px">
-<div class="card"><h3>Entrada</h3><p>Acciones y precios de la cuenta, más un porcentaje objetivo para cada acción.</p><p><code>int[] prices = {100, 100};</code></p></div>
-<div class="card success" v-click><h3>Resultado</h3><p>Un plan que propone cuánto comprar o vender para acercarse a esa distribución.</p></div>
+<div class="intro-flow">
+  <span>Acciones y precios</span><b>+</b><span>Distribución objetivo</span><b>→</b><span>Propuesta de operaciones</span>
 </div>
-<p class="small" style="margin-top:26px" v-click>Es una propuesta: el programa no ejecuta operaciones.</p>
+
+<TerminalRecording v-click="1" :reveal-at="1" name="intro-whole-shares" alt="Ejecución real de Panther Broker: consulta de la cuenta y propuesta de rebalanceo con acciones completas" />
 
 <!--
-Entrada: presentar brevemente el problema con una cuenta ficticia. El usuario introduce los objetivos, y los precios y cantidades forman los datos de la cuenta.
-Clic: mostrar que el resultado es un plan de compras y ventas. Siguiente clic: aclarar que el programa no ejecuta órdenes.
-Transición: ver un fragmento del código original que construye esa propuesta.
--->
-
----
-
-# El código original de Panther Broker
-
-<div class="split code-original">
-<div>
-
-```java {1-4|5-8|9-17|*}{lines:true}
-String[] symbols = {"META", "AAPL"};
-int[] prices = {100, 100};
-int[] quantities = {10, 10};
-int[] percentages = new int[symbols.length];
-int total = 0;
-for (int i = 0; i < symbols.length; i++) {
-    total += prices[i] * quantities[i];
-}
-for (int i = 0; i < symbols.length; i++) {
-    int targetValue = total * percentages[i] / 100;
-    int targetShares = targetValue / prices[i];
-    int difference = targetShares - quantities[i];
-    if (difference != 0) {
-        System.out.println((difference < 0 ? "VENDER " : "COMPRAR ")
-                + symbols[i] + " " + Math.abs(difference) + " acciones");
-    }
-}
-```
-
-<p class="caption">Datos y cálculo de before/Main.java. Omitimos imports, menú y lectura de objetivos; todo estaba dentro de main.</p>
-</div>
-<div class="stack">
-<div class="card"><h3>Su propósito</h3><p>Proponer qué vender y comprar según los porcentajes elegidos por la persona.</p></div>
-<div class="card purple" v-click><h3>Cómo lo hacía</h3><p>Calculaba el valor total, las cantidades objetivo y la diferencia frente a las acciones disponibles.</p></div>
-<div class="card" v-click><h3>Qué entregaba</h3><p>Un plan por consola con acciones completas. No ejecutaba operaciones.</p></div>
-</div>
-</div>
-
-<!--
-Entrada: presentar el programa de Panther Broker antes de mostrar el ejemplo. La consulta y el menú permanecen en el archivo original.
-Focos: datos, valor total y cálculo de las órdenes. Las tarjetas explican el propósito, sin adelantar el requisito de fracciones ni el defecto.
-Transición: usar estos datos para comprobar a mano el primer plan.
+Entrada: explicar que el programa toma la cuenta y una distribución elegida, y propone operaciones para acercarse a ella.
+Clic: mostrar la ejecución real de la versión original: consultar la cuenta, ingresar objetivos y recibir la propuesta de acciones completas.
+Transición: usar la cuenta de la demostración para explicar los porcentajes objetivo.
 -->
 
 ---
@@ -95,8 +53,8 @@ Transición: usar estos datos para comprobar a mano el primer plan.
 
 <div class="split equal">
 <div>
-<p class="lead">10 META y 10 AAPL.<br>Ambas a <strong>100 USD</strong>.<br>Ingresamos como objetivo: <strong>40% / 60% del valor</strong>.</p>
-<div class="card" style="margin-top:24px"><h3>El menú propone operaciones</h3><p>Ver cuenta · Ingresar objetivos · Calcular rebalanceo · Salir.</p></div>
+<p class="lead">10 META y 10 AAPL a <strong>100 USD</strong> cada una.<br>Valor total: <strong>2000 USD</strong>.<br>Ingresamos como objetivo: <strong>40% / 60% del valor</strong>.</p>
+<div class="card" style="margin-top:24px"><h3>El menú propone operaciones</h3><p>La propuesta no ejecuta operaciones ni modifica la cuenta.</p></div>
 </div>
 <div class="receipt">
 <div class="receipt-row"><span>Objetivo META</span><b>800 USD → 8 acciones</b></div>
@@ -107,7 +65,7 @@ Transición: usar estos datos para comprobar a mano el primer plan.
 </div>
 
 <!--
-Entrada: explicar rebalancear como ajustar el valor repartido entre instrumentos. No enseñar teoría financiera.
+Entrada: explicar que los porcentajes se refieren al valor de la cuenta, no al número de acciones. El programa solo propone operaciones; no las ejecuta ni modifica la cuenta.
 Transición: el programa funciona para este caso de acciones completas, pero el requisito cambia.
 -->
 
@@ -144,14 +102,14 @@ Clic: representar el razonamiento de quien adapta el programa. Transición: most
 
 ````md magic-move {duration:600, lines:true}
 ```java
-int targetValue = totalValue * targetPercent / 100;
-int targetShares = targetValue / price;
-int difference = targetShares - currentQuantity;
+int targetValue = total * percentages[i] / 100;
+int targetShares = targetValue / prices[i];
+int difference = targetShares - quantities[i];
 ```
 ```java
-int targetValue = totalValue * targetPercent / 100;
-double targetShares = targetValue / price;
-double difference = targetShares - currentQuantity;
+int targetValue = total * percentages[i] / 100;
+double targetShares = targetValue / prices[i];
+double difference = targetShares - quantities[i];
 ```
 ````
 
@@ -191,7 +149,7 @@ Clic: mostrar el salto de confianza. Transición: cambiar un precio, manteniendo
 <div class="trio">
 <div class="card" v-click><div class="label">TOTAL DE LA CUENTA</div><h2>2500 USD</h2><p>10 × 150 + 10 × 100.</p></div>
 <div class="card purple" v-click><div class="label">OBJETIVO META · 40%</div><h2>1000 USD</h2><p>1000 ÷ 150 = 6.666666… acciones.</p></div>
-<div class="card success" v-click><div class="label">VENTA ESPERADA</div><h2>3.333333</h2><p>Tenemos 10; necesitamos conservar 6.666666…</p></div>
+<div class="card success" v-click><div class="label">VENTA ESPERADA</div><h2>≈ 3.333333</h2><p>Tenemos 10; necesitamos conservar 6.666666…</p></div>
 </div>
 <p class="lead" style="margin-top:30px">Ese es el resultado esperado. <strong>Lo calculamos antes de ejecutar.</strong></p>
 
@@ -202,7 +160,7 @@ Transición: ejecutar el programa adaptado con estos datos nuevos.
 
 ---
 
-# Esperábamos vender 3.333333. Propone vender 4.
+# Esperábamos vender ≈ 3.333333. Propone vender 4.
 
 <TerminalRecording name="manual-fractional" alt="Grabación real del programa adaptado con META a150USD: propone vender cuatro acciones" />
 
@@ -254,6 +212,24 @@ Transición: guardar primero las expectativas del ejemplo habitual y ejecutarlas
 
 ---
 
+# Del programa de consola a un cálculo comprobable
+
+<p class="lead">Extraemos el cálculo de <code>main</code> a un método para llamarlo directamente desde una prueba.</p>
+
+<div class="split equal" style="margin-top:34px">
+<div class="card"><h3>Antes</h3><p>El menú lee datos y calcula dentro de <code>main</code>.</p></div>
+<div class="card purple" v-click><h3>Después</h3><p>El menú usa <code>RebalanceCalculator.quantityToTrade(...)</code>; la prueba también puede llamarlo.</p></div>
+</div>
+<p class="small" style="margin-top:26px" v-click>Extraerlo conserva el comportamiento, incluido el defecto.</p>
+
+<!--
+Entrada: explicar que se separa el cálculo de la lectura por consola para poder comprobarlo sin manejar el menú.
+Clics: enseñar que la aplicación y la prueba pueden llamar al mismo método; aclarar que extraer no corrige el defecto.
+Transición: mostrar las expectativas de la versión de acciones completas.
+-->
+
+---
+
 # Las pruebas que pudimos tener desde la versión int
 
 <div class="code-compact">
@@ -275,7 +251,7 @@ void buysTwoSharesWhenBelowTarget() {
 ```
 
 </div>
-<p class="caption">Casos del requisito original, escritos sobre el cálculo extraído del main: vender 2 META y comprar 2 AAPL.</p>
+<p class="caption">El primer argumento es el esperado; el segundo, el resultado. Un número negativo indica una venta.</p>
 
 <!--
 Entrada: volver al contrato de acciones completas. Estas dos expectativas podían haberse guardado desde la primera versión; no afirmar que el main original ya tenía pruebas.
@@ -313,7 +289,7 @@ void preservesFractionalSharesWhenSelling() {
 
 </div>
 <TerminalRecording v-click="4" :reveal-at="4" name="tests-fractional-red" alt="Grabación real de la suite con el nuevo caso fraccionario: se esperaba aproximadamente menos3.333333 y se obtuvo menos4" short />
-<p class="caption">Primero lo esperado; después lo obtenido. La tolerancia permite comparar este resultado aproximado.</p>
+<p class="caption">Esperado, resultado y tolerancia: 0.000001 permite comparar valores aproximados.</p>
 
 <!--
 Entrada: los focos señalan la llamada con datos nuevos y luego el esperado con tolerancia. No enseñar todavía toda la API de assertions.
@@ -346,7 +322,7 @@ return targetShares - currentQuantity;
 <div class="card success"><h3>1000 / 150.0</h3><p>La división conserva una aproximación de la parte fraccionaria.</p></div>
 </div>
 </div>
-<p class="caption">Usamos un ejemplo numérico pequeño para introducir pruebas. La representación decimal del dinero se abordará después.</p>
+<p class="caption">Usamos un ejemplo numérico pequeño para introducir pruebas. Este ejemplo simplificado aún no resuelve la precisión del dinero ni todas las operaciones fraccionarias.</p>
 
 <!--
 Entrada: explicar el orden: primero se calcula la expresión, después se asigna. Un clic transforma solo la división.
@@ -360,7 +336,7 @@ Corregimos el cálculo, sin cambiar lo que espera la prueba. Transición: volver
 <TerminalRecording name="tests-fixed-green" alt="Grabación real de Maven y JUnit después de corregir: las tres pruebas pasan" />
 
 <div class="split equal" style="margin-top:22px">
-<div class="card success"><h3>Una comprobación reutilizable</h3><p>Ahora el caso fraccionario forma parte de nuestra red de pruebas.</p></div>
+<div class="card success"><h3>Tres casos comprobados</h3><p>El nuevo caso fraccionario forma parte de nuestra red de pruebas.</p></div>
 <div class="card" v-click><h3>Detectarlo antes</h3><p>Incluir ese caso al adaptar el programa habría señalado el defecto antes de dar el cambio por terminado.</p></div>
 </div>
 
@@ -377,12 +353,9 @@ transition: fade
 # Pruebas que explican.<br>Cambios con confianza.
 
 <div style="margin-top:22px">
-<span class="chip" v-click>JUnit y componentes de una prueba</span>
-<span class="chip" v-click>AAA, ciclo de vida y excepciones</span>
-<span class="chip" v-click>Pruebas parametrizadas</span>
-<span class="chip" v-click>Mockito y aislamiento</span>
-<span class="chip" v-click>TDD y refactorización</span>
-<span class="chip" v-click>Tiempo, precisión y cobertura</span>
+<span class="chip" v-click>Fundamentos de JUnit y de una prueba</span>
+<span class="chip" v-click>Casos complejos y dependencias</span>
+<span class="chip" v-click>Pruebas en el trabajo cotidiano</span>
 </div>
 <p class="lead" style="margin-top:26px">Seguiremos con ejemplos del simulador Panther Broker.<br>Videos y práctica opcional, sin actividades calificadas.</p>
 

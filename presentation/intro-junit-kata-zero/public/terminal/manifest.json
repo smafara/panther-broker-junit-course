@@ -2,6 +2,11 @@
   "jdk": "25.0.5.0+8-zulu",
   "provenance": "Extractos de ejecuciones reales; encabezados y colores agregados para legibilidad. No son fotografías de una ventana de terminal.",
   "scenarios": {
+    "intro-whole-shares": {
+      "title": "Panther Broker · acciones completas",
+      "text": "Valor total: 2000 USD\nPlan sugerido (no modifica la cuenta):\nVENDER META 2 acciones\nCOMPRAR AAPL 2 acciones\n",
+      "exitCode": 0
+    },
     "manual-original": {
       "title": "El caso manual de siempre · versión double",
       "text": "Valor total: 2000 USD\nPlan sugerido (no modifica la cuenta):\nVENDER META 2.0 acciones\nCOMPRAR AAPL 2.0 acciones\n",

@@ -1,4 +1,4 @@
-# Introducción a JUnit
+# Introducción a las pruebas unitarias con JUnit
 
 Deck Slidev en español de México para **un video introductorio**, con 17 diapositivas. Motiva las pruebas con una historia de cambio de requisito; no es todavía un tutorial de arquitectura, AAA, refactorización ni de la API completa de JUnit.
 
@@ -23,13 +23,11 @@ La versión interactiva conserva revelados y transformaciones. El PDF es una cap
 
 | Paso | Diapositivas | Contenido |
 |---|---|---|
-| 1 | 1–4 | Portada, código original y propósito del programa; después el ejemplo entero |
-| 2 | 5 | Permitir comprar y vender fracciones |
-| 3 | 6–7 | Cambiar int por double y volver a probar con el ejemplo habitual |
-| 4 | 8–9 | Otros valores revelan la pérdida de la fracción |
-| 5 | 10–13 | Límites de la revisión manual, pruebas unitarias, ejemplos del requisito entero y conservación del comportamiento al cambiar a double |
-| 6 | 14–16 | Agregar el caso fraccionario, ver rojo, corregir y ejecutar tres pruebas verdes |
-| 7 | 17 | Presentar lo que enseñará el curso |
+| 1 | 1–3 | Portada, demostración y ejemplo de acciones completas |
+| 2 | 4–6 | Nuevo requisito, cambio a double y prueba manual habitual |
+| 3 | 7–10 | Caso fraccionario, defecto y concepto de pruebas unitarias |
+| 4 | 11–14 | Extraer el cálculo, pruebas originales y prueba fraccionaria |
+| 5 | 15–17 | Corregir el cálculo, ejecutar tres pruebas y presentar el curso |
 
 ## Datos y defecto vigentes
 
@@ -47,6 +45,7 @@ El JDK de los ejemplos sigue siendo SDKMAN `25.0.5.0+8-zulu`, con JUnit6.1.3 y M
 
 El PDF usa **imágenes PNG generadas desde salidas reales** del flujo de preparación del repositorio, en public/terminal. Se agregan encabezados y colores para legibilidad; no son fotografías de una ventana de terminal:
 
+- intro-whole-shares.png
 - manual-original.png
 - manual-fractional.png
 - tests-original-green.png
@@ -61,17 +60,17 @@ La narración, las notas y las capturas corresponden al guion vigente de introdu
 
 ## Presentar y verificar
 
-Con npm run dev, abrir http://localhost:3030/; las notas están en http://localhost:3030/presenter/. Con el servidor abierto, ejecutar npm run check:deck en otra terminal. La comprobación incluye las cinco grabaciones, reproducción, pausa al cambiar de diapositiva y las imágenes de exportación.
+Con npm run dev, abrir http://localhost:3030/; las notas están en http://localhost:3030/presenter/. Con el servidor abierto, ejecutar npm run check:deck en otra terminal. La comprobación incluye las seis grabaciones, reproducción, pausa al cambiar de diapositiva y las imágenes de exportación.
 
 El PDF estático se genera como intro-junit-kata-zero.pdf; la SPA compilada queda en dist. El fuente, las capturas y su procedencia se versionan; el PDF y dist se regeneran.
 
 ## Convención de presentación
 
-El programa se llama **Panther Broker**, referencia elegida a la UAM Azcapotzalco. El deck se titula **Introducción a JUnit** y la portada muestra solo el título, sin subtítulo ni duración. Se omiten también antetítulos decorativos y tiempos en las diapositivas y sus notas. La regla para las siguientes presentaciones está en [AGENTS.md](../AGENTS.md).
+El programa se llama **Panther Broker**, referencia elegida a la UAM Azcapotzalco. El deck se titula **Introducción a las pruebas unitarias con JUnit** y la portada muestra solo el título, sin subtítulo ni duración. Se omiten también antetítulos decorativos y tiempos en las diapositivas y sus notas. La regla para las siguientes presentaciones está en [AGENTS.md](../AGENTS.md).
 
 ## Grabaciones de terminal
 
-Las cinco demostraciones se reproducen con **asciinema-player 3.17.0**, instalado desde npm y servido localmente. El terminal aparece con un fundido y se reproduce automáticamente a velocidad 0.5×. La demostración roja espera al cuarto clic, después de recorrer el código. Hacer clic en el terminal permite pausar o continuar. Con teclado, enfocar el terminal con Tab y usar Enter o Espacio. Al terminar, otro clic vuelve a reproducir desde el inicio. No se muestran controles, barra de tiempo ni botón superpuesto. Al salir de una diapositiva se pausa su grabación. El PDF conserva los PNG como alternativa estática.
+Las seis demostraciones se reproducen con **asciinema-player 3.17.0**, instalado desde npm y servido localmente. El terminal aparece con un fundido y se reproduce automáticamente a velocidad 0.5×. La demostración roja espera al cuarto clic, después de recorrer el código. Hacer clic en el terminal permite pausar o continuar. Con teclado, enfocar el terminal con Tab y usar Enter o Espacio. Al terminar, otro clic vuelve a reproducir desde el inicio. No se muestran controles, barra de tiempo ni botón superpuesto. Al salir de una diapositiva se pausa su grabación. El PDF conserva los PNG como alternativa estática.
 
 Para regenerarlas desde la raíz:
 
@@ -94,3 +93,5 @@ Los métodos usan nombres breves de comportamiento y condición, como `sellsTwoS
 Las demostraciones de JUnit incluyen una lista de pruebas debajo del terminal. Empiezan pendientes; cuando termina la grabación se presentan sus resultados uno por uno: las dos originales primero y después la fraccionaria. La versión defectuosa muestra dos verdes y una roja; la corregida muestra tres verdes. Al repetir la grabación o volver a entrar a la diapositiva, la lista vuelve al estado inicial. El PDF muestra directamente los resultados finales.
 
 El panel es una visualización de las diapositivas, no una captura de un IDE. Sus nombres y estados proceden de los reportes XML reales de Surefire, que scripts/record-kata-zero.py lee tras cada ejecución y conserva en data/test-results.json y public/terminal/recordings.json. El orden de revelado facilita la explicación y no pretende representar el orden interno de ejecución de JUnit. La animación comienza después del final de la grabación; no simula resultados de pruebas aún no ejecutadas. No se agregan plugins Maven al proyecto del alumnado.
+
+La segunda diapositiva explica brevemente el propósito y, al avanzar, muestra una ejecución real de la versión original: consultar la cuenta, ingresar los objetivos y ver la propuesta de operaciones. El archivo completo está disponible en kata-zero/before.

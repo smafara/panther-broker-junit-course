@@ -110,17 +110,18 @@ for(const n of recordingSlides){
     throw new Error(`La grabación sigue reproduciéndose fuera de su diapositiva: ${name}`);
   recordingChecks.push({slide:n,name,events:rows.length-1,playback:true,pause:true});
 }
-await page.goto(`${baseUrl}/14?clicks=3`,{waitUntil:'networkidle'});
-const gated=page.locator('#slide-content [data-slidev-no="14"] .terminal-recording');
+const redSlide=deck.slides.findIndex(slide=>slide.content.includes('name="tests-fractional-red"'))+1;
+await page.goto(`${baseUrl}/${redSlide}?clicks=3`,{waitUntil:'networkidle'});
+const gated=page.locator(`#slide-content [data-slidev-no="${redSlide}"] .terminal-recording`);
 if(await gated.getAttribute('data-playing')==='true')throw new Error('La ejecución roja comenzó antes de revelar el terminal.');
 await page.goto(`${baseUrl}/print?print=true`,{waitUntil:'networkidle'});
 await page.waitForTimeout(1000);
 const fallback=page.locator('.terminal-recording img.terminal-capture');
-if(await fallback.count()!==5)throw new Error('La exportación necesita cinco imágenes estáticas.');
+if(await fallback.count()!==recordingSlides.length)throw new Error('La exportación necesita una imagen estática por grabación.');
 if(!await fallback.evaluateAll(images=>images.every(img=>img.complete&&img.naturalWidth>0)))
   throw new Error('No se cargaron las imágenes de exportación.');
 console.log('Grabaciones verificadas:',JSON.stringify(recordingChecks));
-await fs.writeFile('.validation/report.json',JSON.stringify({slides:deck.slides.length,missingNotes:missing,errors,external,recordingChecks,staticFallbackImages:5,results},null,2));
+await fs.writeFile('.validation/report.json',JSON.stringify({slides:deck.slides.length,missingNotes:missing,errors,external,recordingChecks,staticFallbackImages:recordingSlides.length,results},null,2));
 await browser.close();
 console.log(JSON.stringify({slides:results.length,notes:deck.slides.length-missing.length,errors,external:[...new Set(external)],overflow:results.filter(x=>x.overflow.length),diagrams:results.reduce((s,x)=>s+x.diagrams,0),magicSlides:results.filter(x=>x.magic>0).map(x=>x.slide)},null,2));
 if(results.some(x=>x.captures.some(img=>!img.loaded))||errors.length||external.length||results.some(x=>x.overflow.length)||results.reduce((sum,x)=>sum+x.diagrams,0)!==expectedDiagrams||!results.some(x=>x.magic>0))process.exitCode=1;

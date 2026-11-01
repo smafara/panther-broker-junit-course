@@ -115,7 +115,8 @@ with tempfile.TemporaryDirectory(prefix='panther-recording-') as directory:
     (work / 'mvnw').symlink_to(ROOT / 'mvnw')
     (work / '.mvn').symlink_to(ROOT / '.mvn', target_is_directory=True)
     stages = {}
-    for label, original in [('manual-original', 'after/01-naive-fractions'),
+    for label, original in [('intro-whole-shares', 'before'),
+                            ('manual-original', 'after/01-naive-fractions'),
                             ('manual-fractional', 'after/01-naive-fractions'),
                             ('tests-buggy', 'after/02-first-test'),
                             ('tests-fixed', 'after/02-first-test')]:
@@ -127,10 +128,14 @@ with tempfile.TemporaryDirectory(prefix='panther-recording-') as directory:
     helper = stages['tests-buggy'] / SOURCE / 'RebalanceCalculator.java'
     helper.write_text(helper.read_text().replace('targetValue / (double) price', 'targetValue / price'))
     # Precompile console examples, so the recordings focus on execution. Tests still run Maven.
-    for label in ('manual-original', 'manual-fractional'):
+    for label in ('intro-whole-shares', 'manual-original', 'manual-fractional'):
         subprocess.run([str(work / 'mvnw'), '-B', '-ntp', '-f', str(stages[label] / 'pom.xml'), 'compile'],
                        env=ENV, capture_output=True, check=True)
     scenarios = {}
+    scenarios['intro-whole-shares'] = record(stages['intro-whole-shares'], 'intro-whole-shares',
+        'java -cp target/classes mx.azc.uam.pantherbroker.Main', True, 0,
+        ['META: 10 acciones a 100 USD', 'AAPL: 10 acciones a 100 USD',
+         'VENDER META 2 acciones', 'COMPRAR AAPL 2 acciones', 'Hasta luego.'])
     for name in ('manual-original', 'manual-fractional'):
         scenarios[name] = record(stages[name], name,
                                  'java -cp target/classes mx.azc.uam.pantherbroker.Main', True, 0,

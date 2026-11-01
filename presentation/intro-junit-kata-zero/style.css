@@ -135,6 +135,9 @@ html.dark { color-scheme: dark; }
 .code-original .card { padding: 18px 20px; }
 .code-original .card p { font-size: 19px; }
 
+.intro-flow { display: flex; align-items: center; justify-content: center; gap: 20px; padding: 12px 18px; margin: 12px 0 18px; border: 1px solid #66839b55; border-radius: 12px; background: #10203388; font-size: 19px; color: var(--ink); }
+.intro-flow b { color: var(--mint); font-size: 25px; }
+
 /* El terminal administra su propia cuadrícula; no aplicar estilos de Shiki. */
 .slidev-layout .ap-term pre {
   padding: 0 !important;

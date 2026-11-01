@@ -87,7 +87,7 @@ def write_captures(records):
         pdf = pymupdf.open('pdf', image.convert_to_pdf())
         pdf[0].get_pixmap(matrix=pymupdf.Matrix(1.3, 1.3)).save(str(destination / f'{name}.png'))
     (destination / 'manifest.json').write_text(json.dumps(dict(jdk=JDK, provenance='Extractos de ejecuciones reales; encabezados y colores agregados para legibilidad. No son fotografías de una ventana de terminal.', scenarios=records), ensure_ascii=False, indent=2)+'\n')
-    print('Cinco capturas renderizadas desde salidas reales, con texto y manifiesto: OK')
+    print(f'{len(records)} capturas renderizadas desde salidas reales, con texto y manifiesto: OK')
 
 if args.render_only:
     saved = json.loads((ROOT / 'presentation/intro-junit-kata-zero/public/terminal/manifest.json').read_text())
@@ -115,6 +115,7 @@ for index, output in enumerate(baseline):
     assert 'sumar 100%' in console(stages[index], '2\nabc\n60\n0\n')
     for inputs, message in [('2\n40\n60\n2\n40\n60\n0\n', 'Plan sugerido'), ('99\n0\n', 'Opción no válida.'), ('', 'Hasta luego.')]:
         assert message in console(stages[index], inputs)
+records['intro-whole-shares'] = dict(title='Panther Broker · acciones completas', text=plan_excerpt(baseline[0]), exitCode=0)
 records['manual-original'] = dict(title='El caso manual de siempre · versión double', text=plan_excerpt(baseline[1]), exitCode=0)
 
 with tempfile.TemporaryDirectory(prefix='kata-zero-intro-') as directory:

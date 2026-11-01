@@ -53,3 +53,11 @@ La SPA compilada se comprobó también en vite preview: se observaron las mutaci
 Resaltado continuo: en la diapositiva 11, las seis líneas activas tienen el mismo ancho y cada borde inferior coincide con el superior de la siguiente. Se revisó la impresión de navegador con el segundo método enfocado: un solo rectángulo de fondo, sin franjas separadas ni cambios en el código.
 
 Se agregó una diapositiva breve de propósito antes del código original. El programa solicita porcentajes al calcular; las grabaciones ingresan 40 y 60. Se verifican también 50/50, 30/70 y entradas inválidas en las tres etapas.
+
+## Revisión de la apertura y del guion · 2026-11-01
+
+La presentación actual tiene 18 diapositivas. Se verificó la compilación, la exportación de 18 páginas y `npm run check:deck`: notas completas, cinco grabaciones y sus paneles, sin desbordamientos detectados. El archivo completo de la segunda diapositiva coincide con `before/Main.java`; se comprobó que el panel se desplaza hasta el final. El PDF muestra solo el inicio del panel desplazable. La exportación sigue mostrando el aviso conocido de FloatingVue, pero termina correctamente.
+
+La apertura vigente sustituye el panel de código por tarjetas que describen el programa. Se volvieron a verificar la compilación, el PDF y las 18 diapositivas con sus cinco grabaciones; no se detectaron desbordamientos.
+
+La segunda diapositiva muestra ahora una sexta grabación PTY de la versión original con acciones completas. Se verificaron 27 ejecuciones de consola, compilación, exportación PDF y reproducción y pausa de las seis grabaciones, sin desbordamientos.
