@@ -274,7 +274,7 @@ void buysTwoSharesWhenBelowTarget() {
 ```
 
 </div>
-<p class="caption"><code>@Test</code> marca la prueba; <code>assertEquals</code> compara el resultado con lo esperado. El último número permite comparar aproximaciones; lo veremos después. Se omiten clase e imports.</p>
+<p class="caption"><code>@Test</code> marca la prueba; <code>assertEquals</code> compara el resultado con lo esperado. El nombre significa «compra dos acciones cuando está por debajo del objetivo». El último número permite comparar aproximaciones; lo veremos después. Se omiten clase e imports.</p>
 
 <!--
 Entrada: presentar brevemente la anotación, el método de prueba y la comparación.
@@ -290,14 +290,18 @@ Transición: mostrar las dos expectativas del ejemplo original.
 
 <div class="code-compact">
 
-```java {1-6|8-13|*}{lines:true}
+```java {lines:true}
 @Test
 void buysTwoSharesWhenBelowTarget() {
     assertEquals(2.0,
         RebalanceCalculator.quantityToTrade(2000, 60, 100, 10),
         0.000001);
 }
+```
 
+<div v-click>
+
+```java {lines:true}
 @Test
 void sellsTwoSharesWhenAboveTarget() {
     assertEquals(-2.0,
@@ -306,12 +310,14 @@ void sellsTwoSharesWhenAboveTarget() {
 }
 ```
 
+
 </div>
-<p class="caption">Conservamos la prueba de compra y agregamos una para la venta. Un número negativo indica una venta.</p>
+</div>
+<p class="caption"><strong>Compra:</strong> esperamos 2 acciones. <strong>Venta:</strong> esperamos −2 acciones.</p>
 
 <!--
 Entrada: volver al contrato de acciones completas. Estas dos expectativas podían haberse guardado desde la primera versión; no afirmar que el main original ya tenía pruebas.
-Clics: retomar la compra de la diapositiva anterior y mostrar después la venta esperada. Los ejemplos corresponden a OriginalExamplesTest; se omiten imports y DisplayName y se distribuyen las llamadas en varias líneas.
+Entrada: conservar visible la prueba de compra. Un clic revela la prueba de venta. Los ejemplos corresponden a OriginalExamplesTest; se omiten imports y DisplayName y se distribuyen las llamadas en varias líneas.
 El menú ya utiliza el método, y la prueba puede llamarlo directamente. Usamos la firma actual compatible con la evolución fraccionaria; la tolerancia se explicará durante el curso. En esta diapositiva centrarse en las dos expectativas guardadas, sin volver a explicar la estructura de la prueba.
 Transición: ejecutar esos casos después del cambio a double para comprobar que el comportamiento anterior se conserva.
 -->

@@ -474,3 +474,7 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 ## D067 — Conectar las primeras pruebas · 2026-11-01
 
 **Decisión:** retomar la prueba de compra antes de añadir la venta, documentar brevemente el cálculo y mostrar los parámetros enteros al explicar la división.
+
+## D068 — Revelar la segunda prueba · 2026-11-01
+
+**Decisión:** mantener visible la prueba de compra y revelar la venta al avanzar; explicar los nombres en español y conservar los identificadores del código.
