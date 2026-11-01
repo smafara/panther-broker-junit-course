@@ -77,33 +77,31 @@ Transición: mostrar el código que produjo esta propuesta.
 
 # El código original de Panther Broker
 
-<p class="source-path" data-file="Main.java">kata-zero/before/src/main/java/…/Main.java</p>
+<p class="source-path" data-file="RebalanceCalculator.java">kata-zero/before/src/main/java/…/RebalanceCalculator.java</p>
 
 <div class="split code-compact">
 <div>
 
-```java {1-3|5-7|*}{lines:true}
-String[] symbols = {"META", "AAPL"};
-int[] prices = {100, 100};
-int[] quantities = {10, 10};
-
-// Fragmento dentro del ciclo de rebalanceo
-int targetValue = total * percentages[i] / 100;
-int targetShares = targetValue / prices[i];
-int difference = targetShares - quantities[i];
+```java {1-2|3-4|5|*}{lines:true}
+static int quantityToTrade(int totalValue, int targetPercent,
+                           int price, int currentQuantity) {
+    int targetValue = totalValue * targetPercent / 100;
+    int targetShares = targetValue / price;
+    return targetShares - currentQuantity;
+}
 ```
 
 </div>
 <div class="stack">
-<div class="card"><h3>La cuenta</h3><p>Guarda símbolos, precios y cantidades de acciones completas.</p></div>
-<div class="card purple" v-click><h3>La propuesta</h3><p>Calcula la cantidad objetivo y la compara con la cantidad actual.</p></div>
+<div class="card"><h3>Recibe</h3><p>Valor de la cuenta, objetivo, precio y cantidad actual.</p></div>
+<div class="card purple" v-click><h3>Devuelve</h3><p>Cuántas acciones completas comprar o vender.</p></div>
 </div>
 </div>
-<p class="caption">Fragmentos de <code>main</code>; se omiten el menú, la lectura de objetivos y el resto del cálculo.</p>
+<p class="caption">Método original; se omiten paquete y clase. El menú lo llama para cada acción.</p>
 
 <!--
-Entrada: mostrar los datos y la parte del cálculo de la versión original.
-Focos: arreglos de la cuenta y cálculo de la cantidad objetivo; los bloques provienen de partes distintas del mismo main.
+Entrada: mostrar el método que utiliza el menú para calcular la propuesta de acciones completas.
+Focos: entradas, cálculo y diferencia. Una cantidad negativa indica venta.
 Transición: introducir la compra y venta de fracciones como requisito nuevo.
 -->
 
@@ -135,31 +133,35 @@ Clic: representar el razonamiento de quien adapta el programa. Transición: most
 
 # Cambiamos el tipo de la cantidad
 
-<p class="source-path" data-file="Main.java">kata-zero/before y after/01-naive-fractions · src/main/java/…/Main.java</p>
+<p class="source-path" data-file="RebalanceCalculator.java">kata-zero/before y after/01-naive-fractions · src/main/java/…/RebalanceCalculator.java</p>
 
 <div class="split code-compact">
 <div>
 
 ````md magic-move {duration:600, lines:true}
 ```java
-int targetValue = total * percentages[i] / 100;
-int targetShares = targetValue / prices[i];
-int difference = targetShares - quantities[i];
+static int quantityToTrade(...) {
+    int targetValue = totalValue * targetPercent / 100;
+    int targetShares = targetValue / price;
+    return targetShares - currentQuantity;
+}
 ```
 ```java
-int targetValue = total * percentages[i] / 100;
-double targetShares = targetValue / prices[i];
-double difference = targetShares - quantities[i];
+static double quantityToTrade(...) {
+    int targetValue = totalValue * targetPercent / 100;
+    double targetShares = targetValue / price;
+    return targetShares - currentQuantity;
+}
 ```
 ````
 
 </div>
 <div class="stack">
 <div class="card"><h3>Antes</h3><p>Cantidades completas en variables int.</p></div>
-<div class="card purple"><h3>Después</h3><p>Las variables que guardan cantidades ahora aceptan decimales.</p></div>
+<div class="card purple"><h3>Después</h3><p>El método y la cantidad objetivo ahora aceptan decimales.</p></div>
 </div>
 </div>
-<p class="caption">Fragmento del cálculo: por ahora conservamos los importes y precios enteros del ejemplo.</p>
+<p class="caption">Fragmento del método: se omiten los parámetros; los importes y precios siguen siendo enteros.</p>
 
 <!--
 Entrada: un clic transforma int en double. No señalar todavía el tipo de los operandos de la división.
@@ -252,20 +254,30 @@ Transición: guardar primero las expectativas del ejemplo habitual y ejecutarlas
 
 ---
 
-# Del programa de consola a un cálculo comprobable
+# Un primer vistazo a una prueba
 
-<p class="lead">Extraemos el cálculo de <code>main</code> a un método para llamarlo directamente desde una prueba.</p>
+<p class="source-path" data-file="OriginalExamplesTest.java">kata-zero/after/02-first-test/src/test/java/…/OriginalExamplesTest.java</p>
 
-<div class="split equal" style="margin-top:34px">
-<div class="card"><h3>Antes</h3><p>El menú lee datos y calcula dentro de <code>main</code>.</p></div>
-<div class="card purple" v-click><h3>Después</h3><p>El menú usa <code>RebalanceCalculator.quantityToTrade(...)</code>; la prueba también puede llamarlo.</p></div>
+<p class="lead">Una prueba es un método que llama a nuestro cálculo y comprueba lo que devuelve.</p>
+
+<div class="code-compact">
+
+```java {1|2|3-5|*}{lines:true}
+@Test
+void buysTwoSharesWhenBelowTarget() {
+    assertEquals(2.0,
+        RebalanceCalculator.quantityToTrade(2000, 60, 100, 10),
+        0.000001);
+}
+```
+
 </div>
-<p class="small" style="margin-top:26px" v-click>Extraerlo conserva el comportamiento, incluido el defecto.</p>
+<p class="caption"><code>@Test</code> marca la prueba; <code>assertEquals</code> compara el resultado con lo esperado. Se omiten clase e imports.</p>
 
 <!--
-Entrada: explicar que se separa el cálculo de la lectura por consola para poder comprobarlo sin manejar el menú.
-Clics: enseñar que la aplicación y la prueba pueden llamar al mismo método; aclarar que extraer no corrige el defecto.
-Transición: mostrar las expectativas de la versión de acciones completas.
+Entrada: presentar brevemente la anotación, el método de prueba y la comparación.
+No desarrollar aún tolerancia ni anatomía completa; se profundiza en la segunda presentación.
+Transición: mostrar las dos expectativas del ejemplo original.
 -->
 
 ---
@@ -298,7 +310,7 @@ void buysTwoSharesWhenBelowTarget() {
 <!--
 Entrada: volver al contrato de acciones completas. Estas dos expectativas podían haberse guardado desde la primera versión; no afirmar que el main original ya tenía pruebas.
 Clics: mostrar la venta esperada y después la compra esperada. Los ejemplos corresponden a OriginalExamplesTest; se omiten imports y DisplayName y se distribuyen las llamadas en varias líneas.
-El cálculo se extrae del main para poder llamarlo directamente. Usamos la firma actual compatible con la evolución fraccionaria; el detalle de la extracción y la tolerancia se explicará durante el curso.
+El menú ya utiliza el método, y la prueba puede llamarlo directamente. Usamos la firma actual compatible con la evolución fraccionaria; el detalle de la extracción y la tolerancia se explicará durante el curso.
 Transición: ejecutar esos casos después del cambio a double para comprobar que el comportamiento anterior se conserva.
 -->
 
@@ -351,9 +363,11 @@ Reproducir la grabación de Maven: las pruebas anteriores pasan y la nueva revel
 
 ````md magic-move {duration:650, lines:true}
 ```java
-int targetValue = totalValue * targetPercent / 100;
-double targetShares = targetValue / price;
-return targetShares - currentQuantity;
+static double quantityToTrade(...) {
+    int targetValue = totalValue * targetPercent / 100;
+    double targetShares = targetValue / price;
+    return targetShares - currentQuantity;
+}
 ```
 ```java
 int targetValue = totalValue * targetPercent / 100;

@@ -457,3 +457,10 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Origen:** el usuario acepta convertir la tercera diapositiva en una explicación de por qué se proponen las operaciones.
 
 **Decisión:** mostrar el cálculo del 40 % y 60 % de la cuenta y las cantidades objetivo, comparándolas con las diez acciones disponibles de cada empresa.
+
+
+## D065 — Mostrar el cálculo desde la versión original · 2026-11-01
+
+**Origen:** el usuario solicita que quantityToTrade exista desde el principio y que la primera presentación muestre brevemente una prueba en vez de introducir una extracción.
+
+**Decisión:** separar el cálculo en RebalanceCalculator en las versiones original y fraccionaria ingenua; conservar la división entera y los mismos resultados. Presentar el método desde el inicio y sustituir la transición de extracción por un vistazo a @Test y assertEquals. Mantener el detalle para la segunda presentación y regenerar las demostraciones.

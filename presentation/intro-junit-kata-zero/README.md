@@ -26,7 +26,7 @@ La versión interactiva conserva revelados y transformaciones. El PDF es una cap
 | 1 | 1–4 | Portada, demostración, ejemplo entero y fragmentos del código original |
 | 2 | 5–7 | Nuevo requisito, cambio a double y prueba manual habitual |
 | 3 | 8–11 | Caso fraccionario, defecto y concepto de pruebas unitarias |
-| 4 | 12–15 | Extraer el cálculo, pruebas originales y prueba fraccionaria |
+| 4 | 12–15 | Presentar una prueba, casos originales y prueba fraccionaria |
 | 5 | 16–18 | Corregir el cálculo, ejecutar tres pruebas y presentar el curso |
 
 ## Datos y defecto vigentes

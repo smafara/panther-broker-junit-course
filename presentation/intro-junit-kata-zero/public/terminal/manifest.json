@@ -29,7 +29,7 @@
     },
     "tests-fixed-green": {
       "title": "Misma suite · división corregida",
-      "text": "[INFO] Running mx.azc.uam.pantherbroker.FractionalSharesTest\n[INFO] Running mx.azc.uam.pantherbroker.OriginalExamplesTest\n[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0\n[INFO] BUILD SUCCESS\n",
+      "text": "[INFO] Running mx.azc.uam.pantherbroker.FractionalSharesTest\n[INFO] Running mx.azc.uam.pantherbroker.OriginalExamplesTest\n[INFO] Running mx.azc.uam.pantherbroker.RebalanceCalculatorTest\n[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0\n[INFO] BUILD SUCCESS\n",
       "exitCode": 0
     }
   }
