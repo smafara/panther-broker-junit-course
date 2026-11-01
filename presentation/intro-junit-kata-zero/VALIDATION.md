@@ -5,8 +5,8 @@
 ## Verificación
 
 - `npm run build`: SPA compilada correctamente.
-- `npm run export:pdf`: PDF de 16 páginas generado.
-- `npm run check:deck`, con dev activo: 16 diapositivas y 16 notas; cinco grabaciones con reproducción y pausa verificadas, cinco imágenes estáticas en exportación, un Mermaid, dos diapositivas con magic-move; sin errores de página, recursos externos ni desbordamientos detectados.
+- `npm run export:pdf`: PDF de 17 páginas generado.
+- `npm run check:deck`, con dev activo: 17 diapositivas y 17 notas; cinco grabaciones con reproducción y pausa verificadas, cinco imágenes estáticas en exportación, un Mermaid, dos diapositivas con magic-move; sin errores de página, recursos externos ni desbordamientos detectados.
 - Revisión visual de páginas rasterizadas del PDF: resultados originales verdes, nueva prueba con falla, suite corregida y cierre del curso. Se quitaron esquinas blancas de los PNG al renderizar el fondo completo.
 - Verificación Java y consola mediante scripts/verify-kata-zero.py: 15 recorridos, dos pruebas originales verdes con defecto, tres pruebas con una falla al agregar el caso y tres verdes después de corregir.
 
@@ -40,7 +40,7 @@ Se inspeccionó la apariencia interactiva mediante rasterización de una impresi
 
 Se corrigió el recorte vertical: el estilo global de pre heredaba un interlineado de 1.5 mientras la cuadrícula del reproductor usa 1.15. Ahora respeta --term-line-height. El verificador compara interlineado y altura de fila, además de comprobar que la barra y la superposición inicial están ocultas. Un botón transparente accesible controla reproducir/pausar/repetir.
 
-Se insertó «¿Qué es una prueba unitaria?» como diapositiva 9. PDF de 16 páginas regenerado y página nueva revisada visualmente: definición breve, tres tarjetas y conexión con JUnit. Se actualizaron el mapa del deck y los índices de las grabaciones en la verificación.
+Se insertó «¿Qué es una prueba unitaria?» como diapositiva 9. PDF de 17 páginas regenerado y página nueva revisada visualmente: definición breve, tres tarjetas y conexión con JUnit. Se actualizaron el mapa del deck y los índices de las grabaciones en la verificación.
 
 Narrativa ampliada a 16 diapositivas: límite manual y regresiones → presentación de pruebas unitarias → dos métodos del requisito entero → mismos casos verdes tras cambiar a double → caso fraccionario rojo → corrección de producción → tres casos verdes. Se revisaron visualmente las páginas de motivación y pruebas originales del PDF; el código mostrado coincide con OriginalExamplesTest salvo formato e imports/anotaciones omitidas, según las notas.
 
@@ -48,6 +48,8 @@ Se renombraron los tres métodos y sus DisplayName con Given–When–Then; sin 
 
 Autoplay y resumen de pruebas: se regeneraron las sesiones y capturas con los tres nombres breves. Los estados individuales del panel se extraen de XML reales de Surefire y se validan contra dos casos verdes, tres casos con una falla y tres verdes. La verificación del deck cubre autoplay al revelar, velocidad configurada 0.5, pausa, repetición y reinicio de resultados, estados finales y espera al cuarto clic del caso rojo.
 
-La SPA compilada se comprobó también en vite preview: se observaron las mutaciones del panel, confirmando pendiente/pendiente/pendiente → verde/pendiente/pendiente → verde/verde/pendiente → verde/verde/rojo y, en la versión corregida, verde/verde/verde. PDF de 16 páginas actualizado; ambos paneles contienen los tres nombres. Se revisaron visualmente las páginas roja y verde.
+La SPA compilada se comprobó también en vite preview: se observaron las mutaciones del panel, confirmando pendiente/pendiente/pendiente → verde/pendiente/pendiente → verde/verde/pendiente → verde/verde/rojo y, en la versión corregida, verde/verde/verde. PDF de 17 páginas actualizado; ambos paneles contienen los tres nombres. Se revisaron visualmente las páginas roja y verde.
 
 Resaltado continuo: en la diapositiva 11, las seis líneas activas tienen el mismo ancho y cada borde inferior coincide con el superior de la siguiente. Se revisó la impresión de navegador con el segundo método enfocado: un solo rectángulo de fondo, sin franjas separadas ni cambios en el código.
+
+Se agregó una diapositiva breve de propósito antes del código original. El programa solicita porcentajes al calcular; las grabaciones ingresan 40 y 60. Se verifican también 50/50, 30/70 y entradas inválidas en las tres etapas.

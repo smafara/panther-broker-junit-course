@@ -86,6 +86,11 @@ def record(work, name, command, menu, expected, tokens):
                 drain(1)
                 offset = len(output)
                 type_text(choice + '\n')
+                if choice == '2':
+                    wait_for('Objetivo para META (%):', offset)
+                    type_text('40\n')
+                    wait_for('Objetivo para AAPL (%):', offset)
+                    type_text('60\n')
                 wait_for('Hasta luego.' if choice == '0' else '0. Salir', offset)
         wait_for('panther$ ', offset)
         assert int((work / '.recording-exit').read_text()) == expected

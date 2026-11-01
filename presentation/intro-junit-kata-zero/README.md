@@ -1,6 +1,6 @@
 # Introducción a JUnit
 
-Deck Slidev en español de México para **un video introductorio**, con 16 diapositivas. Motiva las pruebas con una historia de cambio de requisito; no es todavía un tutorial de arquitectura, AAA, refactorización ni de la API completa de JUnit.
+Deck Slidev en español de México para **un video introductorio**, con 17 diapositivas. Motiva las pruebas con una historia de cambio de requisito; no es todavía un tutorial de arquitectura, AAA, refactorización ni de la API completa de JUnit.
 
 ## Ejecutar
 
@@ -23,17 +23,17 @@ La versión interactiva conserva revelados y transformaciones. El PDF es una cap
 
 | Paso | Diapositivas | Contenido |
 |---|---|---|
-| 1 | 1–3 | Portada, código original y propósito del programa; después el ejemplo entero |
-| 2 | 4 | Permitir comprar y vender fracciones |
-| 3 | 5–6 | Cambiar int por double y volver a probar con el ejemplo habitual |
-| 4 | 7–8 | Otros valores revelan la pérdida de la fracción |
-| 5 | 9–12 | Límites de la revisión manual, pruebas unitarias, ejemplos del requisito entero y conservación del comportamiento al cambiar a double |
-| 6 | 13–15 | Agregar el caso fraccionario, ver rojo, corregir y ejecutar tres pruebas verdes |
-| 7 | 16 | Presentar lo que enseñará el curso |
+| 1 | 1–4 | Portada, código original y propósito del programa; después el ejemplo entero |
+| 2 | 5 | Permitir comprar y vender fracciones |
+| 3 | 6–7 | Cambiar int por double y volver a probar con el ejemplo habitual |
+| 4 | 8–9 | Otros valores revelan la pérdida de la fracción |
+| 5 | 10–13 | Límites de la revisión manual, pruebas unitarias, ejemplos del requisito entero y conservación del comportamiento al cambiar a double |
+| 6 | 14–16 | Agregar el caso fraccionario, ver rojo, corregir y ejecutar tres pruebas verdes |
+| 7 | 17 | Presentar lo que enseñará el curso |
 
 ## Datos y defecto vigentes
 
-- Cuenta inicial: 10 META y 10 AAPL a 100 USD cada una; objetivo 40/60. Vender 2 META y comprar 2 AAPL parece funcionar.
+- Cuenta inicial: 10 META y 10 AAPL a 100 USD cada una; objetivo ingresado 40/60. Vender 2 META y comprar 2 AAPL parece funcionar.
 - Nuevo precio: META pasa a 150 USD. Total2500; objetivoMETA1000; cantidadobjetivo6.666666…; vender aproximadamente3.333333. AAPL requiere comprar5.
 - Adaptación ingenua: `targetShares` cambia de int a double, pero `targetValue / price` sigue dividiendo dos int. Se calcula6 y luego se guarda6.0; la venta propuesta es4.
 - Corrección: `targetValue / (double) price`, conservando la parte fraccionaria aproximada.
@@ -79,7 +79,7 @@ Para regenerarlas desde la raíz:
 python3 scripts/record-kata-zero.py
 ```
 
-El script selecciona exclusivamente SDKMAN `25.0.5.0+8-zulu`, prepara copias temporales de los proyectos Maven y registra sesiones reales de pseudoterminal en formato asciicast v2. Teclea automáticamente los comandos y las opciones 1, 2 y 0 con pausas: no es una persona escribiendo ni una animación fabricada de resultados. Los ejemplos de consola ya están compilados antes de grabar; las tres sesiones de pruebas muestran Maven completo, su resultado. El código de salida se valida internamente, sin imprimir comandos adicionales en la demostración. La preparación modifica únicamente las copias temporales para reconstruir el defecto y cambiar META a 150 USD.
+El script selecciona exclusivamente SDKMAN `25.0.5.0+8-zulu`, prepara copias temporales de los proyectos Maven y registra sesiones reales de pseudoterminal en formato asciicast v2. Teclea automáticamente los comandos, las opciones 1, 2 y 0, y los objetivos 40 y 60 con pausas: no es una persona escribiendo ni una animación fabricada de resultados. Los ejemplos de consola ya están compilados antes de grabar; las tres sesiones de pruebas muestran Maven completo, su resultado. El código de salida se valida internamente, sin imprimir comandos adicionales en la demostración. La preparación modifica únicamente las copias temporales para reconstruir el defecto y cambiar META a 150 USD.
 
 `public/terminal/*.cast` conserva las salidas completas con sus tiempos originales; `recordings.json` documenta comandos, duración, JDK y códigos de salida. El reproductor comprime pausas sin actividad a dos segundos y reproduce a mitad de velocidad; no elimina salida. No se suben grabaciones a servicios externos. Si falla el reproductor, se muestra la imagen estática.
 

@@ -305,3 +305,9 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Origen:** el usuario pide resaltar el bloque completo en vez de franjas del ancho de cada línea.
 
 **Decisión:** hacer que las líneas de Shiki ocupen todo el ancho y compartan exactamente el interlineado, usando una cuadrícula que evita huecos por saltos de línea. Un rango contiguo se ve como un solo rectángulo. Conservar los focos por clic, números de línea y colores de sintaxis; no modificar el terminal.
+
+## D041 — Objetivos elegidos y contexto antes del código · 2026-11-01
+
+**Origen:** el usuario solicita ingresar los porcentajes objetivo y presentar el propósito antes del código original.
+
+**Decisión:** en las tres etapas, al calcular el rebalanceo se solicita un porcentaje entero por acción y se valida que estén entre 0 y 100 y sumen 100. El ejemplo usa 40/60 como entrada, no como regla fija; se conserva el defecto de división entera de la adaptación. Insertar después de la portada una explicación breve de entradas, propósito y plan propuesto. Actualizar fragmento, grabaciones, validaciones y guía.

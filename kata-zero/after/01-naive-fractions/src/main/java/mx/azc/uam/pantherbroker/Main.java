@@ -9,8 +9,8 @@ public class Main {
         String[] symbols = {"META", "AAPL"};
         int[] prices = {100, 100};
         int[] quantities = {10, 10};
-        int[] percentages = {40, 60};
-        System.out.println("Panther Broker · Cuenta de Alex · precios ficticios en USD · objetivo 40/60");
+        int[] percentages = new int[symbols.length];
+        System.out.println("Panther Broker · Cuenta de Alex · precios ficticios en USD");
         while (true) {
             System.out.println("\n1. Ver cuenta\n2. Calcular rebalanceo\n0. Salir");
             String option = reader.readLine();
@@ -20,6 +20,24 @@ public class Main {
                     System.out.println(symbols[i] + ": " + quantities[i] + " acciones a " + prices[i] + " USD");
                 }
             } else if (option.equals("2")) {
+                int sum = 0;
+                boolean valid = true;
+                for (int i = 0; i < symbols.length; i++) {
+                    System.out.println("Objetivo para " + symbols[i] + " (%):");
+                    String input = reader.readLine();
+                    if (input == null) return;
+                    try {
+                        percentages[i] = Integer.parseInt(input);
+                        if (percentages[i] < 0 || percentages[i] > 100) valid = false;
+                        sum += percentages[i];
+                    } catch (NumberFormatException e) {
+                        valid = false;
+                    }
+                }
+                if (!valid || sum != 100) {
+                    System.out.println("Los objetivos deben ser enteros entre 0 y 100 y sumar 100%.");
+                    continue;
+                }
                 int total = 0;
                 for (int i = 0; i < symbols.length; i++) total += prices[i] * quantities[i];
                 System.out.println("Valor total: " + total + " USD");

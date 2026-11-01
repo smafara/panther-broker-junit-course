@@ -22,7 +22,7 @@ Introducción de 7–8 minutos al curso. Primero contamos una historia; la estru
 
 El total, el valor objetivo y los precios siguen siendo int en este ejercicio. Asignar a double el resultado de una división entre int no recupera la fracción. Esto es truncamiento por división entera, no un error de representación binaria de double.
 
-Datos iniciales: 10 META y 10 AAPL, ambas a 100 USD, objetivo 40/60. Venta de 2 META y compra de 2 AAPL. Nuevos datos: solo META pasa a 150 USD; total 2500 USD; objetivo META 1000 USD; debe vender aproximadamente 3.333333, pero la adaptación ingenua vende 4.
+Datos iniciales: 10 META y 10 AAPL, ambas a 100 USD, objetivo ingresado 40/60. Venta de 2 META y compra de 2 AAPL. Nuevos datos: solo META pasa a 150 USD; total 2500 USD; objetivo META 1000 USD; debe vender aproximadamente 3.333333, pero la adaptación ingenua vende 4.
 
 ## Ejecutar
 
@@ -39,7 +39,7 @@ python3 scripts/verify-kata-zero.py
 
 Se usa Zulu `25.0.5.0+8-zulu` y Maven Wrapper 3.10.0. En Windows nativo usar mvnw.cmd y JAVA_HOME al mismo build; SDKMAN se puede usar en WSL. Seleccionar también ese JDK en el IDE.
 
-El menú solo permite ver cuenta, calcular y salir. Para cambiar el precio, editar `int[] prices = {100, 100}` a `{150, 100}` en una copia y recompilar. El plan no aplica operaciones.
+El menú permite ver la cuenta, calcular y salir. Al calcular, se solicita un porcentaje entero entre 0 y 100 para cada acción; los objetivos deben sumar 100%. Por ejemplo, escribir 40 y después 60. Para cambiar el precio, editar `int[] prices = {100, 100}` a `{150, 100}` en una copia y recompilar. El plan no aplica operaciones.
 
 La corrección final usa `targetValue / (double) price`. El alcance son estos datos preparados y una aproximación numérica; no implementa un intermediario real, precisión monetaria general, efectivo, comisiones o impuestos. BigDecimal se estudia después.
 
@@ -57,7 +57,7 @@ python3 -m venv /tmp/panther-broker-captures
 /tmp/panther-broker-captures/bin/python scripts/verify-kata-zero.py --captures
 ```
 
-El script usa el JDK exacto, verifica el reactor, ejecuta 15 recorridos de consola y reproduce verde/rojo/verde. Las imágenes son representaciones de extractos reales, con texto, SVG y manifiesto de procedencia; no son fotografías de una ventana de terminal.
+El script usa el JDK exacto, verifica el reactor, ejecuta 27 recorridos de consola y reproduce verde/rojo/verde. Las imágenes son representaciones de extractos reales, con texto, SVG y manifiesto de procedencia; no son fotografías de una ventana de terminal.
 
 ## Material del video
 

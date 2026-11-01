@@ -6,19 +6,19 @@
       "file": "manual-original.cast",
       "command": "java -cp target/classes mx.azc.uam.pantherbroker.Main",
       "exitCode": 0,
-      "duration": 6.016055
+      "duration": 6.328229
     },
     "manual-fractional": {
       "file": "manual-fractional.cast",
       "command": "java -cp target/classes mx.azc.uam.pantherbroker.Main",
       "exitCode": 0,
-      "duration": 5.985805
+      "duration": 6.211371
     },
     "tests-original-green": {
       "file": "tests-original-green.cast",
       "command": "../mvnw -B -ntp -Dtest=OriginalExamplesTest test",
       "exitCode": 0,
-      "duration": 4.648754,
+      "duration": 4.641696,
       "tests": [
         {
           "name": "sellsTwoSharesWhenAboveTarget",
@@ -34,7 +34,7 @@
       "file": "tests-fractional-red.cast",
       "command": "../mvnw -B -ntp test",
       "exitCode": 1,
-      "duration": 3.291723,
+      "duration": 3.245861,
       "tests": [
         {
           "name": "sellsTwoSharesWhenAboveTarget",
@@ -54,7 +54,7 @@
       "file": "tests-fixed-green.cast",
       "command": "../mvnw -B -ntp test",
       "exitCode": 0,
-      "duration": 3.410232,
+      "duration": 3.443175,
       "tests": [
         {
           "name": "sellsTwoSharesWhenAboveTarget",

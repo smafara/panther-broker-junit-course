@@ -31,6 +31,24 @@ Transición: primero mostrar el programa antes del requisito nuevo, sin explicar
 
 ---
 
+# ¿Qué hace Panther Broker?
+
+<p class="lead">Tenemos una cuenta con acciones, sus cantidades y precios. La persona elige cómo quiere distribuir el valor de su portafolio.</p>
+
+<div class="split equal" style="margin-top:30px">
+<div class="card"><h3>Entrada</h3><p>Acciones y precios de la cuenta, más un porcentaje objetivo para cada acción.</p><p><code>int[] prices = {100, 100};</code></p></div>
+<div class="card success" v-click><h3>Resultado</h3><p>Un plan que propone cuánto comprar o vender para acercarse a esa distribución.</p></div>
+</div>
+<p class="small" style="margin-top:26px" v-click>Es una propuesta: el programa no ejecuta operaciones.</p>
+
+<!--
+Entrada: presentar brevemente el problema con una cuenta ficticia. El usuario introduce los objetivos, y los precios y cantidades forman los datos de la cuenta.
+Clic: mostrar que el resultado es un plan de compras y ventas. Siguiente clic: aclarar que el programa no ejecuta órdenes.
+Transición: ver un fragmento del código original que construye esa propuesta.
+-->
+
+---
+
 # El código original de Panther Broker
 
 <div class="split code-original">
@@ -40,7 +58,7 @@ Transición: primero mostrar el programa antes del requisito nuevo, sin explicar
 String[] symbols = {"META", "AAPL"};
 int[] prices = {100, 100};
 int[] quantities = {10, 10};
-int[] percentages = {40, 60};
+int[] percentages = new int[symbols.length];
 int total = 0;
 for (int i = 0; i < symbols.length; i++) {
     total += prices[i] * quantities[i];
@@ -56,10 +74,10 @@ for (int i = 0; i < symbols.length; i++) {
 }
 ```
 
-<p class="caption">Datos y cálculo de before/Main.java. Omitimos imports y menú; todo estaba dentro de main.</p>
+<p class="caption">Datos y cálculo de before/Main.java. Omitimos imports, menú y lectura de objetivos; todo estaba dentro de main.</p>
 </div>
 <div class="stack">
-<div class="card"><h3>Su propósito</h3><p>Proponer qué vender y comprar para repartir el valor de la cuenta en 40% META y 60% AAPL.</p></div>
+<div class="card"><h3>Su propósito</h3><p>Proponer qué vender y comprar según los porcentajes elegidos por la persona.</p></div>
 <div class="card purple" v-click><h3>Cómo lo hacía</h3><p>Calculaba el valor total, las cantidades objetivo y la diferencia frente a las acciones disponibles.</p></div>
 <div class="card" v-click><h3>Qué entregaba</h3><p>Un plan por consola con acciones completas. No ejecutaba operaciones.</p></div>
 </div>
@@ -77,8 +95,8 @@ Transición: usar estos datos para comprobar a mano el primer plan.
 
 <div class="split equal">
 <div>
-<p class="lead">10 META y 10 AAPL.<br>Ambas a <strong>100 USD</strong>.<br>Objetivo: <strong>40% / 60% del valor</strong>.</p>
-<div class="card" style="margin-top:24px"><h3>El menú propone operaciones</h3><p>Ver cuenta · Calcular rebalanceo · Salir.</p></div>
+<p class="lead">10 META y 10 AAPL.<br>Ambas a <strong>100 USD</strong>.<br>Ingresamos como objetivo: <strong>40% / 60% del valor</strong>.</p>
+<div class="card" style="margin-top:24px"><h3>El menú propone operaciones</h3><p>Ver cuenta · Ingresar objetivos · Calcular rebalanceo · Salir.</p></div>
 </div>
 <div class="receipt">
 <div class="receipt-row"><span>Objetivo META</span><b>800 USD → 8 acciones</b></div>
@@ -162,7 +180,7 @@ Transición: hacemos lo habitual: volver a ejecutar con los mismos datos y compa
 </div>
 
 <!--
-Entrada: reproducir la grabación completa del programa adaptado: comando, menú, cuenta, cálculo y salida. No simular una terminal con texto inventado.
+Entrada: reproducir la grabación completa del programa adaptado: comando, menú, cuenta, objetivos 40 y 60, cálculo y salida. No simular una terminal con texto inventado.
 Clic: mostrar el salto de confianza. Transición: cambiar un precio, manteniendo la misma cuenta.
 -->
 

@@ -4,9 +4,9 @@
 
 ## Resultado
 
-`python3 scripts/verify-kata-zero.py` construye el reactor completo y ejecuta 15 recorridos de consola. La versión final pasa tres pruebas sin errores ni omisiones.
+`python3 scripts/verify-kata-zero.py` construye el reactor completo y ejecuta 27 recorridos de consola. La versión final pasa tres pruebas sin errores ni omisiones.
 
-Se comprobaron los cuatro recorridos habituales —consulta/plan sin mutación, plan repetido, opción inválida y fin de entrada— en tres etapas. Tres copias adicionales usan META a 150 USD: before vende 4, la adaptación double vende 4.0 y la versión corregida vende 3.333333333333333.
+También se comprueban objetivos alternativos 50/50 y 30/70, y se rechazan valores no numéricos o que no suman 100. Se comprobaron los cuatro recorridos habituales —consulta/plan sin mutación, plan repetido, opción inválida y fin de entrada— en tres etapas. Tres copias adicionales usan META a 150 USD: before vende 4, la adaptación double vende 4.0 y la versión corregida vende 3.333333333333333.
 
 En una copia temporal del calculador defectuoso:
 

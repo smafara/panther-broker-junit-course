@@ -41,7 +41,7 @@ def maven(project, *goals, expected=0):
     return result
 
 
-def console(project, input_text='2\n0\n'):
+def console(project, input_text='2\n40\n60\n0\n'):
     result = subprocess.run([java, '-cp', str(project / 'target/classes'), 'mx.azc.uam.pantherbroker.Main'],
                             input=input_text, env=env, capture_output=True, text=True, check=True, timeout=10)
     assert not result.stderr, result.stderr
@@ -99,14 +99,21 @@ build = maven(ROOT, 'clean', 'verify')
 assert 'BUILD SUCCESS' in build.stdout
 print('Maven reactor: BUILD SUCCESS, suite corregida de tres pruebas')
 
-baseline = [console(stage, '1\n2\n1\n0\n') for stage in stages]
+baseline = [console(stage, '1\n2\n40\n60\n1\n0\n') for stage in stages]
 for index, output in enumerate(baseline):
     expected = '2' if index == 0 else '2.0'
     assert f'VENDER META {expected} acciones' in output
     assert f'COMPRAR AAPL {expected} acciones' in output
     assert output.count('META: 10 acciones a 100 USD') == 2
     assert output.count('AAPL: 10 acciones a 100 USD') == 2
-    for inputs, message in [('2\n2\n0\n', 'Plan sugerido'), ('99\n0\n', 'Opción no válida.'), ('', 'Hasta luego.')]:
+    alternate = console(stages[index], '2\n50\n50\n0\n')
+    assert 'Plan sugerido' in alternate and 'VENDER ' not in alternate and 'COMPRAR ' not in alternate
+    alternate = console(stages[index], '2\n30\n70\n0\n')
+    four = '4' if index == 0 else '4.0'
+    assert f'VENDER META {four} acciones' in alternate and f'COMPRAR AAPL {four} acciones' in alternate
+    assert 'sumar 100%' in console(stages[index], '2\n40\n50\n0\n')
+    assert 'sumar 100%' in console(stages[index], '2\nabc\n60\n0\n')
+    for inputs, message in [('2\n40\n60\n2\n40\n60\n0\n', 'Plan sugerido'), ('99\n0\n', 'Opción no válida.'), ('', 'Hasta luego.')]:
         assert message in console(stages[index], inputs)
 records['manual-original'] = dict(title='El caso manual de siempre · versión double', text=plan_excerpt(baseline[1]), exitCode=0)
 
@@ -141,7 +148,7 @@ with tempfile.TemporaryDirectory(prefix='kata-zero-intro-') as directory:
 
 assert 'Tests run: 3, Failures: 0, Errors: 0, Skipped: 0' in build.stdout
 records['tests-fixed-green'] = dict(title='Misma suite · división corregida', text=test_excerpt(build.stdout), exitCode=0)
-print('15 ejecuciones de consola y casos original-verde / fraccionario-rojo / corregido-verde: OK')
+print('27 ejecuciones de consola y casos original-verde / fraccionario-rojo / corregido-verde: OK')
 
 if args.captures:
     write_captures(records)

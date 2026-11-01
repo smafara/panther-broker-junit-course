@@ -110,8 +110,8 @@ for(const n of recordingSlides){
     throw new Error(`La grabación sigue reproduciéndose fuera de su diapositiva: ${name}`);
   recordingChecks.push({slide:n,name,events:rows.length-1,playback:true,pause:true});
 }
-await page.goto(`${baseUrl}/13?clicks=3`,{waitUntil:'networkidle'});
-const gated=page.locator('#slide-content [data-slidev-no="13"] .terminal-recording');
+await page.goto(`${baseUrl}/14?clicks=3`,{waitUntil:'networkidle'});
+const gated=page.locator('#slide-content [data-slidev-no="14"] .terminal-recording');
 if(await gated.getAttribute('data-playing')==='true')throw new Error('La ejecución roja comenzó antes de revelar el terminal.');
 await page.goto(`${baseUrl}/print?print=true`,{waitUntil:'networkidle'});
 await page.waitForTimeout(1000);

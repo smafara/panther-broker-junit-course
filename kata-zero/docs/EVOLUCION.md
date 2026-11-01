@@ -6,7 +6,7 @@ El usuario redujo el alcance a una historia para motivar el curso. Los primeros 
 
 ## 1. El programa original
 
-Datos fijos: diez META, diez AAPL, ambas a 100 USD, proporciones 40/60. Arreglos y resultados int, menú con println y BufferedReader. Calcula un plan; no ejecuta operaciones. El caso manual da vender 2 y comprar 2.
+Datos iniciales fijos: diez META, diez AAPL, ambas a 100 USD. La persona ingresa los objetivos; el ejemplo usa 40/60. Arreglos y resultados int, menú con println y BufferedReader. Calcula un plan; no ejecuta operaciones. El caso manual da vender 2 y comprar 2.
 
 ## 2. El cambio ingenuo
 
