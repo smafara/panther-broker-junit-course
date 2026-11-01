@@ -1,6 +1,6 @@
 # Después 2: expectativas ejecutables
 
-Se separa el cálculo mínimo para llamarlo desde pruebas. No se enseña esa extracción como tema del video introductorio.
+El cálculo ya existe desde la versión original; aquí se agregan pruebas y se corrige la división.
 
 ```sh
 ./mvnw -f kata-zero/after/02-first-test/pom.xml test

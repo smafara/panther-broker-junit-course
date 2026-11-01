@@ -33,7 +33,7 @@ Se usa una tolerancia explícita para comparar double, sin enseñar toda la API 
 
 ## 5. Corrección y alcance
 
-Promover un operando mediante `(double) price` permite la división fraccionaria. La suite mantiene sus tres expectativas y pasa. La lógica se separa en un método únicamente para ejecutar las pruebas; la extracción no es un capítulo del video.
+Promover un operando mediante `(double) price` permite la división fraccionaria. La suite mantiene sus tres expectativas y pasa. El cálculo está en un método desde la versión original; se prueba directamente.
 
 El ejemplo usa precios enteros y valores preparados. No resuelve toda la precisión monetaria ni cualquier entrada de un sistema financiero. La elección de casos, BigDecimal, estructura de pruebas y metodologías se estudian en el curso.
 

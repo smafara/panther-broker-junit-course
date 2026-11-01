@@ -9,7 +9,7 @@ Se toma como referencia el problema, no se copia una implementación Java preexi
 | Aspecto | Referencia C# | Kata Zero |
 |---|---|---|
 | Entrada | Biblioteca y CLI JSON | Menú println y BufferedReader |
-| Diseño | Stock, Portfolio y Order | Todo en main de 52 líneas; después se extrae una fórmula |
+| Diseño | Stock, Portfolio y Order | Menú en main y cálculo separado desde la versión original |
 | Números | decimal | BigDecimal construido con cadenas |
 | Cantidad de orden | Cuatro decimales, ToEven | Cuatro decimales, HALF_EVEN |
 | Distribución | Pesos positivos de instrumentos objetivo | Arreglo fijo con pesos de 0 a 1; cero excluye el instrumento |

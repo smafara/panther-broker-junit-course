@@ -1,6 +1,6 @@
 # Antes: acciones completas
 
-Programa original con arreglos y resultados int, todo dentro de main. Precios ficticios en USD, diez acciones de cada instrumento y objetivos ingresados por la persona. Por ejemplo, 40/60. El caso preparado propone vender 2 META y comprar 2 AAPL.
+Programa original con menú y arreglos en main; RebalanceCalculator.quantityToTrade devuelve resultados int. Precios ficticios en USD, diez acciones de cada instrumento y objetivos ingresados por la persona. Por ejemplo, 40/60. El caso preparado propone vender 2 META y comprar 2 AAPL.
 
 Desde la raíz, con `sdk env`:
 

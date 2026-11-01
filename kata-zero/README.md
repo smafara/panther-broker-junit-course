@@ -16,7 +16,7 @@ Introducción de 7–8 minutos al curso. Primero contamos una historia; la estru
 
 | Carpeta | Contenido |
 |---|---|
-| [before](before/README.md) | Programa con resultados enteros, todo en main |
+| [before](before/README.md) | Programa con menú en main y cálculo entero en RebalanceCalculator |
 | [after/01-naive-fractions](after/01-naive-fractions/README.md) | Solo las variables de resultado cambian a double |
 | [after/02-first-test](after/02-first-test/README.md) | Cálculo separado para probarlo, tres casos y división corregida |
 

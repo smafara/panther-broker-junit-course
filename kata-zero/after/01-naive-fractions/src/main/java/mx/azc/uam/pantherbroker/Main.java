@@ -43,9 +43,8 @@ public class Main {
                 System.out.println("Valor total: " + total + " USD");
                 System.out.println("Plan sugerido (no modifica la cuenta):");
                 for (int i = 0; i < symbols.length; i++) {
-                    int targetValue = total * percentages[i] / 100;
-                    double targetShares = targetValue / prices[i];
-                    double difference = targetShares - quantities[i];
+                    double difference = RebalanceCalculator.quantityToTrade(
+                            total, percentages[i], prices[i], quantities[i]);
                     if (difference != 0) {
                         System.out.println((difference < 0 ? "VENDER " : "COMPRAR ")
                                 + symbols[i] + " " + Math.abs(difference) + " acciones");

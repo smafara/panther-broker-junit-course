@@ -14,7 +14,7 @@ Después de la portada, explicar brevemente el propósito de Panther Broker y lu
 
 ## 3. El cambio rápido y la misma comprobación · 1:30–2:30
 
-Cambiar los tipos de targetShares y difference de int a double. Ejecutar after/01-naive-fractions con los mismos datos. Mostrar la captura manual-original: vender 2.0 y comprar 2.0.
+Cambiar el tipo de retorno de quantityToTrade y de targetShares de int a double. Ejecutar after/01-naive-fractions con los mismos datos. Mostrar la captura manual-original: vender 2.0 y comprar 2.0.
 
 «Sigue dando lo mismo. Entonces lo doy por terminado». Pausar para que resulte reconocible esa forma de trabajar, sin ridiculizarla. Todavía no señalar la división.
 
@@ -40,7 +40,7 @@ Mostrar tests-fractional-red: tres pruebas, una falla; esperado -3.333333, obten
 
 Señalar `targetValue / price`: ambos son int, por lo que 1000/150 produce 6 antes de guardarse como 6.0. Precisar que es truncamiento, no un error binario de double. Promover el denominador a double y mostrar tests-fixed-green: las tres pasan sin cambiar expectativas.
 
-El cálculo se aísla en un método como preparación técnica; no dedicar una sección a refactorizar. No llamar TDD a este recorrido.
+El cálculo ya está en quantityToTrade desde la versión original; la prueba lo llama directamente. No llamar TDD a este recorrido.
 
 ## 7. Qué aprenderemos · 6:45–7:30
 
@@ -52,7 +52,7 @@ Cerrar con formato: videos y práctica opcional sin calificación. No agregar un
 
 ## Preparación y capturas
 
-Ejecutar `sdk env` y `python3 scripts/verify-kata-zero.py`. Las cinco capturas y sus extractos están en presentation/intro-junit-kata-zero/public/terminal. Son imágenes renderizadas a partir de salidas reales, no fotos de una ventana ni resultados inventados.
+Ejecutar `sdk env` y `python3 scripts/verify-kata-zero.py`. Las seis capturas y sus extractos están en presentation/intro-junit-kata-zero/public/terminal. Son imágenes renderizadas a partir de salidas reales, no fotos de una ventana ni resultados inventados.
 
 Las etiquetas v4 conservan el estado rojo y su corrección. El deck es apoyo a la historia, no un sustituto del programa y sus resultados.
 
