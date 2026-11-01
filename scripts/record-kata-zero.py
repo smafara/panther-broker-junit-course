@@ -153,7 +153,7 @@ with tempfile.TemporaryDirectory(prefix='panther-recording-') as directory:
                 status = 'failed' if case.find('failure') is not None or case.find('error') is not None else 'passed'
                 assert case.find('skipped') is None
                 results[case.attrib['name']] = status
-        order = ['sellsTwoSharesWhenAboveTarget', 'buysTwoSharesWhenBelowTarget', 'preservesFractionalSharesWhenSelling']
+        order = ['sellsTwoSharesWhenAboveTarget', 'buysTwoSharesWhenBelowTarget', 'calculatesFractionalQuantityToSell']
         expected_results = 2 if name == 'tests-original-green' else 3
         assert len(results) == expected_results, results
         assert sum(status == 'failed' for status in results.values()) == exit_code, results

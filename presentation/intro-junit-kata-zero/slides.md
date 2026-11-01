@@ -347,9 +347,9 @@ Clic: hacer explícito por qué verde no equivale a corrección universal. Trans
 <div class="code-compact">
 
 ```java {2|4|5|*}{lines:true}
-// Conserva la fracción de acciones al vender.
+// Calcula cuántas acciones fraccionarias se deben vender.
 @Test
-void preservesFractionalSharesWhenSelling() {
+void calculatesFractionalQuantityToSell() {
     double order = RebalanceCalculator.quantityToTrade(2500, 40, 150, 10);
     assertEquals(-3.333333, order, 0.000001);
 }

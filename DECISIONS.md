@@ -486,3 +486,7 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 ## D070 — Explicar la prueba fraccionaria · 2026-11-01
 
 **Decisión:** agregar un comentario breve en español a la prueba fraccionaria en la diapositiva y en su fuente.
+
+## D071 — Precisar el nombre de la prueba fraccionaria · 2026-11-01
+
+**Decisión:** llamar calculatesFractionalQuantityToSell a la prueba porque verifica la cantidad propuesta para vender.

@@ -19,7 +19,7 @@
       "status": "passed"
     },
     {
-      "name": "preservesFractionalSharesWhenSelling",
+      "name": "calculatesFractionalQuantityToSell",
       "status": "failed"
     }
   ],
@@ -33,7 +33,7 @@
       "status": "passed"
     },
     {
-      "name": "preservesFractionalSharesWhenSelling",
+      "name": "calculatesFractionalQuantityToSell",
       "status": "passed"
     }
   ]
