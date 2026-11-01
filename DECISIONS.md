@@ -445,3 +445,9 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Origen:** el usuario pregunta por el código original de la primera presentación y solicita acelerar sus grabaciones a 0.75×.
 
 **Decisión:** volver a mostrar fragmentos fieles del main original después del ejemplo de acciones completas y antes del requisito fraccionario, señalando las partes omitidas. Cambiar a 0.75× las grabaciones de la introducción y actualizar su comprobación y documentación. La segunda presentación conserva su velocidad.
+
+## D063 — Explicar la cuenta antes de la demostración · 2026-11-01
+
+**Origen:** al preparar la grabación, el usuario señala que el diagrama abstracto de la segunda diapositiva no se entiende.
+
+**Decisión:** sustituirlo por los datos concretos de la grabación: 10 acciones de cada empresa a 100 USD, objetivo de 40/60 del valor de la cuenta y propuesta de vender y comprar dos acciones. Mantener una frase directa y la ejecución real debajo; mejorar tamaño y contraste.

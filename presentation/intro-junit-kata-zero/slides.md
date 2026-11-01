@@ -33,16 +33,20 @@ Transición: primero mostrar el programa antes del requisito nuevo, sin explicar
 
 # Supongamos que tenemos un programa: Panther Broker
 
-<p class="small">Propone compras y ventas para acercar una cuenta a la distribución que elige la persona.</p>
+<p class="intro-purpose">Panther Broker propone qué comprar y vender para repartir el valor de una cuenta como queremos.</p>
 
 <div class="intro-flow">
-  <span>Acciones y precios</span><b>+</b><span>Distribución objetivo</span><b>→</b><span>Propuesta de operaciones</span>
+  <div><strong>Cuenta actual</strong><span>10 META + 10 AAPL<br>100 USD por acción</span></div>
+  <b aria-hidden="true">→</b>
+  <div><strong>Lo que queremos</strong><span>40 % del valor en META<br>60 % en AAPL</span></div>
+  <b aria-hidden="true">→</b>
+  <div><strong>Propuesta</strong><span>Vender 2 META<br>Comprar 2 AAPL</span></div>
 </div>
 
 <TerminalRecording v-click="1" :reveal-at="1" name="intro-whole-shares" alt="Ejecución real de Panther Broker: consulta de la cuenta y propuesta de rebalanceo con acciones completas" />
 
 <!--
-Entrada: explicar que el programa toma la cuenta y una distribución elegida, y propone operaciones para acercarse a ella.
+Entrada: explicar el ejemplo de izquierda a derecha: una cuenta con dos acciones, el porcentaje del valor deseado para cada una y las operaciones que propone el programa. No ejecuta operaciones.
 Clic: mostrar la ejecución real de la versión original: consultar la cuenta, ingresar objetivos y recibir la propuesta de acciones completas.
 Transición: usar la cuenta de la demostración para explicar los porcentajes objetivo.
 -->
