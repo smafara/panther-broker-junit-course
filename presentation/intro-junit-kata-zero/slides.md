@@ -53,23 +53,23 @@ Transición: usar la cuenta de la demostración para explicar los porcentajes ob
 
 ---
 
-# Al principio, solo manejábamos acciones completas
+# ¿Por qué vender 2 y comprar 2?
 
 <div class="split equal">
 <div>
-<p class="lead">10 META y 10 AAPL a <strong>100 USD</strong> cada una.<br>Valor total: <strong>2000 USD</strong>.<br>Ingresamos como objetivo: <strong>40% / 60% del valor</strong>.</p>
-<div class="card" style="margin-top:24px"><h3>El menú propone operaciones</h3><p>La propuesta no ejecuta operaciones ni modifica la cuenta.</p></div>
+<p class="lead">La cuenta vale <strong>2000 USD</strong>.<br>Cada acción cuesta <strong>100 USD</strong>.</p>
+<div class="card" style="margin-top:24px"><h3>Comparamos con lo que tenemos</h3><p>Tenemos 10 acciones de cada empresa. El programa solo propone operaciones.</p></div>
 </div>
 <div class="receipt">
-<div class="receipt-row"><span>Objetivo META</span><b>800 USD → 8 acciones</b></div>
-<div class="receipt-row"><span>Objetivo AAPL</span><b>1200 USD → 12 acciones</b></div>
+<div class="receipt-row"><span>META · 40 %</span><b>800 USD → 8 acciones</b></div>
+<div class="receipt-row"><span>AAPL · 60 %</span><b>1200 USD → 12 acciones</b></div>
 <div class="receipt-row total"><span>Plan</span><b>Vender 2 META</b></div>
 <div class="receipt-row"><span></span><b>Comprar 2 AAPL</b></div>
 </div>
 </div>
 
 <!--
-Entrada: explicar que los porcentajes se refieren al valor de la cuenta, no al número de acciones. El programa solo propone operaciones; no las ejecuta ni modifica la cuenta.
+Entrada: calcular 40 % y 60 % de 2000 USD, dividir cada resultado entre el precio de 100 USD y comparar con las 10 acciones disponibles de cada empresa.
 Transición: mostrar el código que produjo esta propuesta.
 -->
 

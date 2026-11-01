@@ -451,3 +451,9 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 **Origen:** al preparar la grabación, el usuario señala que el diagrama abstracto de la segunda diapositiva no se entiende.
 
 **Decisión:** sustituirlo por los datos concretos de la grabación: 10 acciones de cada empresa a 100 USD, objetivo de 40/60 del valor de la cuenta y propuesta de vender y comprar dos acciones. Mantener una frase directa y la ejecución real debajo; mejorar tamaño y contraste.
+
+## D064 — Explicar la propuesta de rebalanceo · 2026-11-01
+
+**Origen:** el usuario acepta convertir la tercera diapositiva en una explicación de por qué se proponen las operaciones.
+
+**Decisión:** mostrar el cálculo del 40 % y 60 % de la cuenta y las cantidades objetivo, comparándolas con las diez acciones disponibles de cada empresa.
