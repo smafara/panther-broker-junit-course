@@ -482,3 +482,7 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 ## D069 — Comentarios en español en las pruebas · 2026-11-01
 
 **Decisión:** explicar con comentarios breves en español qué comprueba cada prueba, junto al código, en lugar de traducir nombres en las leyendas.
+
+## D070 — Explicar la prueba fraccionaria · 2026-11-01
+
+**Decisión:** agregar un comentario breve en español a la prueba fraccionaria en la diapositiva y en su fuente.
