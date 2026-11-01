@@ -41,6 +41,13 @@ for(let n=1;n<=deck.slides.length;n++){
     if(!root) throw new Error(`No se renderizó la diapositiva ${no}`);
     const bounds=canvas.getBoundingClientRect();
     const over=[];
+    for(const group of root.querySelectorAll('.split.equal,.trio')) {
+      const cards=[...group.children].filter(el=>el.classList.contains('card'));
+      if(cards.length<2)continue;
+      const boxes=cards.map(el=>el.getBoundingClientRect());
+      if(boxes.some(box=>Math.abs(box.width-boxes[0].width)>1||Math.abs(box.height-boxes[0].height)>1))
+        over.push({element:'tarjetas desiguales',sizes:boxes.map(box=>[Math.round(box.width),Math.round(box.height)])});
+    }
     for(const el of root.querySelectorAll('h1,h2,h3,p,pre,table,img,.card,.terminal,.formula,.diagram,.terminal-recording')){
       if(el.closest('.ap-player'))continue;
       const style=getComputedStyle(el);

@@ -97,6 +97,8 @@ Clic: representar el razonamiento de quien adapta el programa. Transición: most
 
 # Cambiamos el tipo de la cantidad
 
+<p class="source-path" data-file="Main.java">kata-zero/before y after/01-naive-fractions · src/main/java/…/Main.java</p>
+
 <div class="split code-compact">
 <div>
 
@@ -232,6 +234,8 @@ Transición: mostrar las expectativas de la versión de acciones completas.
 
 # Las pruebas que pudimos tener desde la versión int
 
+<p class="source-path" data-file="OriginalExamplesTest.java">kata-zero/after/02-first-test/src/test/java/…/OriginalExamplesTest.java</p>
+
 <div class="code-compact">
 
 ```java {1-6|8-13|*}{lines:true}
@@ -277,6 +281,8 @@ Clic: hacer explícito por qué verde no equivale a corrección universal. Trans
 
 # El requisito fraccionario necesita una prueba nueva
 
+<p class="source-path" data-file="FractionalSharesTest.java">kata-zero/after/02-first-test/src/test/java/…/FractionalSharesTest.java</p>
+
 <div class="code-compact">
 
 ```java {1|3|4|*}{lines:true}
@@ -299,6 +305,8 @@ Reproducir la grabación de Maven: las pruebas anteriores pasan y la nueva revel
 ---
 
 # Guardar en double no cambia una división entre int
+
+<p class="source-path" data-file="RebalanceCalculator.java">kata-zero/after/02-first-test/src/main/java/…/RebalanceCalculator.java · defecto reconstruido en copia temporal</p>
 
 <div class="split code-compact">
 <div>
@@ -357,7 +365,7 @@ transition: fade
 <span class="chip" v-click>Casos complejos y dependencias</span>
 <span class="chip" v-click>Pruebas en el trabajo cotidiano</span>
 </div>
-<p class="lead" style="margin-top:26px">Seguiremos con ejemplos del simulador Panther Broker.<br>Videos y práctica opcional, sin actividades calificadas.</p>
+<p class="lead" style="margin-top:26px">Seguiremos con ejemplos del simulador Panther Broker.<br>Videos y práctica opcional.</p>
 
 <!--
 Entrada: anunciar los temas del curso sin explicar sus técnicas todavía. Los nombres son una ruta, no prerrequisitos.

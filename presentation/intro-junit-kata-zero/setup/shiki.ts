@@ -1,5 +1,5 @@
 import { defineShikiSetup } from '@slidev/types'
 
 export default defineShikiSetup(() => ({
-  themes: { dark: 'github-dark', light: 'github-dark' },
+  themes: { dark: 'tokyo-night', light: 'tokyo-night' },
 }))

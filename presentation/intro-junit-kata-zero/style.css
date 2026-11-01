@@ -61,6 +61,7 @@ html.dark { color-scheme: dark; }
 .caption { margin-top: 15px; color: #93abc5; font-size: 15px; }
 .split { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); gap: 30px; align-items: start; }
 .split.equal { grid-template-columns: 1fr 1fr; }
+.split > .card { align-self: stretch; }
 .stack { display: flex; flex-direction: column; gap: 17px; }
 .card { padding: 22px 24px; border: 1px solid #708aa344; border-radius: 15px; background: linear-gradient(140deg, #1c2b3cbb, #101a2abb); box-shadow: 0 14px 32px #0002; }
 .card p { font-size: 20px; margin: 7px 0 0; color: var(--muted); }
@@ -94,6 +95,7 @@ html.dark { color-scheme: dark; }
 .slidev-layout .slidev-code > code { display: grid; }
 .slidev-layout .slidev-code .line { display: block; min-height: 1lh; }
 .slidev-layout .slidev-code .line.dim { opacity:.30; }
+.slidev-layout .slidev-code span[style*="#51597D"] { --shiki-dark: #98a6c7 !important; --shiki-light: #98a6c7 !important; }
 .slidev-layout .slidev-code .highlighted { background:#5eead413; }
 .code-compact pre { font-size:16px !important; line-height:1.45 !important; }
 .terminal { padding:24px 28px; border:1px solid #61779166; background:#080e18; border-radius:14px; font-family:'SFMono-Regular',Consolas,monospace; font-size:21px; line-height:1.65; }
@@ -146,4 +148,21 @@ html.dark { color-scheme: dark; }
   font-size: inherit !important;
   line-height: var(--term-line-height) !important;
   background: transparent !important;
+}
+
+/* Archivo y ruta comparten una cabecera inspirada en un editor. */
+.source-path {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px;
+  width: fit-content; max-width: 100%; box-sizing: border-box;
+  opacity: 1 !important; margin: -10px 0 10px !important;
+  padding: 0 12px 0 0; border: 1px solid #43597099;
+  border-radius: 7px; background: #111b2c; color: #b6c8df;
+  font: 14px/1.35 'SFMono-Regular', Consolas, monospace;
+  overflow-wrap: anywhere;
+}
+.source-path::before {
+  content: attr(data-file); flex: none; padding: 7px 11px;
+  border-right: 1px solid #43597099; border-radius: 6px 0 0 6px;
+  background: #1a2b40; box-shadow: inset 0 2px #5eead4;
+  color: #e2edf8; font-weight: 700;
 }
