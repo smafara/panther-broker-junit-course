@@ -490,3 +490,7 @@ Registrar fecha, origen, decisión, alternativas y consecuencias. Distinguir req
 ## D071 — Precisar el nombre de la prueba fraccionaria · 2026-11-01
 
 **Decisión:** llamar calculatesFractionalQuantityToSell a la prueba porque verifica la cantidad propuesta para vender.
+
+## D072 — Acotar el curso y crear la tercera presentación · 2026-11-02
+
+**Decisión:** tras dos rondas de consejo, centrar el curso en JUnit, diseño de pruebas y una introducción a TDD. Adoptar 11 videos con posible división de Mockito. Crear la presentación de assertions reutilizando tema, Shiki, componentes y reproducción de terminal. La falla controlada cambia el divisor del porcentaje de100 a10 en copia temporal: la comprobación positiva pasa y la cantidad exacta falla. Mantener el esperado justificado y corregir producción.

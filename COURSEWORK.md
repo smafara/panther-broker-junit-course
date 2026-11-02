@@ -4,6 +4,28 @@ Curso de servicio social para estudiantes de México. Proyecto: **Panther Broker
 
 JDK obligatorio para todos los ejemplos y verificaciones: **`25.0.5.0+8-zulu` de SDKMAN**. Está fijado en `.sdkmanrc`; activar con `sdk env` y usar la misma instalación en el IDE.
 
+## Ruta acotada vigente · 2026-11-02
+
+Esta ruta sustituye la secuencia y la estimación de 16 videos que se conservan abajo como referencia histórica. Panther Broker sirve para enseñar pruebas: no construiremos un intermediario completo. El contrato financiero detallado anterior queda fuera del alcance obligatorio.
+
+1. Introducción a las pruebas unitarias con JUnit — Kata Zero, existente.
+2. Primeros pasos con JUnit — configuración y AAA, existente.
+3. Comprobar resultados con JUnit — esperado, obtenido, fuerza de una comprobación y diagnóstico.
+4. Elegir buenos casos — ejemplos, fronteras y regresiones.
+5. Comprobar entradas inválidas — excepciones y estado conservado.
+6. Preparar pruebas independientes — fixtures; assertAll cuando ayude.
+7. Una prueba con varios datos — parametrización centrada en CsvSource.
+8. Desarrollar una regla con TDD — rojo, verde y refactorización.
+9. Controlar dependencias — constructor y stub manual.
+10. Simular dependencias con Mockito — respuestas y una colaboración significativa.
+11. Refactorizar código existente — caracterización y red de regresión.
+
+Meta: 11 videos; dividir Mockito solo si el ensayo lo requiere, para un total de 12. Duración pendiente de ensayos. Sin lecciones dedicadas a BigDecimal, Clock, comisiones, conversión o impuestos. Mantener calculadora, portafolio pequeño y un proveedor externo como máximo.
+
+Presentación 3: [material](presentation/comprobar-resultados-junit/README.md). Los fragmentos y grabaciones usan los proyectos Maven before/after; el defecto intencional de porcentaje se reconstruye únicamente en una copia temporal.
+
+## Plan anterior — referencia histórica
+
 ## Lección cero — Un cambio que parecía funcionar · 8 minutos
 
 Introducción narrativa en siete momentos: programa de acciones completas; requisito de fracciones; cambio de int a double; el caso manual habitual sigue funcionando; otros datos revelan la división entera; pruebas que guardan expectativas y detectan el caso omitido; presentación del contenido del curso.
