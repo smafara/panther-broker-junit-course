@@ -12,3 +12,6 @@ presentation/intro-junit-kata-zero/.validation/
 
 presentation/primeros-pasos-junit/primeros-pasos-junit.pdf
 presentation/primeros-pasos-junit/.validation/
+
+presentation/comprobar-resultados-junit/*.pdf
+presentation/comprobar-resultados-junit/.validation/
