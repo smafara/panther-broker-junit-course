@@ -1,0 +1,26 @@
+{
+  "assertion-red": [
+    {
+      "name": "proposesPurchaseWhenBelowTarget",
+      "status": "passed"
+    },
+    {
+      "name": "buysTwoSharesWhenBelowTarget",
+      "status": "failed"
+    }
+  ],
+  "assertion-green": [
+    {
+      "name": "calculatesFractionalQuantityToSell",
+      "status": "passed"
+    },
+    {
+      "name": "proposesPurchaseWhenBelowTarget",
+      "status": "passed"
+    },
+    {
+      "name": "buysTwoSharesWhenBelowTarget",
+      "status": "passed"
+    }
+  ]
+}

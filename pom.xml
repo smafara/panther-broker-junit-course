@@ -12,5 +12,7 @@
         <module>kata-zero/after/02-first-test</module>
         <module>primeros-pasos-junit/before</module>
         <module>primeros-pasos-junit/after</module>
+        <module>comprobar-resultados-junit/before</module>
+        <module>comprobar-resultados-junit/after</module>
     </modules>
 </project>

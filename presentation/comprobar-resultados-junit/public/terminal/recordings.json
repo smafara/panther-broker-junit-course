@@ -1,0 +1,41 @@
+{
+  "jdk": "25.0.5.0+8-zulu",
+  "scenarios": [
+    {
+      "file": "assertion-red.cast",
+      "command": "./mvnw -B -ntp -f comprobar-resultados-junit/before/pom.xml test",
+      "exitCode": 1,
+      "duration": 6.457498,
+      "tests": [
+        {
+          "name": "proposesPurchaseWhenBelowTarget",
+          "status": "passed"
+        },
+        {
+          "name": "buysTwoSharesWhenBelowTarget",
+          "status": "failed"
+        }
+      ]
+    },
+    {
+      "file": "assertion-green.cast",
+      "command": "./mvnw -B -ntp -f comprobar-resultados-junit/after/pom.xml test",
+      "exitCode": 0,
+      "duration": 5.219523,
+      "tests": [
+        {
+          "name": "calculatesFractionalQuantityToSell",
+          "status": "passed"
+        },
+        {
+          "name": "proposesPurchaseWhenBelowTarget",
+          "status": "passed"
+        },
+        {
+          "name": "buysTwoSharesWhenBelowTarget",
+          "status": "passed"
+        }
+      ]
+    }
+  ]
+}
